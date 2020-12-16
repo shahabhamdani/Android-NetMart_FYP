@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFCD28"
+
+    tools:context=".SplashScreen">
+
+
+    <ImageView
+        android:id="@+id/SplashLogo"
+        android:layout_width="329dp"
+        android:layout_height="266dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/netmartlogo"
+        app:layout_constraintBottom_toTopOf="@+id/SplashSlogan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/SplashSlogan"
+        android:layout_width="403dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginBottom="100dp"
+
+
+        android:src="@drawable/component_12___1"
+        app:layout_constraintBottom_toTopOf="@+id/slogan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SplashLogo" />
+
+    <TextView
+        android:id="@+id/slogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Your daily grocery partner"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SplashSlogan" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

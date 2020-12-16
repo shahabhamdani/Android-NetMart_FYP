@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "336993216916",
+    "firebase_url": "https://netmart-5f69a.firebaseio.com",
+    "project_id": "netmart-5f69a",
+    "storage_bucket": "netmart-5f69a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336993216916:android:ac8b07401b9e468a720781",
+        "android_client_info": {
+          "package_name": "com.Shahab.netmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336993216916-rps69bmtmj0mfno4cpr1kuccmodt2hmn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Shahab.netmart",
+            "certificate_hash": "f9cea4784206e1bd21373018091259780b8dc3df"
+          }
+        },
+        {
+          "client_id": "336993216916-s6h62csfojmpvqbiqv90lm4s8dqsqn9e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCdS6YrUge7vVJ_ep9Fk6wXttIwQv9gOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336993216916-s6h62csfojmpvqbiqv90lm4s8dqsqn9e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
