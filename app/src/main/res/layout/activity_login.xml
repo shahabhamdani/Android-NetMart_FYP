@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/netmartLogo"
-        android:gravity="right"
+        android:gravity="left"
         android:fontFamily="@font/alfa_slab_one"
         android:padding="10dp"
         android:text="Hello There,\nWelcome Back"
