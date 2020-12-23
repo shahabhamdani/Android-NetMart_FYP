@@ -22,14 +22,9 @@ public class SplashScreen extends AppCompatActivity {
 
         //calling splash screen
         splashScreen();
-
-
-
     }
     ////////////////////////////////////////////////////////////////////////////////////////////
     //Splash Screen
-
-
 
 
     public void onClick(View v)

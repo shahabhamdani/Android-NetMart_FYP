@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFCD28"
-
     android:onClick="onClick"
-
     tools:context=".SplashScreen">
+
 
     <ImageView
         android:id="@+id/SplashLogo"

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".customerreg">
+    tools:context=".RegisterCustomer">
 
     <ImageView
         android:id="@+id/customerlogo"
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:background="@drawable/logo"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"/>
 
     <TextView
@@ -26,7 +26,7 @@
         android:text="Customer"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="45dp" />
+        android:textSize="35dp" />
 
     <TextView
         android:id="@+id/signupcustomer"
@@ -46,7 +46,8 @@
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="2dp"
         android:inputType="textPersonName"
         android:background="@drawable/shape_rect02"/>
 
@@ -57,7 +58,8 @@
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="2dp"
         android:inputType="number"
         android:background="@drawable/shape_rect02"/>
 
@@ -66,15 +68,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/phoneNumCustomer"
+        android:layout_marginTop="2dp"
         android:orientation="horizontal" >
+
         <EditText
             android:id="@+id/countryCustomer"
             android:layout_below="@id/phoneNumCustomer"
             android:hint="Country"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_margin="5dp"
+            android:layout_marginHorizontal="5dp"
             android:inputType="textPostalAddress"
             android:background="@drawable/shape_rect02"
             android:textFontWeight="1"
@@ -87,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_margin="5dp"
+
             android:background="@drawable/shape_rect02"
             android:inputType="textPostalAddress"
             android:layout_weight="1"/>
@@ -99,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_margin="5dp"
+            android:layout_marginHorizontal="5dp"
             android:background="@drawable/shape_rect02"
             android:inputType="textPostalAddress"
             android:layout_weight="1"/>
@@ -107,12 +112,13 @@
 
     <EditText
         android:id="@+id/completeAddress"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/addressCustomer"
         android:hint="Complete Address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_margin="5dp"
+        android:layout_marginHorizontal="5dp"
         android:background="@drawable/shape_rect02"
         android:inputType="textPostalAddress|textImeMultiLine" />
 
@@ -123,7 +129,8 @@
         android:layout_below="@id/completeAddress"
         android:hint="Email"
         android:padding="10dp"
-        android:layout_margin="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="2dp"
         android:background="@drawable/shape_rect02"
         android:inputType="textEmailAddress" />
     <EditText
@@ -133,7 +140,8 @@
         android:layout_below="@id/emailCustomer"
         android:hint="Password"
         android:padding="10dp"
-        android:layout_margin="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="2dp"
         android:background="@drawable/shape_rect02"
         android:inputType="textPassword"/>
 
@@ -144,7 +152,8 @@
         android:layout_below="@id/passwordCustomer"
         android:hint="Confirm Password"
         android:padding="10dp"
-        android:layout_margin="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="2dp"
         android:background="@drawable/shape_rect02"
         android:inputType="textPassword"/>
 
@@ -153,11 +162,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:minWidth="120dp"
         android:layout_below="@+id/confirmPasswordcustomer"
         android:text="Register"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
+        android:textSize="20dp"
         android:layout_margin="5dp"
         android:background="@color/colorPrimary" />
 
