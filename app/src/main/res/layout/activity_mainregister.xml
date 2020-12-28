@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mainregister"
+    android:background="@color/colorWhite">
+
+
+    <TextView
+        android:id="@+id/netMarttxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="15dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="NET MART"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="60dp" />
+
+    <LinearLayout
+        android:id="@+id/buyer"
+        android:layout_below="@id/netMarttxt"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imgBuyer"
+        android:layout_width="140dp"
+        android:layout_below="@id/netMarttxt"
+        android:padding="5dp"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
+        android:src="@drawable/logo" />
+
+     <TextView
+         android:id="@+id/txtBuyer"
+         android:padding="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="100dp"
+         android:layout_below="@id/netMarttxt"
+         android:text="Buyer"
+         android:background="@color/colorPrimary"
+         android:textSize="40dp"
+         android:textColor="@color/colorPrimaryDark"
+         android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/seller"
+        android:layout_below="@id/buyer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgSeller"
+            android:layout_width="140dp"
+            android:layout_below="@id/buyer"
+            android:padding="5dp"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/txtSeller"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/buyer"
+            android:text="Seller"
+            android:background="@color/colorPrimary"
+            android:textSize="40dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rider"
+        android:layout_below="@id/seller"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgRider"
+            android:layout_width="140dp"
+            android:layout_below="@id/seller"
+            android:padding="5dp"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/txtRider"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/seller"
+            android:text="Rider"
+            android:background="@color/colorPrimary"
+            android:textSize="40dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

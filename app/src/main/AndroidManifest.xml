@@ -14,7 +14,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sellerreg"></activity>
+        <activity android:name=".mainregister"></activity>
+        <activity android:name=".verification" />
+        <activity android:name=".resetpassword" />
+        <activity android:name=".sellerreg" />
         <activity android:name=".customerreg" />
         <activity android:name=".riderreg" />
         <activity android:name=".LoginActivity" />

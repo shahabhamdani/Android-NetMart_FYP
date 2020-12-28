@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".verification"
+    android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="110dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:padding="10dp"
+        android:text="Verification"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="45dp" />
+
+    <TextView
+        android:id="@+id/enterVerificationcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter verificaton code sent on given Phone Number"
+        android:layout_below="@id/verification"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:textSize="25dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorGrey"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/enterCode"
+        android:layout_below="@id/enterVerificationcode"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:inputType="number"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_rect02"/>
+
+
+    <TextView
+        android:id="@+id/resendCode"
+        android:layout_below="@id/enterCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Resend"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="35dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="50dp"/>
+
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_below="@id/resendCode"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="OK"
+        android:textColor="@color/colorWhite" />
+
+    
+
+</RelativeLayout>
