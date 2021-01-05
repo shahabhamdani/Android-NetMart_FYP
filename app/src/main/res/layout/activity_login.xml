@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/netmartLogo"
         android:gravity="left"
-        android:fontFamily="@font/alfa_slab_one"
+        android:fontFamily="@font/bungee"
         android:padding="10dp"
         android:text="Hello There,\nWelcome Back"
         android:textAllCaps="false"

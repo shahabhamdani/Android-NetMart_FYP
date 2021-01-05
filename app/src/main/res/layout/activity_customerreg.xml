@@ -21,9 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/customerlogo"
         android:gravity="left"
-        android:fontFamily="@font/alfa_slab_one"
         android:padding="5dp"
         android:text="Customer"
+        android:textStyle="bold"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="35dp" />
