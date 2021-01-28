@@ -9,6 +9,6 @@ public class RegisterRider extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_riderreg);
+        setContentView(R.layout.activity_register_rider);
     }
 }
