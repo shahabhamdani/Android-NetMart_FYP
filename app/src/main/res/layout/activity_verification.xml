@@ -4,15 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".verification"
+    tools:context=".ForgotPasswordActivity"
     android:background="@color/colorWhite">
+
+    
+    
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_back_black"
+        android:layout_marginTop="20dp"
+        android:background="@null"/>
 
     <TextView
         android:id="@+id/verification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="190dp"
         android:fontFamily="@font/bungee"
         android:padding="10dp"
         android:text="Verification"
@@ -21,53 +32,43 @@
         android:textSize="45dp" />
 
     <TextView
-        android:id="@+id/enterVerificationcode"
+        android:id="@+id/entryTag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter verificaton code sent on given Phone Number"
+        android:text="Enter your email"
         android:layout_below="@id/verification"
         android:padding="10dp"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:textAllCaps="false"
         android:textColor="@color/colorGrey"
         android:gravity="center"/>
 
     <EditText
-        android:id="@+id/enterCode"
-        android:layout_below="@id/enterVerificationcode"
-        android:padding="20dp"
+        android:id="@+id/emailEt"
+        android:layout_below="@+id/entryTag"
+        android:hint="Email"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_email_grey"
+        android:drawableLeft="@drawable/ic_email_grey"
+        android:drawablePadding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:inputType="number"
+        android:layout_margin="5dp"
+        android:inputType="textEmailAddress"
         android:background="@drawable/shape_rect02"/>
 
-
-    <TextView
-        android:id="@+id/resendCode"
-        android:layout_below="@id/enterCode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Resend"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="25dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="50dp"/>
-
-
     <Button
-        android:id="@+id/loginBtn"
-        android:layout_below="@id/resendCode"
+        android:id="@+id/recoverBtn"
+        android:layout_below="@id/emailEt"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="10dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
         android:background="@color/colorPrimaryDark"
-        android:text="OK"
+        android:text="Recover"
         android:textColor="@color/colorWhite" />
 
     
