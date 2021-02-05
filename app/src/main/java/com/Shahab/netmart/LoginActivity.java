@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         noAccountTv = findViewById(R.id.noAccountTv);
         loginBtn =  findViewById(R.id.loginBtn);
 
+
         noAccountTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,5 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+
     }
+
+
 }
