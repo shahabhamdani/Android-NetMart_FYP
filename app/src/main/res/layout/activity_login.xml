@@ -80,6 +80,8 @@
         android:text="Forgot Password?"
         android:layout_alignParentEnd="true"
         android:clickable="true"
+        android:onClick="onClickForgotPass"
+
         android:layout_alignParentRight="true" />
 
     <Button
@@ -99,6 +101,7 @@
         android:id="@+id/noAccountTv"
         android:layout_below="@id/loginBtn"
         android:clickable="true"
+        android:onClick="onClickNoAcc"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

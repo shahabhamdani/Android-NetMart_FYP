@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".RegisterMenuActivity">
 
 
@@ -16,17 +17,38 @@
         android:textAlignment="center"
         android:textSize="60dp"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:gravity="center_horizontal" />
-    <TextView
-        android:id="@+id/txtUser"
-        android:layout_below="@+id/txtWelcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_sellerlogo"
-        size
-        
 
+
+    <ImageView
+        android:id="@+id/imgUser"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:background="@drawable/logo"
+        android:clickable="true"
+        android:layout_below="@+id/txtWelcome"
+        android:layout_marginTop="90dp"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/imgSeller"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/imgUser"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_sellerlogo" />
+    <ImageView
+        android:id="@+id/imgRider"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/imgSeller"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_riderlogo" />
 
 
 </RelativeLayout>

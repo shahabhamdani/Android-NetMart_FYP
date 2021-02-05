@@ -22,31 +22,24 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //init UI views
-
         emailEt = findViewById(R.id.emailEt);
         passwordEt = findViewById(R.id.passwordEt);
         forgotTv = findViewById(R.id.forgotTv);
         noAccountTv = findViewById(R.id.noAccountTv);
         loginBtn =  findViewById(R.id.loginBtn);
 
-
-        noAccountTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity( new Intent(LoginActivity.this, RegisterMenuActivity.class ));
-            }
-        });
-
-        forgotTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity( new Intent(LoginActivity.this, ForgotPasswordActivity.class ));
-            }
-        });
-
-
-
     }
+
+    public void onClickNoAcc(View v){
+        startActivity( new Intent(LoginActivity.this, RegisterMenuActivity.class ));
+    }
+
+    public void onClickForgotPass(View v){
+        startActivity( new Intent(LoginActivity.this, VerificationActivity.class ));
+    }
+
+
+
 
 
 }

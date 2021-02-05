@@ -5,25 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
+
 
 public class RegisterMenuActivity extends AppCompatActivity {
 
 
-    private TextView txtBuyer;
-    private TextView txtSeller;
-    private TextView txtRider;
+    private ImageView imgUser;
+    private ImageView imgSeller;
+    private ImageView imgRider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_menu);
 
-        txtBuyer = findViewById(R.id.txtBuyer);
-        txtSeller = findViewById(R.id.txtSeller);
-        txtRider =  findViewById((R.id.txtRider));
+        imgUser = findViewById(R.id.imgUser);
+        imgSeller = findViewById(R.id.imgSeller);
+        imgRider =  findViewById((R.id.imgRider));
 
-        txtBuyer.setOnClickListener(new View.OnClickListener() {
+        imgUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -31,7 +32,7 @@ public class RegisterMenuActivity extends AppCompatActivity {
             }
         });
 
-        txtSeller.setOnClickListener(new View.OnClickListener() {
+        imgSeller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -39,7 +40,7 @@ public class RegisterMenuActivity extends AppCompatActivity {
             }
         });
 
-        txtRider.setOnClickListener(new View.OnClickListener() {
+        imgRider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
