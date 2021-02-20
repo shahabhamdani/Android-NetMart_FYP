@@ -7,13 +7,38 @@
     android:background="@color/colorWhite"
     tools:context=".RegisterUserActivity">
 
+
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_back_black"
+        android:layout_marginTop="20dp"
+        android:background="@null"/>
+
+    <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+        android:id="@+id/profileIv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/backBtn"
+        android:layout_toRightOf="@id/customerlogo"
+        android:layout_marginLeft="140dp"
+        app:c_border="true"
+        app:c_background_color="@color/colorPrimary"
+        app:c_border_width="1dp"
+        app:c_border_color="@color/colorPrimaryDark"
+        android:src="@drawable/ic_person_black"
+        />
+
     <ImageView
         android:id="@+id/customerlogo"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:background="@drawable/logo"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_below="@id/backBtn"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/logo" />
 
     <TextView
         android:id="@+id/customerTxt"
@@ -40,7 +65,7 @@
         android:layout_marginBottom="5dp" />
 
     <EditText
-        android:id="@+id/nameCustomer"
+        android:id="@+id/nameEt"
         android:layout_below="@id/signupcustomer"
         android:hint="Name"
         android:padding="10dp"
@@ -51,9 +76,20 @@
         android:inputType="textPersonName"
         android:background="@drawable/shape_rect02"/>
 
+    <ImageButton
+        android:id="@+id/gpsBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_gps_black"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        />
+
     <EditText
-        android:id="@+id/phoneNumCustomer"
-        android:layout_below="@id/nameCustomer"
+        android:id="@+id/phoneEt"
+        android:layout_below="@id/nameEt"
         android:hint="Phone Number"
         android:padding="10dp"
         android:layout_width="match_parent"
@@ -67,15 +103,14 @@
         android:id="@+id/addressCustomer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/phoneNumCustomer"
+        android:layout_below="@id/phoneEt"
         android:layout_marginTop="2dp"
         android:orientation="horizontal" >
 
         <EditText
-            android:id="@+id/countryCustomer"
-            android:layout_below="@id/phoneNumCustomer"
+            android:id="@+id/countryEt"
+            android:layout_below="@id/phoneEt"
             android:hint="Country"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -86,8 +121,8 @@
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/stateCustomer"
-            android:layout_below="@id/phoneNumCustomer"
+            android:id="@+id/stateEt"
+            android:layout_below="@id/phoneEt"
             android:hint="State"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,8 +133,8 @@
             android:layout_weight="1"/>
 
         <EditText
-            android:id="@+id/cityCustomer"
-            android:layout_below="@id/phoneNumCustomer"
+            android:id="@+id/cityEt"
+            android:layout_below="@id/phoneEt"
             android:hint="City"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +146,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/completeAddress"
+        android:id="@+id/addressEt"
         android:layout_marginTop="2dp"
         android:layout_below="@id/addressCustomer"
         android:hint="Complete Address"
@@ -123,10 +158,10 @@
         android:inputType="textPostalAddress|textImeMultiLine" />
 
     <EditText
-        android:id="@+id/emailCustomer"
+        android:id="@+id/emailEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/completeAddress"
+        android:layout_below="@id/addressEt"
         android:hint="Email"
         android:padding="10dp"
         android:layout_marginHorizontal="5dp"
@@ -134,10 +169,10 @@
         android:background="@drawable/shape_rect02"
         android:inputType="textEmailAddress" />
     <EditText
-        android:id="@+id/passwordCustomer"
+        android:id="@+id/passwordEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/emailCustomer"
+        android:layout_below="@id/emailEt"
         android:hint="Password"
         android:padding="10dp"
         android:layout_marginHorizontal="5dp"
@@ -146,40 +181,29 @@
         android:inputType="textPassword"/>
 
     <EditText
-        android:id="@+id/confirmPasswordcustomer"
+        android:id="@+id/cPasswordEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwordCustomer"
+        android:layout_below="@id/passwordEt"
         android:hint="Confirm Password"
         android:padding="10dp"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/shape_rect02"
         android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/bttnregCustomer"
+        android:id="@+id/registerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/confirmPasswordcustomer"
+        android:layout_below="@+id/cPasswordEt"
         android:text="Register"
         android:textColor="@color/colorWhite"
         android:textSize="20dp"
         android:layout_margin="5dp"
         android:background="@color/colorPrimaryDark" />
 
-    <TextView
-        android:id="@+id/registerCustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Already have an account? Login"
-        android:layout_below="@id/bttnregCustomer"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
