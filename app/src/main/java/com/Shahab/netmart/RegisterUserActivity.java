@@ -174,7 +174,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             Toast.makeText(this, "Please click on the GPS button to detect location...", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             Toast.makeText(this, "Invalid Email pattern...", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -182,7 +182,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             Toast.makeText(this, "Password must be atleast 6 characters long...", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (password.equals(confirmPassword)){
+        if (!password.equals(confirmPassword)){
             Toast.makeText(this, "Password doesn't match...", Toast.LENGTH_SHORT).show();
             return;
         }

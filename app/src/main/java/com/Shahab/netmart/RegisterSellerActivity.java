@@ -197,7 +197,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             Toast.makeText(this, "Password must be atleast 6 characters long...", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (password.equals(confirmPassword)){
+        if (!password.equals(confirmPassword)){
             Toast.makeText(this, "Password doesn't match...", Toast.LENGTH_SHORT).show();
             return;
         }

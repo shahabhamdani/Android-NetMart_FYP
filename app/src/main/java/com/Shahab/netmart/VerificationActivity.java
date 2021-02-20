@@ -3,6 +3,7 @@ package com.Shahab.netmart;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,6 +71,8 @@ public class VerificationActivity extends AppCompatActivity {
                         //instructions sent
                         progressDialog.dismiss();
                         Toast.makeText(VerificationActivity.this, "Password reset instruction sent to your email...", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(VerificationActivity.this, LoginActivity.class));
+                        finish();
                     }
                 })
 
