@@ -141,6 +141,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             public void onClick(View v) {
                 //register user
                 inputData();
+
             }
         });
 

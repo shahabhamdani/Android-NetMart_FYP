@@ -189,7 +189,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             Toast.makeText(this, "Please click on the GPS button to detect location...", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             Toast.makeText(this, "Invalid Email pattern...", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -255,7 +255,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             hashMap.put("longitude", ""+longitude);
             hashMap.put("timeStamp", ""+timestamp);
             hashMap.put("accountType", "Seller");
-            hashMap.put("onLine", "true");
+            hashMap.put("online", "true");
             hashMap.put("shopOpen", "true");
             hashMap.put("profileImage", "");
 
@@ -317,7 +317,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                                 hashMap.put("longitude", ""+longitude);
                                 hashMap.put("timeStamp", ""+timestamp);
                                 hashMap.put("accountType", "Seller");
-                                hashMap.put("onLine", "true");
+                                hashMap.put("online", "true");
                                 hashMap.put("shopOpen", "true");
                                 hashMap.put("profileImage", ""+downloadImageUri); //url OF UPLOADED IMAGE
 
