@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainUserActivity"></activity>
         <activity android:name=".MainSellerActivity" />
-        <activity android:name=".MyActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".VerificationActivity" />
         <activity android:name=".RegisterMenuActivity" />
