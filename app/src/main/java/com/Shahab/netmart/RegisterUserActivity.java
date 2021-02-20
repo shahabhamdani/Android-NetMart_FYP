@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,6 +28,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 import java.util.Locale;
@@ -58,6 +61,8 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
     private LocationManager locationManager;
 
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +90,16 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
 
+        firebaseAuth = firebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
         gpsBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -120,8 +128,13 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
             public void onClick(View v) {
                 //register user
+                inputData();
             }
         });
+
+    }
+
+    private void inputData() {
 
     }
 
@@ -181,7 +194,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         intent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
         startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
     }
-
 
     private void detectLocation() {
         Toast.makeText(this, "Please Wait....", Toast.LENGTH_LONG).show();
