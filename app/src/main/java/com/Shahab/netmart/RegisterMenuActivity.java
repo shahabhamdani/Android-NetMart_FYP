@@ -44,7 +44,7 @@ public class RegisterMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity( new Intent(RegisterMenuActivity.this, RegisterRider.class ));
+                startActivity( new Intent(RegisterMenuActivity.this, RegisterRiderActivity.class ));
             }
         });
     }

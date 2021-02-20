@@ -20,7 +20,7 @@
         <activity android:name=".RegisterMenuActivity" />
         <activity android:name=".RegisterSellerActivity" />
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".RegisterRider" />
+        <activity android:name=".RegisterRiderActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>

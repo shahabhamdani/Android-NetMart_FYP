@@ -18,7 +18,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -27,20 +26,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 import java.util.Locale;
 
-public class RegisterSellerActivity extends AppCompatActivity implements LocationListener {
+public class RegisterRiderActivity extends AppCompatActivity implements LocationListener {
+
 
     private ImageButton backBtn, gpsBtn;
     private ImageView profileIv;
-    private EditText nameEt, shopeNameEt, phoneEt, deliveryFeeEt,countryEt, stateEt, cityEt, addressEt,
+    private EditText nameEt, phoneEt, countryEt, stateEt, cityEt, addressEt,
             emailEt, passwordEt, cPasswordEt;
-
     private Button registerBtn;
+
+
 
     //permission constants
     private static final int LOCATION_REQUEST_CODE = 100;
@@ -61,18 +61,19 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
     private LocationManager locationManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_seller);
+        setContentView(R.layout.activity_register_rider);
 
+
+        //init Values
         backBtn = findViewById(R.id.backBtn);
         gpsBtn = findViewById(R.id.gpsBtn);
         profileIv = findViewById(R.id.profileIv);
         phoneEt = findViewById(R.id.phoneEt);
-        deliveryFeeEt = findViewById(R.id.deliveryFeeEt);
         nameEt = findViewById(R.id.nameEt);
-        shopeNameEt = findViewById(R.id.shopNameEt);
         countryEt = findViewById(R.id.countryEt);
         stateEt = findViewById(R.id.stateEt);
         cityEt = findViewById(R.id.cityEt);
@@ -82,11 +83,12 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         cPasswordEt = findViewById(R.id.cPasswordEt);
         registerBtn = findViewById(R.id.registerBtn);
 
-
         //init permission array
         locationPermission = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -121,11 +123,12 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         registerBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                //register SELLER
+                //register Rider
             }
         });
-
     }
+
+
 
     private void showImagePickDialog() {
 
@@ -372,4 +375,6 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }

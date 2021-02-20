@@ -5,161 +5,223 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".RegisterRider">
+    tools:context=".RegisterRiderActivity">
 
-    <ImageView
-        android:id="@+id/riderlogo"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:background="@drawable/logo"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="20dp"/>
 
-    <TextView
-        android:id="@+id/riderTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/riderlogo"
-        android:gravity="left"
-        android:fontFamily="@font/alfa_slab_one"
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:padding="10dp"
-        android:text="Rider"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="45dp" />
+        android:src="@drawable/ic_back_black"
+        android:layout_marginTop="20dp"
+        android:background="@null"/>
 
-    <EditText
-        android:id="@+id/riderName"
-        android:layout_below="@id/riderTxt"
-        android:hint="Name"
-        android:padding="10dp"
+    <ImageButton
+        android:id="@+id/gpsBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_gps_black"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:inputType="textPersonName"
-        android:background="@drawable/shape_rect02"/>
+        android:layout_below="@+id/backBtn">
 
-    <EditText
-        android:id="@+id/phoneNumRider"
-        android:layout_below="@id/riderName"
-        android:hint="Phone Number"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:inputType="number"
-        android:background="@drawable/shape_rect02"/>
-
-    <LinearLayout
-        android:id="@+id/addressLl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phoneNumRider"
-        android:orientation="horizontal" >
-        <EditText
-            android:id="@+id/countryRider"
-            android:layout_below="@id/phoneNumRider"
-            android:hint="Country"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="5dp"
-            android:inputType="textPostalAddress"
-            android:background="@drawable/shape_rect02"
-            android:textFontWeight="1"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/stateRider"
-            android:layout_below="@id/phoneNumRider"
-            android:hint="State"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/shape_rect02"
-            android:inputType="textPostalAddress"
-            android:layout_weight="1"/>
 
-        <EditText
-            android:id="@+id/cityRider"
-            android:layout_below="@id/phoneNumRider"
-            android:hint="City"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/shape_rect02"
-            android:inputType="textPostalAddress"
-            android:layout_weight="1"/>
-    </LinearLayout>
 
-    <EditText
-        android:id="@+id/addressET"
-        android:layout_below="@id/addressLl"
-        android:hint="Complete Address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:inputType="textPostalAddress|textImeMultiLine" />
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:id="@+id/profileIv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:c_border="true"
+                app:c_background_color="@color/colorPrimary"
+                app:c_border_width="1dp"
+                app:c_border_color="@color/colorPrimaryDark"
+                android:src="@drawable/ic_person_black"
+                android:layout_centerHorizontal="true"
+                />
 
-    <EditText
-        android:id="@+id/emailRider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addressET"
-        android:hint="Email"
-        android:padding="10dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:inputType="textEmailAddress" />
-    <EditText
-        android:id="@+id/passwordRider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/emailRider"
-        android:hint="Password"
-        android:padding="10dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:inputType="textPassword"/>
 
-    <EditText
-        android:id="@+id/confirmPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/passwordRider"
-        android:hint="Confirm Password"
-        android:padding="10dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:inputType="textPassword"/>
+            <TextView
+                android:id="@+id/riderTxt"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profileIv"
+                android:text="Rider"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/bungee"
+                android:textSize="35dp"
+                android:gravity="center_horizontal" />
 
-    <Button
-        android:id="@+id/bttnregRider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:minWidth="120dp"
-        android:layout_below="@+id/confirmPassword"
-        android:text="Register"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
-        android:layout_margin="5dp"
-        android:background="@color/colorGrey"/>
+            <TextView
+                android:id="@+id/signupcustomer"
+                android:textAlignment="center"
+                android:layout_below="@id/riderTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Signup to start yor Rides"
+                android:paddingLeft="10dp"
+                android:textColor="@color/colorGrey"
+                android:textSize="15dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal" />
 
-    <TextView
-        android:id="@+id/registerRider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Already have an account? Login"
-        android:layout_below="@id/bttnregRider"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
+            <EditText
+                android:id="@+id/nameEt"
+                android:layout_below="@id/signupcustomer"
+                android:hint="Name"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="2dp"
+                android:inputType="textPersonName"
+                android:background="@drawable/shape_rect02"/>
+
+
+
+            <EditText
+                android:id="@+id/phoneEt"
+                android:layout_below="@id/nameEt"
+                android:hint="Phone Number"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="2dp"
+                android:inputType="number"
+                android:background="@drawable/shape_rect02"/>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/addressCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phoneEt"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/countryEt"
+                    android:layout_below="@id/phoneEt"
+                    android:hint="Country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:inputType="textPostalAddress"
+                    android:background="@drawable/shape_rect02"
+                    android:textFontWeight="1"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:id="@+id/stateEt"
+                    android:layout_below="@id/phoneEt"
+                    android:hint="State"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+
+                    android:background="@drawable/shape_rect02"
+                    android:inputType="textPostalAddress"
+                    android:layout_weight="1"/>
+
+                <EditText
+                    android:id="@+id/cityEt"
+                    android:layout_below="@id/phoneEt"
+                    android:hint="City"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/shape_rect02"
+                    android:inputType="textPostalAddress"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/addressEt"
+                android:layout_marginTop="2dp"
+                android:layout_below="@id/addressCustomer"
+                android:hint="Complete Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/shape_rect02"
+                android:inputType="textPostalAddress|textImeMultiLine" />
+
+            <EditText
+                android:id="@+id/emailEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/addressEt"
+                android:hint="Email"
+                android:padding="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/shape_rect02"
+                android:inputType="textEmailAddress" />
+            <EditText
+                android:id="@+id/passwordEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/emailEt"
+                android:hint="Password"
+                android:padding="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/shape_rect02"
+                android:inputType="textPassword"/>
+
+            <EditText
+                android:id="@+id/cPasswordEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/passwordEt"
+                android:hint="Confirm Password"
+                android:padding="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_rect02"
+                android:inputType="textPassword"/>
+
+            <Button
+                android:id="@+id/registerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/cPasswordEt"
+                android:text="Register"
+                android:textColor="@color/colorWhite"
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                android:background="@color/colorPrimaryDark" />
+
+
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
 
 </RelativeLayout>
