@@ -35,12 +35,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.List;
@@ -158,7 +160,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         shopName = shopeNameEt.getText().toString().trim();
         phoneNumber = phoneEt.getText().toString().trim();
         deliveryFee = deliveryFeeEt.getText().toString().trim();
-        country =  deliveryFeeEt.getText().toString().trim();
+        country =  countryEt.getText().toString().trim();
         state = stateEt.getText().toString().trim();
         city =  cityEt.getText().toString().trim();
         address = addressEt.getText().toString().trim();
@@ -232,7 +234,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
     private void saverFirebaseData() {
         progressDialog.setMessage("Saving Account info...");
 
-        String timestamp = ""+System.currentTimeMillis();
+        final String timestamp = ""+System.currentTimeMillis();
 
         if (image_uri == null){
             //save info without image
@@ -285,12 +287,76 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             //save info with image
 
             //name and path of image
-            String filePathAndName = "Profile_images/" + ""+firebaseAuth.getUid();
+            String filePathAndName = "profile_images/" + ""+firebaseAuth.getUid();
             //upload image
             StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
             storageReference.putFile(image_uri)
-                    .addOnSuccessListener()
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            //get url of uploaded image
+                            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!uriTask.isSuccessful());
+                            Uri downloadImageUri = uriTask.getResult();
+
+                            if(uriTask.isSuccessful()){
+                                //setup data to save
+                                HashMap<String, Object> hashMap = new HashMap<>();
+                                hashMap.put("uid", ""+firebaseAuth.getUid());
+                                hashMap.put("email", ""+email);
+                                hashMap.put("name", ""+fullName);
+                                hashMap.put("shopName", ""+shopName);
+                                hashMap.put("phone", ""+phoneNumber);
+                                hashMap.put("deliveryFee", ""+deliveryFee);
+                                hashMap.put("country", ""+country);
+                                hashMap.put("state", ""+state);
+                                hashMap.put("city", ""+city);
+                                hashMap.put("address", ""+address);
+                                hashMap.put("latitude", ""+latitude);
+                                hashMap.put("longitude", ""+longitude);
+                                hashMap.put("timeStamp", ""+timestamp);
+                                hashMap.put("accountType", "Seller");
+                                hashMap.put("onLine", "true");
+                                hashMap.put("shopOpen", "true");
+                                hashMap.put("profileImage", ""+downloadImageUri); //url OF UPLOADED IMAGE
+
+                                //Save to DB
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+                                ref.child(firebaseAuth.getUid()).setValue(hashMap)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                //Database Update
+                                                progressDialog.dismiss();
+                                                startActivity(new Intent( RegisterSellerActivity.this, MainSellerActivity.class));
+                                                finish();
+                                            }
+                                        })
+
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                //Failed Updating Database
+                                                progressDialog.dismiss();
+                                                startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
+                                                finish();
+                                            }
+                                        });
+
+                            }
+                        }
+                    })
+
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(RegisterSellerActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
+
     }
 
     private void showImagePickDialog() {
