@@ -29,9 +29,9 @@
         android:textSize="45dp" />
 
     <EditText
-        android:id="@+id/storeNameRider"
+        android:id="@+id/riderName"
         android:layout_below="@id/riderTxt"
-        android:hint="Store Name"
+        android:hint="Name"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
 
     <EditText
         android:id="@+id/phoneNumRider"
-        android:layout_below="@id/storeNameRider"
+        android:layout_below="@id/riderName"
         android:hint="Phone Number"
         android:padding="10dp"
         android:layout_width="match_parent"
