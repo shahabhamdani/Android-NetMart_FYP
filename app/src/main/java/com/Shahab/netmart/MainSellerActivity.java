@@ -9,10 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,11 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
-
-import okhttp3.internal.http2.Header;
 
 public class MainSellerActivity extends AppCompatActivity {
 
@@ -70,7 +64,7 @@ public class MainSellerActivity extends AppCompatActivity {
 
                 switch (menuItem.getItemId()) {
                     case R.id.navProfile:
-                        intent = new Intent(MainSellerActivity.this, EditProfileSellerActivity.class);
+                        intent = new Intent(MainSellerActivity.this, ProfileEditSellerActivity.class);
                         startActivity(intent);
                         break;
 

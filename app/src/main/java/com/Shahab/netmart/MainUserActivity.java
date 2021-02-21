@@ -8,9 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -66,7 +64,7 @@ public class MainUserActivity extends AppCompatActivity {
                 Intent intent = null;
                 switch (menuItem.getItemId()) {
                     case R.id.navProfile:
-                        intent = new Intent(MainUserActivity.this, EditProfileActivity.class);
+                        intent = new Intent(MainUserActivity.this, ProfileEditUserActivity.class);
                         startActivity(intent);
                         break;
 

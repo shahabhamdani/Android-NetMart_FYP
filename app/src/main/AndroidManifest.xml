@@ -17,10 +17,10 @@
         <activity android:name=".ReviewsSellerActivity"></activity>
         <activity android:name=".AddProductsSellerActivity" />
         <activity android:name=".CartSellerActivity" />
-        <activity android:name=".EditProfileSellerActivity" />
+        <activity android:name=".ProfileEditSellerActivity" />
         <activity android:name=".CutomePackageActivity" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".ProfileEditUserActivity" />
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
