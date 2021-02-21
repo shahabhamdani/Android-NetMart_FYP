@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,9 +22,9 @@ public class VerificationActivity extends AppCompatActivity {
     private ImageButton backBtn;
     private EditText emialEt;
     private Button recoverBtn;
-
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,10 +83,5 @@ public class VerificationActivity extends AppCompatActivity {
                         Toast.makeText(VerificationActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
     }
-
-
-
 }
