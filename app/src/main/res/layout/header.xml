@@ -4,24 +4,49 @@
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:background="@color/colorPrimary"
-    android:gravity="bottom">
+    android:gravity="bottom"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
 
         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+            android:id="@+id/profileIv"
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:src="@drawable/ic_person_black" />
-    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        text
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_marginHorizontal="10dp"
+            android:textSize="25dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="@font/lato"
+            android:textStyle="bold">
+        </TextView>
 
+        <TextView
+            android:id="@+id/emailTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="email"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="@font/lato" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/phoneTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="phone"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="@font/lato" >
+        </TextView>
 
 
 </LinearLayout>
