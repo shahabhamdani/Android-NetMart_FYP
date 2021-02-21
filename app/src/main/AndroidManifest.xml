@@ -14,7 +14,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CutomePackageActivity"></activity>
+        <activity android:name=".ReviewsSellerActivity"></activity>
+        <activity android:name=".AddProductsSellerActivity" />
+        <activity android:name=".CartSellerActivity" />
+        <activity android:name=".EditProfileSellerActivity" />
+        <activity android:name=".CutomePackageActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity
