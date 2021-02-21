@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:padding="10dp"
-        android:background="@drawable/shape_rect01" />
+        android:background="@drawable/shape_rect01" >
 
-    <ImageView
+        <ImageView
         android:id="@+id/menuIv"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -22,7 +22,7 @@
         android:padding="10dp"
         android:layout_marginTop="10dp"/>
 
-    <ImageView
+        <ImageView
         android:id="@+id/cartIv"
         android:src="@drawable/ic_cart_black"
         android:layout_width="50dp"
@@ -31,7 +31,7 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"/>
 
-    <TextView
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Home"
@@ -43,14 +43,7 @@
         android:gravity="center_horizontal"
         android:textSize="20dp"
         android:textColor="@color/colorPrimaryDark"/>
-
-
-
-
-
-
-
-
+        </RelativeLayout>
 
 
 </RelativeLayout>

@@ -38,7 +38,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null){
+                if(user == null){
                     //user not logged in start login activity
                     startActivity(new Intent(SplashScreen.this, LoginActivity.class));
                     finish();

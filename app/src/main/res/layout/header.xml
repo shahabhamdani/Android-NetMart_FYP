@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style = "@style/ThemeOverlay.AppCompat.Dark"
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:background="@color/colorPrimary"
@@ -12,14 +13,16 @@
             android:id="@+id/profileIv"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:src="@drawable/ic_person_black" />
+            android:src="@drawable/ic_person_black"
+            android:layout_marginHorizontal="10dp"
+            />
 
         <TextView
             android:id="@+id/nameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="15dp"
             android:textSize="25dp"
             android:textColor="@color/colorPrimaryDark"
             android:fontFamily="@font/lato"
@@ -30,9 +33,9 @@
             android:id="@+id/emailTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="15dp"
             android:text="email"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="@color/colorPrimaryDark"
             android:fontFamily="@font/lato" >
         </TextView>
@@ -41,12 +44,19 @@
             android:id="@+id/phoneTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="15dp"
             android:text="phone"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="@color/colorPrimaryDark"
-            android:fontFamily="@font/lato" >
+            android:fontFamily="@font/lato"
+            android:layout_marginBottom="20dp"
+
+            >
         </TextView>
+
+
+        />
+
 
 
 </LinearLayout>
