@@ -24,7 +24,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/shape_rect01"
                 app:subtitleTextColor="#0A0A0A"
                 app:title=" "
@@ -36,7 +36,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+
                     android:text="HOME" />
+
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -49,7 +51,11 @@
             </androidx.appcompat.widget.Toolbar>
 
 
+
+
         </LinearLayout>
+
+
     </ScrollView>
 
     <com.google.android.material.navigation.NavigationView

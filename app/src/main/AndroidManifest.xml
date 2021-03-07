@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ReviewsSellerActivity"></activity>
-        <activity android:name=".AddProductsSellerActivity" />
+        <activity android:name=".AddProductActivity" />
         <activity android:name=".CartSellerActivity" />
         <activity android:name=".ProfileEditSellerActivity" />
         <activity android:name=".CutomePackageActivity" />

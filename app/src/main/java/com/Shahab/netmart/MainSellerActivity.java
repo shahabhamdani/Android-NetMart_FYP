@@ -1,13 +1,14 @@
 package com.Shahab.netmart;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,71 +26,66 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+
 
 public class MainSellerActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
+    private TextView userName;
+    private TextView userPhone;
+    private TextView userEmail;
+    private ImageView profileIv;
+    private ImageView cartIv;
+
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
 
-    private   TextView userName;
-    private   TextView userPhone;
-    private   TextView userEmail;
-
-    private ImageView cartIv;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_seller);
+        setContentView(R.layout.activity_main_user);
+        profileIv = findViewById(R.id.profileIv);
 
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Please Wait");
-            progressDialog.setCanceledOnTouchOutside(false);
-            firebaseAuth = FirebaseAuth.getInstance();
-            checkUser();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please Wait");
+        progressDialog.setCanceledOnTouchOutside(false);
+        firebaseAuth = FirebaseAuth.getInstance();
+        checkUser();
 
+
+        setUpToolbar();
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Intent intent = null;
-
                 switch (menuItem.getItemId()) {
                     case R.id.navProfile:
-                        intent = new Intent(MainSellerActivity.this, ProfileEditSellerActivity.class);
+                        intent = new Intent(MainSellerActivity.this, ProfileEditUserActivity.class);
                         startActivity(intent);
                         break;
 
                     case R.id.navMyCart: {
-                        intent = new Intent(MainSellerActivity.this, CartSellerActivity.class);
+                        intent = new Intent(MainSellerActivity.this, CartActivity.class);
                         startActivity(intent);
                     }
                     break;
 
-                    case R.id.navAddProducts: {
-                        intent = new Intent(MainSellerActivity.this, AddProductsSellerActivity.class);
-                        startActivity(intent);
-                    }
-                    break;
-
-                    case R.id.navReviews: {
-                        intent = new Intent(MainSellerActivity.this, ReviewsSellerActivity.class);
+                    case R.id.navCustomPackage: {
+                        intent = new Intent(MainSellerActivity.this, CutomePackageActivity.class);
                         startActivity(intent);
                     }
                     break;
 
                     case R.id.navSignOut: {
                         makeMeOffline();
-                        firebaseAuth.signOut();
-                        checkUser();
+
                     }
                     break;
 
@@ -102,12 +98,13 @@ public class MainSellerActivity extends AppCompatActivity {
         cartIv = findViewById(R.id.cartIv);
         cartIv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainSellerActivity.this, CartSellerActivity.class);
+                Intent intent = new Intent(MainSellerActivity.this, CartActivity.class);
                 startActivity(intent);
+
             }
         });
-    }
 
+    }
 
     private void makeMeOffline() {
 
@@ -163,6 +160,7 @@ public class MainSellerActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot ds: dataSnapshot.getChildren()){
+                            String profileImage = ""+ds.child("profileImage").getValue();
                             String name = ""+ds.child("name").getValue();
                             String accountType = ""+ds.child("accountType").getValue();
                             String phone = ""+ds.child("phone").getValue();
@@ -177,7 +175,16 @@ public class MainSellerActivity extends AppCompatActivity {
                             userEmail = (TextView) findViewById(R.id.emailTv);
                             userEmail.setText(email);
 
+                            try {
+                                Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_black).into(profileIv);
+                            }
+                            catch (Exception e){
+                                profileIv.setImageResource(R.drawable.ic_person_black);
+                            }
+
+
                         }
+
                     }
 
                     @Override
@@ -186,8 +193,6 @@ public class MainSellerActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);

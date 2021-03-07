@@ -259,7 +259,8 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                         public void onFailure(@NonNull Exception e) {
                             //Failed Updating Database
                             progressDialog.dismiss();
-                            startActivity(new Intent(RegisterUserActivity.this, MainUserActivity.class));
+                            Toast.makeText(RegisterUserActivity.this, " Registration Failed..", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent( RegisterUserActivity.this, LoginActivity.class));
                             finish();
                         }
                     });

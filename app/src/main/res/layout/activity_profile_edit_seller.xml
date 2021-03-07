@@ -6,157 +6,179 @@
     android:layout_height="match_parent"
     tools:context=".ProfileEditSellerActivity">
 
+    <!--Toolbar-->
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_rect01"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:src="@drawable/ic_back_black" />
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Edit Profile"
+            android:textColor="@color/colourBlack"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/gpsBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:src="@drawable/ic_gps_black" />
+
+    </RelativeLayout>
 
 
-  <com.blogspot.atifsoftwares.circularimageview.CircularImageView
-      android:id="@+id/profileIv"
-      android:layout_width="100dp"
-      android:layout_height="100dp"
-      app:c_border="true"
-      app:c_background_color="@color/colorWhite"
-      app:c_border_width="1dp"
-      app:c_border_color="@color/colorPrimaryDark"
-      android:layout_marginTop="10dp"
-      android:src="@drawable/ic_person_black"
-      android:layout_centerHorizontal="true"
-      />
-  <EditText
-      android:id="@+id/shopNameEt"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/profileIv"
-      android:layout_margin="5dp"
-      android:background="@drawable/shape_rect02"
-      android:padding="10dp"
-      android:hint="Store Name"
-      android:inputType="textPersonName|textCapWords"
-      />
-
-  <EditText
-      android:id="@+id/phoneEt"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/shopNameEt"
-      android:layout_margin="5dp"
-      android:background="@drawable/shape_rect02"
-      android:padding="10dp"
-      android:hint="phone#"
-      android:inputType="phone"
-
-      >
-
-  </EditText>
-  <LinearLayout
-      android:id="@+id/addressLl"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/phoneEt"
-      android:orientation="horizontal"
-      >
-    <EditText
-        android:id="@+id/countryEt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_weight="1"
-        android:background="@drawable/shape_rect02"
-        android:padding="10dp"
-        android:hint="Country"
-        android:inputType="textPostalAddress"
-
-        />
+    <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+        android:id="@+id/profileIv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/toolbarRl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ic_person_black"
+        app:c_border="true"
+        app:c_border_color="@color/colorPrimaryDark"
+        app:c_border_width="1dp" />
 
     <EditText
-        android:id="@+id/stateEt"
-        android:layout_width="wrap_content"
+        android:id="@+id/nameEt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_below="@id/profileIv"
         android:layout_margin="5dp"
         android:background="@drawable/shape_rect02"
-        android:padding="10dp"
-        android:hint="State"
-        android:inputType="textPostalAddress"
-
-       />
+        android:drawablePadding="5dp"
+        android:hint="Full Name"
+        android:inputType="textPersonName|textCapWords"
+        android:padding="10dp" />
 
     <EditText
-        android:id="@+id/cityEt"
-        android:layout_width="wrap_content"
+        android:id="@+id/shopNameEt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_below="@id/nameEt"
         android:layout_margin="5dp"
         android:background="@drawable/shape_rect02"
-        android:padding="10dp"
-        android:hint="City"
-        android:inputType="textPostalAddress"
+        android:drawablePadding="5dp"
+        android:hint="Shop Name"
+        android:inputType="textPersonName|textCapWords"
+        android:padding="10dp" />
 
-        />
+    <EditText
+        android:id="@+id/phoneEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shopNameEt"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_rect02"
+        android:drawablePadding="5dp"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/deliveryFeeEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneEt"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_rect02"
+        android:drawablePadding="5dp"
+        android:hint="Delivery Fee"
+        android:inputType="numberDecimal"
+        android:padding="10dp" />
 
 
-  </LinearLayout>
-  <EditText
-      android:id="@+id/addressEt"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/addressLl"
-      android:layout_margin="5dp"
-      android:background="@drawable/shape_rect02"
-      android:padding="10dp"
-      android:hint="Complete Address"
-      android:inputType="textPostalAddress|textMultiLine"
+    <LinearLayout
+        android:id="@+id/addressLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deliveryFeeEt"
+        android:orientation="horizontal">
 
-      />
+        <EditText
+            android:id="@+id/countryEt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_rect02"
+            android:drawablePadding="5dp"
+            android:hint="Country"
+            android:inputType="textPostalAddress"
+            android:padding="10dp" />
 
-  <EditText
-      android:id="@+id/emailEt"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/addressEt"
-      android:layout_margin="5dp"
-      android:background="@drawable/shape_rect02"
-      android:padding="10dp"
-      android:hint="Email"
-      android:inputType="textEmailAddress"
+        <EditText
+            android:id="@+id/stateEt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_rect02"
+            android:drawablePadding="5dp"
+            android:hint="State"
+            android:inputType="textPostalAddress"
+            android:padding="10dp" />
 
-      />
+        <EditText
+            android:id="@+id/cityEt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_rect02"
+            android:drawablePadding="5dp"
+            android:hint="City"
+            android:inputType="textPostalAddress"
+            android:padding="10dp" />
 
-  <EditText
-      android:id="@+id/passwordEt"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/emailEt"
-      android:layout_margin="5dp"
-      android:background="@drawable/shape_rect02"
-      android:padding="10dp"
-      android:hint="Password"
-      android:inputType="numberPassword"
+    </LinearLayout>
 
-      />
+    <EditText
+        android:id="@+id/addressEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addressLl"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_rect02"
+        android:drawablePadding="5dp"
+        android:hint="Address"
+        android:inputType="textPostalAddress|textMultiLine"
+        android:padding="10dp" />
 
-  <EditText
-      android:id="@+id/cPasswordEt"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/passwordEt"
-      android:layout_margin="5dp"
-      android:background="@drawable/shape_rect02"
-      android:padding="10dp"
-      android:hint="Confirm_password"
-      android:inputType="numberPassword"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/shopOpenSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addressEt"
+        android:layout_margin="5dp"
+        android:text="Shop Open" />
 
-     />
-
-  <Button
-      android:id="@+id/updateBtn"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
-      android:layout_below="@id/cPasswordEt"
-      android:layout_centerHorizontal="true"
-      android:text="update"
-      android:textStyle="bold"
-      android:background="@color/colourBlack"
-      />
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shopOpenSwitch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="5dp"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorPrimaryDark"
+        android:text="Update" />
 
 
 </RelativeLayout>

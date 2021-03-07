@@ -105,9 +105,16 @@
                 android:layout_marginTop="2dp"
                 android:inputType="number"
                 android:background="@drawable/shape_rect02"/>
+            <EditText
+                android:id="@+id/fieldET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileIv"
+                android:padding="40dp"
+                android:inputType="text|textImeMultiLine"
+                android:hint="Text" >
 
-
-
+            </EditText>
 
             <LinearLayout
                 android:id="@+id/addressCustomer"
@@ -133,7 +140,7 @@
                 <EditText
                     android:id="@+id/stateEt"
                     android:layout_below="@id/phoneEt"
-                    android:hint="State"
+                    android:hint="PROVINCE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
