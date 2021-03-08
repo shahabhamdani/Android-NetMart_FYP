@@ -8,56 +8,93 @@
     android:fitsSystemWindows="true"
     android:minWidth="19dp">
 
-    <ScrollView
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F7FFFFFF">
+        android:background="#F7FFFFFF"
+        android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/shape_rect01"
+            app:subtitleTextColor="#0A0A0A"
+            app:title=" "
+            app:titleTextColor="#111111">
 
+            <TextView
+                android:id="@+id/toolbarTitle"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:text="HOME" />
+
+            <ImageView
+                android:id="@+id/cartIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:clickable="true"
+                android:padding="20dp"
+                android:src="@drawable/ic_cart_black" />
+        </androidx.appcompat.widget.Toolbar>
+        <!--Tabs: Products, Orders-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#F7FFFFFF"
-            android:orientation="vertical">
+            android:layout_height="40dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/shape_rect03"
+            android:gravity="bottom"
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
+            <!--Products-->
+            <TextView
+                android:id="@+id/tabProductsTv"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@drawable/shape_rect09"
-                app:subtitleTextColor="#0A0A0A"
-                app:title=" "
-                app:titleTextColor="#111111">
+                android:layout_weight="1"
+                android:background="@drawable/shape_rect04"
+                android:gravity="center"
+                android:text="Products"
+                android:textColor="@color/colorWhite" />
 
-
-                <TextView
-                    android:id="@+id/toolbarTitle"
-                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-
-                    android:text="HOME" />
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_cart_black" />
-
-
-            </androidx.appcompat.widget.Toolbar>
-
-
-
-
-
+            <!--Orders-->
+            <TextView
+                android:id="@+id/tabOrdersTv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Orders"
+                android:textColor="@color/colourBlack" />
         </LinearLayout>
 
 
-    </ScrollView>
+
+        <!---Products-->
+        <RelativeLayout
+            android:id="@+id/productsRl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar" />
+
+        <!---Orders-->
+        <RelativeLayout
+            android:id="@+id/ordersRl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:background="@drawable/back"
+            />
+
+
+
+
+
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_menu"

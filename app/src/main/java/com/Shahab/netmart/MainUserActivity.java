@@ -37,8 +37,8 @@ public class MainUserActivity extends AppCompatActivity {
     private TextView userName;
     private TextView userPhone;
     private TextView userEmail;
-
     private ImageView cartIv;
+
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -48,6 +48,8 @@ public class MainUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
+
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");

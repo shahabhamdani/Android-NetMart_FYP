@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +44,11 @@ public class MainSellerActivity extends AppCompatActivity {
     private TextView userEmail;
     private ImageView profileIv;
     private ImageView cartIv;
+    private TextView  tabProductsTv;
+    private TextView tabOrdersTv;
 
+    private RelativeLayout productsRl;
+    private RelativeLayout ordersRl;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -49,8 +56,13 @@ public class MainSellerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_user);
-        profileIv = findViewById(R.id.profileIv);
+        setContentView(R.layout.activity_main_seller);
+        profileIv = (ImageView) findViewById(R.id.hProfileIv);
+
+        tabProductsTv = (TextView) findViewById(R.id.tabProductsTv);
+        tabOrdersTv = (TextView) findViewById(R.id.tabOrdersTv);
+        productsRl =  findViewById(R.id.productsRl);
+        ordersRl =  findViewById(R.id.ordersRl);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");
@@ -100,7 +112,22 @@ public class MainSellerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainSellerActivity.this, CartActivity.class);
                 startActivity(intent);
+            }
+        });
 
+        //Products Tab Clcik
+        tabOrdersTv.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                showOrdersUI();
+            }
+        });
+
+        tabProductsTv.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                showProductsUI();
             }
         });
 
@@ -175,12 +202,6 @@ public class MainSellerActivity extends AppCompatActivity {
                             userEmail = (TextView) findViewById(R.id.emailTv);
                             userEmail.setText(email);
 
-                            try {
-                                Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_black).into(profileIv);
-                            }
-                            catch (Exception e){
-                                profileIv.setImageResource(R.drawable.ic_person_black);
-                            }
 
 
                         }
@@ -202,4 +223,33 @@ public class MainSellerActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
     }
+
+
+    private void showOrdersUI() {
+        //show orders ui and hide products ui
+        productsRl.setVisibility(View.GONE);
+        ordersRl.setVisibility(View.VISIBLE);
+
+        tabProductsTv.setTextColor(getResources().getColor(R.color.colourBlack));
+        tabProductsTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+        tabOrdersTv.setTextColor(getResources().getColor(R.color.colorWhite));
+        tabOrdersTv.setBackgroundResource(R.drawable.shape_rect04);
+    }
+
+    private void showProductsUI() {
+        //show orders ui and hide products ui
+        productsRl.setVisibility(View.GONE);
+        ordersRl.setVisibility(View.VISIBLE);
+
+        tabProductsTv.setTextColor(getResources().getColor(R.color.colorWhite));
+        tabProductsTv.setBackgroundResource(R.drawable.shape_rect04);
+
+
+        tabOrdersTv.setTextColor(getResources().getColor(R.color.colourBlack));
+        tabOrdersTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+
+    }
+
 }
