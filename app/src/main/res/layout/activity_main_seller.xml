@@ -89,11 +89,6 @@
             android:layout_below="@+id/toolbar"
             android:background="@drawable/back"
             />
-
-
-
-
-
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
