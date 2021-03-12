@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,11 @@ public class MainUserActivity extends AppCompatActivity {
     private TextView userPhone;
     private TextView userEmail;
     private ImageView cartIv;
+    private TextView  tabProductsTv;
+    private TextView tabOrdersTv;
+
+    private RelativeLayout productsRl;
+    private RelativeLayout ordersRl;
 
 
     DrawerLayout drawerLayout;
@@ -50,6 +56,10 @@ public class MainUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_user);
 
 
+        tabProductsTv = (TextView) findViewById(R.id.tabProductsTv);
+        tabOrdersTv = (TextView) findViewById(R.id.tabOrdersTv);
+        productsRl =  findViewById(R.id.productsRl);
+        ordersRl =  findViewById(R.id.ordersRl);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");
@@ -99,6 +109,23 @@ public class MainUserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainUserActivity.this, CartActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        //Products Tab Clcik
+        tabOrdersTv.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                showOrdersUI();
+            }
+        });
+
+        tabProductsTv.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                showProductsUI();
             }
         });
 
@@ -189,4 +216,33 @@ public class MainUserActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
     }
+
+
+    private void showOrdersUI() {
+        //show orders ui and hide products ui
+        productsRl.setVisibility(View.GONE);
+        ordersRl.setVisibility(View.VISIBLE);
+
+        tabProductsTv.setTextColor(getResources().getColor(R.color.colourBlack));
+        tabProductsTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+        tabOrdersTv.setTextColor(getResources().getColor(R.color.colorWhite));
+        tabOrdersTv.setBackgroundResource(R.drawable.shape_rect04);
+    }
+
+    private void showProductsUI() {
+        //show orders ui and hide products ui
+        ordersRl.setVisibility(View.GONE);
+        productsRl.setVisibility(View.VISIBLE);
+
+        tabProductsTv.setTextColor(getResources().getColor(R.color.colorWhite));
+        tabProductsTv.setBackgroundResource(R.drawable.shape_rect04);
+
+
+        tabOrdersTv.setTextColor(getResources().getColor(R.color.colourBlack));
+        tabOrdersTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
+    }
+
+
 }
