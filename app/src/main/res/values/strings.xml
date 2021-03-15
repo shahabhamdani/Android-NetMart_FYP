@@ -12,4 +12,34 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_navigation2">NavigationActivity</string>
+
+    <!--Spinner-->
+    <string-array name="Category">
+        <item> Category </item>
+        <item> Spices </item>
+        <item> Dry food Grocery </item>
+        <item> Dairy Products</item>
+        <item> Baked Goods</item>
+        <item> Canned Foods</item>
+    </string-array>
+
+    <!--Spinner-->
+    <string-array name="Brand">
+        <item> Brand </item>
+        <item> Nestle </item>
+        <item> Dalda </item>
+        <item> National Foods </item>
+        <item> Shan Foods </item>
+    </string-array>
+
+    <!--Spinner-->
+    <string-array name="storeName">
+        <item> Store Name </item>
+        <item> Ahmed's Mart</item>
+        <item> Al-Najam Store</item>
+        <item> Day to Day Store</item>
+        <item> Chen One Store </item>
+    </string-array>
+
+
 </resources>

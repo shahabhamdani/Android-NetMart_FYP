@@ -44,7 +44,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_person_black"
+        android:src="@drawable/ic_store_gray"
         app:c_border="true"
         app:c_border_color="@color/colorPrimaryDark"
         app:c_border_width="1dp" />
