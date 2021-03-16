@@ -40,6 +40,7 @@
         <item> Day to Day Store</item>
         <item> Chen One Store </item>
     </string-array>
+    <string name="title_activity_rider_location">Map</string>
 
 
 </resources>

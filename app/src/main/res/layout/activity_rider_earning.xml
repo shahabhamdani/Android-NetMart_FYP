@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".RiderEarningActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/shape_rect01">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:src="@drawable/ic_back_black" >
+        </ImageButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Earnings"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/totalTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total: Rs 3000"
+        android:layout_below="@+id/toolbarRl"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/orderDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/totalTxt"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/orderIDTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order ID:239084"
+            android:layout_below="@+id/deliverySuccessTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:textSize="30dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/orderDateTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11/5/2020"
+            android:layout_below="@+id/deliverySuccessTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:textSize="26dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/superStoreTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Super Store"
+        android:layout_below="@+id/orderDetails"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:textSize="26dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/displayEarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/superStoreTv"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/earningTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Earning: 100"
+            android:layout_below="@+id/superStoreTv"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:textSize="27dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/statusTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Completed"
+            android:layout_below="@+id/superStoreTv"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:textSize="26dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colourGreen"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
+
+
+
+

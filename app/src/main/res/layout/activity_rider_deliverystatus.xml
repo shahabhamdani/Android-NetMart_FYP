@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".RiderDeliverystatusActivity">
+
+    <ImageView
+
+        android:id="@+id/doneIv"
+        android:src="@drawable/ic_done_black"
+        android:layout_width="200dp"
+        android:layout_height="170dp"
+        android:foregroundGravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp" />
+
+    <TextView
+        android:id="@+id/deliverySuccessTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delivery Success"
+        android:layout_below="@id/doneIv"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/yourStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deliverySuccessTxt"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/youDeliveredTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You Delivered"
+            android:layout_below="@+id/deliverySuccessTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/youEarnedTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You Earned"
+            android:layout_below="@+id/deliverySuccessTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/distancePayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/yourStatus"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/distanceMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5.6KM (20 Min)"
+            android:layout_below="@+id/yourStatus"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/totalCostTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs 200"
+            android:layout_below="@+id/yourStatus"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_below="@+id/distancePayment"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorPrimary"
+        android:text="Back To Home "
+        android:textColor="@color/colorPrimaryDark" />
+
+
+
+
+</RelativeLayout>
