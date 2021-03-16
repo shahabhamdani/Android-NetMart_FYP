@@ -18,7 +18,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RiderEarningActivity"></activity>
+        <activity android:name=".RiderAcceptdeliveryActivity"></activity>
+        <activity android:name=".RiderEarningActivity" />
         <activity android:name=".RiderDeliverystatusActivity" />
         <activity android:name=".RiderNotaskActivity" />
         <!--
