@@ -111,7 +111,7 @@ public class MainSellerActivity extends AppCompatActivity {
                     break;
 
                     case R.id.navReviews: {
-                        intent = new Intent(MainSellerActivity.this, CutomePackageActivity.class);
+                        intent = new Intent(MainSellerActivity.this, ShopReviewsActivity.class);
                         startActivity(intent);
                     }
                     break;
