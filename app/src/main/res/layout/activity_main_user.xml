@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,13 +53,13 @@
 
             <!--Products-->
             <TextView
-                android:id="@+id/tabProductsTv"
+                android:id="@+id/tabShopsTv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/shape_rect04"
                 android:gravity="center"
-                android:text="Products"
+                android:text="Shop"
                 android:textColor="@color/colorWhite" />
 
             <!--Orders-->
@@ -74,22 +75,30 @@
 
 
 
-        <!---Products-->
+        <!---shops UI-->
         <RelativeLayout
-            android:id="@+id/productsRl"
+            android:id="@+id/shopsRl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar" />
+            android:layout_below="@+id/toolbar">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shopsRv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/row_shop"/>
+
+        </RelativeLayout>
 
 
 
-        <!---Orders-->
+        <!---Orders UI-->
         <RelativeLayout
             android:id="@+id/ordersRl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
-            android:background="@drawable/back"
             />
 
 

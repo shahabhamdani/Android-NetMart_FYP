@@ -1,4 +1,4 @@
-package com.Shahab.netmart;
+package com.Shahab.netmart.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +27,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.Shahab.netmart.R;
 
 import java.util.List;
 import java.util.Locale;

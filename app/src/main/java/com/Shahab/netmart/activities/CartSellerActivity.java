@@ -1,14 +1,16 @@
-package com.Shahab.netmart;
+package com.Shahab.netmart.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class RiderEarningActivity extends AppCompatActivity {
+import com.Shahab.netmart.R;
+
+public class CartSellerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rider_earning);
+        setContentView(R.layout.activity_cart_seller);
     }
 }

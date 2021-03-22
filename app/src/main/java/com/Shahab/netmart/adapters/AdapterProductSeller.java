@@ -1,11 +1,10 @@
-package com.Shahab.netmart;
+package com.Shahab.netmart.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Shahab.netmart.activities.EditProductActivity;
+import com.Shahab.netmart.activities.FilterProduct;
+import com.Shahab.netmart.models.ModelProduct;
+import com.Shahab.netmart.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.*;

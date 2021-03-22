@@ -1,9 +1,10 @@
-package com.Shahab.netmart;
+package com.Shahab.netmart.activities;
 
 import android.widget.Filter;
 
-import com.Shahab.netmart.AdapterProductSeller;
-import com.Shahab.netmart.ModelProduct;
+import com.Shahab.netmart.models.ModelProduct;
+import com.Shahab.netmart.adapters.AdapterProductSeller;
+
 import java.util.ArrayList;
 
 public class FilterProduct extends Filter {

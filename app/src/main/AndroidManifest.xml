@@ -14,24 +14,24 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddProductActivity" />
-        <activity android:name=".CartSellerActivity" />
-        <activity android:name=".ProfileEditSellerActivity" />
-        <activity android:name=".CutomePackageActivity" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".ProfileEditUserActivity" />
-        <activity android:name=".ShopReviewsActivity" />
-
-        <activity android:name=".MainUserActivity" />
-        <activity android:name=".MainSellerActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".VerificationActivity" />
-        <activity android:name=".RegisterMenuActivity" />
-        <activity android:name=".RegisterSellerActivity" />
-        <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".RegisterRiderActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".CutomPackageActivity"></activity>
+        <activity android:name=".ShopDetailsActivity" />
+        <activity android:name=".activities.AddProductActivity" />
+        <activity android:name=".activities.CartSellerActivity" />
+        <activity android:name=".activities.ProfileEditSellerActivity" />
+        <activity android:name=".activities.CartActivity" />
+        <activity android:name=".activities.ProfileEditUserActivity" />
+        <activity android:name=".activities.ShopReviewsActivity" />
+        <activity android:name=".activities.MainUserActivity" />
+        <activity android:name=".activities.MainSellerActivity" />
+        <activity android:name=".activities.ForgotPasswordActivity" />
+        <activity android:name=".activities.VerificationActivity" />
+        <activity android:name=".activities.RegisterMenuActivity" />
+        <activity android:name=".activities.RegisterSellerActivity" />
+        <activity android:name=".activities.RegisterUserActivity" />
+        <activity android:name=".activities.RegisterRiderActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

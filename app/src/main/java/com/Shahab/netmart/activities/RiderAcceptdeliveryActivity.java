@@ -1,8 +1,10 @@
-package com.Shahab.netmart;
+package com.Shahab.netmart.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.Shahab.netmart.R;
 
 public class RiderAcceptdeliveryActivity extends AppCompatActivity {
 

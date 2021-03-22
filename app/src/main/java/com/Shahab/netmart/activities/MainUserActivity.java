@@ -1,22 +1,15 @@
-package com.Shahab.netmart;
+package com.Shahab.netmart.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,6 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Shahab.netmart.CutomPackageActivity;
+import com.Shahab.netmart.R;
+import com.Shahab.netmart.adapters.AdapterShop;
+import com.Shahab.netmart.models.ModelShop;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -40,29 +37,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class MainSellerActivity extends AppCompatActivity {
+public class MainUserActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
-    private ArrayList<ModelProduct> productList;
-    private AdapterProductSeller adapterProductSeller;
-
-    //private ArrayList<ModelOrderShop> orderShopArrayList;
-    //private AdapterOrderShop adapterOrderShop;
-
     private TextView userName;
     private TextView userPhone;
-    private TextView userEmail, filteredProductsTv;
-    private ImageView profileIv, filterProductBtn;
+    private TextView userEmail;
     private ImageView cartIv;
-    private TextView  tabProductsTv;
+    private TextView  tabShopsTv;
     private TextView tabOrdersTv;
-    private TextView searchProductEt;
-    private RelativeLayout productsRl;
-    private RelativeLayout ordersRl;
 
-    private RecyclerView productsRv;
+    private RelativeLayout shopsRl;
+    private RelativeLayout ordersRl;
+    private RecyclerView shopsRv;
+    private ImageView profileIv;
+
+    private ArrayList<ModelShop> shopsList;
+    private AdapterShop adapterShop;
+
+    //private ArrayList<ModelOrderUser> ordersList;
+    //private AdapterOrderUser adapterOrderUser;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -71,18 +67,15 @@ public class MainSellerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_seller);
-        profileIv = (ImageView) findViewById(R.id.hProfileIv);
+        setContentView(R.layout.activity_main_user);
 
-        tabProductsTv = (TextView) findViewById(R.id.tabProductsTv);
+
+        tabShopsTv = (TextView) findViewById(R.id.tabShopsTv);
         tabOrdersTv = (TextView) findViewById(R.id.tabOrdersTv);
-        productsRl =  findViewById(R.id.productsRl);
+        shopsRl =  findViewById(R.id.shopsRl);
         ordersRl =  findViewById(R.id.ordersRl);
-        productsRv =  findViewById(R.id.productsRv);
-
-        searchProductEt =  findViewById(R.id.searchProductEt);
-        filterProductBtn =  findViewById(R.id.filterProductBtn);
-        filteredProductsTv =  findViewById(R.id.filteredProductsTv);
+        shopsRv =  findViewById(R.id.shopsRv);
+        profileIv =  (ImageView) findViewById(R.id.hProfileIv);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");
@@ -90,7 +83,6 @@ public class MainSellerActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         checkUser();
 
-        loadAllProducts();
 
         setUpToolbar();
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
@@ -100,18 +92,18 @@ public class MainSellerActivity extends AppCompatActivity {
                 Intent intent = null;
                 switch (menuItem.getItemId()) {
                     case R.id.navProfile:
-                        intent = new Intent(MainSellerActivity.this, ProfileEditUserActivity.class);
+                        intent = new Intent(MainUserActivity.this, ProfileEditUserActivity.class);
                         startActivity(intent);
                         break;
 
-                    case R.id.navAddProducts: {
-                        intent = new Intent(MainSellerActivity.this, AddProductActivity.class);
+                    case R.id.navMyCart: {
+                        intent = new Intent(MainUserActivity.this, CartActivity.class);
                         startActivity(intent);
                     }
                     break;
 
-                    case R.id.navReviews: {
-                        intent = new Intent(MainSellerActivity.this, ShopReviewsActivity.class);
+                    case R.id.navCustomPackage: {
+                        intent = new Intent(MainUserActivity.this, CutomPackageActivity.class);
                         startActivity(intent);
                     }
                     break;
@@ -131,10 +123,11 @@ public class MainSellerActivity extends AppCompatActivity {
         cartIv = findViewById(R.id.cartIv);
         cartIv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainSellerActivity.this, CartActivity.class);
+                Intent intent = new Intent(MainUserActivity.this, CartActivity.class);
                 startActivity(intent);
             }
         });
+
 
         //Products Tab Clcik
         tabOrdersTv.setOnClickListener(new View.OnClickListener() {
@@ -144,64 +137,13 @@ public class MainSellerActivity extends AppCompatActivity {
             }
         });
 
-        tabProductsTv.setOnClickListener(new View.OnClickListener() {
+        tabShopsTv.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
 
                 showProductsUI();
             }
         });
-
-
-        //search
-        searchProductEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try {
-                    adapterProductSeller.getFilter().filter(s);
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-
-        filterProductBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainSellerActivity.this);
-                builder.setTitle("Filter Products:")
-                        .setItems(Constants.productCategories1, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //get selected item
-                                String selected = Constants.productCategories1[which];
-                                filteredProductsTv.setText(selected);
-                                if (selected.equals("All")){
-                                    //load all
-                                    loadAllProducts();
-                                }
-                                else {
-                                    //load filtered
-                                    loadFilteredProducts(selected);
-                                }
-                            }
-                        })
-                        .show();
-            }
-        });
-
 
     }
 
@@ -232,7 +174,7 @@ public class MainSellerActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         //Failed Updating
                         progressDialog.dismiss();
-                        Toast.makeText(MainSellerActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -243,7 +185,7 @@ public class MainSellerActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         if(user == null){
-            startActivity(new Intent(MainSellerActivity.this, LoginActivity.class));
+            startActivity(new Intent(MainUserActivity.this, LoginActivity.class));
             finish();
         }
         else{
@@ -259,11 +201,12 @@ public class MainSellerActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot ds: dataSnapshot.getChildren()){
-                            String profileImage = ""+ds.child("profileImage").getValue();
                             String name = ""+ds.child("name").getValue();
                             String accountType = ""+ds.child("accountType").getValue();
                             String phone = ""+ds.child("phone").getValue();
+                            String profileImage = ""+ds.child("profileImage").getValue();
                             String email = ""+ds.child("email").getValue();
+                            String city = ""+ds.child("city").getValue();
 
                             userName = (TextView) findViewById(R.id.userNameTv);
                             userName.setText(name +" ("+accountType+")");
@@ -274,10 +217,17 @@ public class MainSellerActivity extends AppCompatActivity {
                             userEmail = (TextView) findViewById(R.id.emailTv);
                             userEmail.setText(email);
 
+                            try {
+                                Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_black).into(profileIv);
+                            }
+                            catch (Exception e){
 
+                            }
+
+                            loadShops(city);
+                            //loadOrders();
 
                         }
-
                     }
 
                     @Override
@@ -299,11 +249,11 @@ public class MainSellerActivity extends AppCompatActivity {
 
     private void showOrdersUI() {
         //show orders ui and hide products ui
-        productsRl.setVisibility(View.GONE);
+        shopsRl.setVisibility(View.GONE);
         ordersRl.setVisibility(View.VISIBLE);
 
-        tabProductsTv.setTextColor(getResources().getColor(R.color.colourBlack));
-        tabProductsTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        tabShopsTv.setTextColor(getResources().getColor(R.color.colourBlack));
+        tabShopsTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
         tabOrdersTv.setTextColor(getResources().getColor(R.color.colorWhite));
         tabOrdersTv.setBackgroundResource(R.drawable.shape_rect04);
@@ -312,71 +262,46 @@ public class MainSellerActivity extends AppCompatActivity {
     private void showProductsUI() {
         //show orders ui and hide products ui
         ordersRl.setVisibility(View.GONE);
-        productsRl.setVisibility(View.VISIBLE);
+        shopsRl.setVisibility(View.VISIBLE);
 
-        tabProductsTv.setTextColor(getResources().getColor(R.color.colorWhite));
-        tabProductsTv.setBackgroundResource(R.drawable.shape_rect04);
+        tabShopsTv.setTextColor(getResources().getColor(R.color.colorWhite));
+        tabShopsTv.setBackgroundResource(R.drawable.shape_rect04);
 
 
         tabOrdersTv.setTextColor(getResources().getColor(R.color.colourBlack));
         tabOrdersTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+
     }
 
-    private void loadAllProducts() {
-        productList = new ArrayList<>();
 
-        //get all products
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-        reference.child(firebaseAuth.getUid()).child("Products")
+    private void loadShops(final String myCity) {
+        //init list
+        shopsList = new ArrayList<>();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.orderByChild("accountType").equalTo("Seller")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        //before getting reset list
-                        productList.clear();
+                        //clear list before adding
+                        shopsList.clear();
                         for (DataSnapshot ds: dataSnapshot.getChildren()){
-                            ModelProduct modelProduct = ds.getValue(ModelProduct.class);
-                            productList.add(modelProduct);
-                        }
-                        //setup adapter
-                        adapterProductSeller = new AdapterProductSeller(MainSellerActivity.this, productList);
-                        //set adapter
-                        productsRv.setAdapter(adapterProductSeller);
-                    }
+                            ModelShop modelShop = ds.getValue(ModelShop.class);
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                            String shopCity = ""+ds.child("city").getValue();
 
-                    }
-                });
-    }
-
-    private void loadFilteredProducts(final String selected) {
-        productList = new ArrayList<>();
-
-        //get all products
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-        reference.child(firebaseAuth.getUid()).child("Products")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        //before getting reset list
-                        productList.clear();
-                        for (DataSnapshot ds: dataSnapshot.getChildren()){
-
-                            String productCategory = ""+ds.child("productCategory").getValue();
-
-                            //if selected category matches product category then add in list
-                            if (selected.equals(productCategory)){
-                                ModelProduct modelProduct = ds.getValue(ModelProduct.class);
-                                productList.add(modelProduct);
+                            //show only user city shops
+                            if (shopCity.equals(myCity)){
+                                shopsList.add(modelShop);
                             }
 
-
+                            //if you want to display all shops, skip the if statement and add this
+                            //shopsList.add(modelShop);
                         }
                         //setup adapter
-                        adapterProductSeller = new AdapterProductSeller(MainSellerActivity.this, productList);
-                        //set adapter
-                        productsRv.setAdapter(adapterProductSeller);
+                        adapterShop = new AdapterShop(MainUserActivity.this, shopsList);
+                        //set adapter to recyclerview
+                        shopsRv.setAdapter(adapterShop);
                     }
 
                     @Override
@@ -384,8 +309,7 @@ public class MainSellerActivity extends AppCompatActivity {
 
                     }
                 });
+
     }
-
-
 
 }

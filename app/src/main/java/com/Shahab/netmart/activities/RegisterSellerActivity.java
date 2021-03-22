@@ -1,4 +1,4 @@
-package com.Shahab.netmart;
+package com.Shahab.netmart.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +31,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.Shahab.netmart.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -46,12 +47,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class RegisterUserActivity extends AppCompatActivity implements LocationListener {
+public class RegisterSellerActivity extends AppCompatActivity implements LocationListener {
 
     private ImageButton backBtn, gpsBtn;
     private ImageView profileIv;
-    private EditText nameEt, phoneEt, countryEt, stateEt, cityEt, addressEt,
+    private EditText nameEt, shopeNameEt, phoneEt, deliveryFeeEt,countryEt, stateEt, cityEt, addressEt,
             emailEt, passwordEt, cPasswordEt;
+
     private Button registerBtn;
 
     //permission constants
@@ -69,7 +71,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
     private Uri image_uri;
 
-    private double latitude, longitude;
+    private double latitude = 0.0, longitude = 0.0;
 
     private LocationManager locationManager;
 
@@ -79,14 +81,15 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_user);
+        setContentView(R.layout.activity_register_seller);
 
-        //init Values
         backBtn = findViewById(R.id.backBtn);
         gpsBtn = findViewById(R.id.gpsBtn);
         profileIv = findViewById(R.id.profileIv);
         phoneEt = findViewById(R.id.phoneEt);
+        deliveryFeeEt = findViewById(R.id.deliveryFeeEt);
         nameEt = findViewById(R.id.nameEt);
+        shopeNameEt = findViewById(R.id.shopNameEt);
         countryEt = findViewById(R.id.countryEt);
         stateEt = findViewById(R.id.stateEt);
         cityEt = findViewById(R.id.cityEt);
@@ -96,11 +99,11 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         cPasswordEt = findViewById(R.id.cPasswordEt);
         registerBtn = findViewById(R.id.registerBtn);
 
+
         //init permission array
         locationPermission = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
 
         firebaseAuth = firebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -112,6 +115,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                 onBackPressed();
             }
         });
+
         gpsBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -139,20 +143,21 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         registerBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                //register user
+                //register SELLER
                 inputData();
-
             }
         });
 
     }
 
-    private String fullName, phoneNumber, country, state, city, address, email, password, confirmPassword;
+    private String fullName, shopName,phoneNumber, deliveryFee, country, state, city, address, email, password, confirmPassword;
     private void inputData() {
 
         //input Data
         fullName = nameEt.getText().toString().trim();
+        shopName = shopeNameEt.getText().toString().trim();
         phoneNumber = phoneEt.getText().toString().trim();
+        deliveryFee = deliveryFeeEt.getText().toString().trim();
         country =  countryEt.getText().toString().trim();
         state = stateEt.getText().toString().trim();
         city =  cityEt.getText().toString().trim();
@@ -166,8 +171,16 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             Toast.makeText(this, "Enter Name...", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (TextUtils.isEmpty(shopName)){
+            Toast.makeText(this, "Enter Shop Name...", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (TextUtils.isEmpty(phoneNumber)){
             Toast.makeText(this, "Enter Phone number...", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(deliveryFee)){
+            Toast.makeText(this, "Enter Delivery fee...", Toast.LENGTH_SHORT).show();
             return;
         }
         if (latitude == 0.0 || longitude == 0.0){
@@ -211,7 +224,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                     public void onFailure(@NonNull Exception e) {
                         //Failed creating account
                         progressDialog.dismiss();
-                        Toast.makeText(RegisterUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterSellerActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -229,7 +242,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             hashMap.put("uid", ""+firebaseAuth.getUid());
             hashMap.put("email", ""+email);
             hashMap.put("name", ""+fullName);
+            hashMap.put("shopName", ""+shopName);
             hashMap.put("phone", ""+phoneNumber);
+            hashMap.put("deliveryFee", ""+deliveryFee);
             hashMap.put("country", ""+country);
             hashMap.put("state", ""+state);
             hashMap.put("city", ""+city);
@@ -237,8 +252,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             hashMap.put("latitude", ""+latitude);
             hashMap.put("longitude", ""+longitude);
             hashMap.put("timeStamp", ""+timestamp);
-            hashMap.put("accountType", "User");
-            hashMap.put("onLine", "true");
+            hashMap.put("accountType", "Seller");
+            hashMap.put("online", "true");
+            hashMap.put("shopOpen", "true");
             hashMap.put("profileImage", "");
 
             //Save to DB
@@ -247,9 +263,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            //Database Update
+                         //Database Update
                             progressDialog.dismiss();
-                            startActivity(new Intent( RegisterUserActivity.this, MainUserActivity.class));
+                            startActivity(new Intent( RegisterSellerActivity.this, MainSellerActivity.class));
                             finish();
                         }
                     })
@@ -259,8 +275,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                         public void onFailure(@NonNull Exception e) {
                             //Failed Updating Database
                             progressDialog.dismiss();
-                            Toast.makeText(RegisterUserActivity.this, " Registration Failed..", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent( RegisterUserActivity.this, LoginActivity.class));
+                            startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
                             finish();
                         }
                     });
@@ -289,8 +304,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                 hashMap.put("uid", ""+firebaseAuth.getUid());
                                 hashMap.put("email", ""+email);
                                 hashMap.put("name", ""+fullName);
-
+                                hashMap.put("shopName", ""+shopName);
                                 hashMap.put("phone", ""+phoneNumber);
+                                hashMap.put("deliveryFee", ""+deliveryFee);
                                 hashMap.put("country", ""+country);
                                 hashMap.put("state", ""+state);
                                 hashMap.put("city", ""+city);
@@ -298,8 +314,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                 hashMap.put("latitude", ""+latitude);
                                 hashMap.put("longitude", ""+longitude);
                                 hashMap.put("timeStamp", ""+timestamp);
-                                hashMap.put("accountType", "User");
-                                hashMap.put("onLine", "true");
+                                hashMap.put("accountType", "Seller");
+                                hashMap.put("online", "true");
+                                hashMap.put("shopOpen", "true");
                                 hashMap.put("profileImage", ""+downloadImageUri); //url OF UPLOADED IMAGE
 
                                 //Save to DB
@@ -310,7 +327,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                             public void onSuccess(Void aVoid) {
                                                 //Database Update
                                                 progressDialog.dismiss();
-                                                startActivity(new Intent( RegisterUserActivity.this, MainUserActivity.class));
+                                                startActivity(new Intent( RegisterSellerActivity.this, MainSellerActivity.class));
                                                 finish();
                                             }
                                         })
@@ -320,7 +337,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                             public void onFailure(@NonNull Exception e) {
                                                 //Failed Updating Database
                                                 progressDialog.dismiss();
-                                                startActivity(new Intent(RegisterUserActivity.this, MainUserActivity.class));
+                                                startActivity(new Intent(RegisterSellerActivity.this, MainSellerActivity.class));
                                                 finish();
                                             }
                                         });
@@ -333,13 +350,12 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(RegisterUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterSellerActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
 
     }
-
 
     private void showImagePickDialog() {
 
@@ -501,7 +517,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         //gps/location disabled
         Toast.makeText(this, "Please turn on location...", Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
