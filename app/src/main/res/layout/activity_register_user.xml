@@ -111,8 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profileIv"
                 android:padding="40dp"
-                android:inputType="text|textImeMultiLine"
-                android:hint="Text" >
+                android:inputType="text|textImeMultiLine" >
 
             </EditText>
 

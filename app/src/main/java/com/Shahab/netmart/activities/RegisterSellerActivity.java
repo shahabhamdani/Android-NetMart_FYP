@@ -449,6 +449,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         }
 
 
+
     }
 
     private  boolean checkLocationPermission(){
