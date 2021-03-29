@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profileIv"
-                android:padding="40dp"
+                android:padding="35dp"
                 android:inputType="text|textImeMultiLine" >
 
             </EditText>

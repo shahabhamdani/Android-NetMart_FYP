@@ -1,0 +1,63 @@
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">NetMart</string>\r\n    <string name=\"title_activity_navigation\">NavigationActivity</string>\r\n    <string name=\"navigation_drawer_open\">Open navigation drawer</string>\r\n    <string name=\"navigation_drawer_close\">Close navigation drawer</string>\r\n    <string name=\"nav_header_title\">Android Studio</string>\r\n    <string name=\"nav_header_subtitle\">android.studio@android.com</string>\r\n    <string name=\"nav_header_desc\">Navigation header</string>\r\n    <string name=\"action_settings\">Settings</string>\r\n\r\n    <string name=\"menu_home\">Home</string>\r\n    <string name=\"menu_gallery\">Gallery</string>\r\n    <string name=\"menu_slideshow\">Slideshow</string>\r\n    <string name=\"title_activity_navigation2\">NavigationActivity</string>\r\n\r\n    <!--Spinner-->\r\n    <string-array name=\"Category\">\r\n        <item> Category </item>\r\n        <item> Spices </item>\r\n        <item> Dry food Grocery </item>\r\n        <item> Dairy Products</item>\r\n        <item> Baked Goods</item>\r\n        <item> Canned Foods</item>\r\n    </string-array>\r\n\r\n    <!--Spinner-->\r\n    <string-array name=\"Brand\">\r\n        <item> Brand </item>\r\n        <item> Nestle </item>\r\n        <item> Dalda </item>\r\n        <item> National Foods </item>\r\n        <item> Shan Foods </item>\r\n    </string-array>\r\n\r\n    <!--Spinner-->\r\n    <string-array name=\"storeName\">\r\n        <item> Store Name </item>\r\n        <item> Ahmed's Mart</item>\r\n        <item> Al-Najam Store</item>\r\n        <item> Day to Day Store</item>\r\n        <item> Chen One Store </item>\r\n    </string-array>\r\n    <string name=\"title_activity_rider_location\">Map</string>\r\n\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 3f5bef3a4d014ea76bd4390e61cc6ca683ce8369)
++++ app/src/main/res/values/strings.xml	(date 1615970014715)
+@@ -13,34 +13,6 @@
+     <string name="menu_slideshow">Slideshow</string>
+     <string name="title_activity_navigation2">NavigationActivity</string>
+ 
+-    <!--Spinner-->
+-    <string-array name="Category">
+-        <item> Category </item>
+-        <item> Spices </item>
+-        <item> Dry food Grocery </item>
+-        <item> Dairy Products</item>
+-        <item> Baked Goods</item>
+-        <item> Canned Foods</item>
+-    </string-array>
+-
+-    <!--Spinner-->
+-    <string-array name="Brand">
+-        <item> Brand </item>
+-        <item> Nestle </item>
+-        <item> Dalda </item>
+-        <item> National Foods </item>
+-        <item> Shan Foods </item>
+-    </string-array>
++    
+ 
+-    <!--Spinner-->
+-    <string-array name="storeName">
+-        <item> Store Name </item>
+-        <item> Ahmed's Mart</item>
+-        <item> Al-Najam Store</item>
+-        <item> Day to Day Store</item>
+-        <item> Chen One Store </item>
+-    </string-array>
+-    <string name="title_activity_rider_location">Map</string>
+-
+-
+ </resources>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.Shahab.netmart\"\r\n    android:installLocation=\"auto\">\r\n\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/AppTheme\">\r\n        <activity android:name=\".AddProductActivity\" />\r\n        <activity android:name=\".CartSellerActivity\" />\r\n        <activity android:name=\".ProfileEditSellerActivity\" />\r\n        <activity android:name=\".CutomePackageActivity\" />\r\n        <activity android:name=\".CartActivity\" />\r\n        <activity android:name=\".ProfileEditUserActivity\" />\r\n        <activity android:name=\".ShopReviewsActivity\" />\r\n\r\n        <activity android:name=\".MainUserActivity\" />\r\n        <activity android:name=\".MainSellerActivity\" />\r\n        <activity android:name=\".ForgotPasswordActivity\" />\r\n        <activity android:name=\".VerificationActivity\" />\r\n        <activity android:name=\".RegisterMenuActivity\" />\r\n        <activity android:name=\".RegisterSellerActivity\" />\r\n        <activity android:name=\".RegisterUserActivity\" />\r\n        <activity android:name=\".RegisterRiderActivity\" />\r\n        <activity android:name=\".LoginActivity\" />\r\n        <activity android:name=\".SplashScreen\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n\r\n        <meta-data\r\n            android:name=\"preloaded_fonts\"\r\n            android:resource=\"@array/preloaded_fonts\" />\r\n\r\n        <activity\r\n            android:name=\"com.theartofdev.edmodo.cropper.CropImageActivity\"\r\n            android:theme=\"@style/Base.Theme.AppCompat\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 3f5bef3a4d014ea76bd4390e61cc6ca683ce8369)
++++ app/src/main/AndroidManifest.xml	(date 1616347438260)
+@@ -17,7 +17,6 @@
+         <activity android:name=".AddProductActivity" />
+         <activity android:name=".CartSellerActivity" />
+         <activity android:name=".ProfileEditSellerActivity" />
+-        <activity android:name=".CutomePackageActivity" />
+         <activity android:name=".CartActivity" />
+         <activity android:name=".ProfileEditUserActivity" />
+         <activity android:name=".ShopReviewsActivity" />
