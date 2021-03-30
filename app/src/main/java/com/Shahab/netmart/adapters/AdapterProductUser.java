@@ -143,6 +143,7 @@ public class AdapterProductUser extends
 
 
         final String price;
+
         if (modelProduct.getDiscountAvailable().equals("true")) {
             //product have discount
             price = modelProduct.getDiscountPrice();
