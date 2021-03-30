@@ -17,7 +17,6 @@
         <activity android:name=".activities.ShopDetailsActivity"
             android:windowSoftInputMode="stateHidden"/> <!--hide keyboard by default -->
         <activity android:name=".CutomPackageActivity" />
-        <activity android:name=".ShopDetailsActivity" />
         <activity android:name=".activities.AddProductActivity" />
         <activity android:name=".activities.CartSellerActivity" />
         <activity android:name=".activities.ProfileEditSellerActivity" />
