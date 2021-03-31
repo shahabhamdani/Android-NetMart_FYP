@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.ShopDetailsActivity">
 
-
     <!--Shop Details-->
     <RelativeLayout
         android:id="@+id/shopRl"
@@ -18,17 +17,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@color/colorWhite"/>
+            android:src="@color/colorBlue"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="#ffffff"/>
+            android:src="#79000000"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="48dp"
             android:padding="10dp">
 
             <TextView
@@ -36,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.AppCompat.Title"
-                android:text="Super Store"
-                android:textColor="@color/colorPrimaryDark"
+                android:text="Shop Name"
+                android:textColor="@color/colorWhite"
                 android:layout_margin="3dp"/>
 
 
@@ -47,8 +46,9 @@
                 android:layout_height="wrap_content"
                 android:text="Phone"
                 android:layout_below="@+id/shopNameTv"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginLeft="3dp"/>
+                android:textColor="@color/colorWhite"
+                android:layout_marginStart="3dp"
+                android:layout_marginLeft="3dp" />
 
             <TextView
                 android:id="@+id/emailTv"
@@ -56,8 +56,9 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:layout_below="@+id/phoneTv"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginLeft="3dp"/>
+                android:textColor="@color/colorWhite"
+                android:layout_marginStart="3dp"
+                android:layout_marginLeft="3dp" />
 
             <TextView
                 android:id="@+id/openCloseTv"
@@ -66,9 +67,10 @@
                 android:text="Open"
                 android:layout_alignParentEnd="true"
                 android:padding="5dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginLeft="3dp"
-                android:layout_alignParentRight="true" />
+                android:textColor="@color/colorWhite"
+                android:layout_marginStart="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp" />
 
             <TextView
                 android:id="@+id/deliveryFeeTv"
@@ -78,12 +80,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="3dp"
                 android:layout_below="@id/openCloseTv"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginLeft="3dp"
-                android:layout_alignParentRight="true" />
+                android:textColor="@color/colorWhite"
+                android:layout_marginStart="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp" />
 
-            <!--Rating bars-->
-
+            <!--Ratingbar: show avg rating-->
             <RatingBar
                 android:id="@+id/ratingBar"
                 style="@style/Widget.AppCompat.RatingBar.Small"
@@ -96,17 +98,42 @@
                 android:progressTint="@color/colorWhite"
                 android:layout_alignParentRight="true" />
 
-
             <TextView
                 android:id="@+id/addressTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Address"
                 android:layout_below="@+id/emailTv"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorWhite"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="3dp" />
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/callBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_call"
+                    android:background="@null"/>
+
+                <ImageButton
+                    android:id="@+id/mapBtn"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_map"
+                    android:background="@null"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 
@@ -134,7 +161,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@null"
-            android:src="@drawable/ic_black_menu"/>
+            android:src="@drawable/ic_back_black"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -142,11 +169,32 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Shop Details"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colourBlack"
             android:textSize="20sp"/>
 
+        <!--cart item count badge-->
+        <TextView
+            android:id="@+id/cartCountTv"
+            android:textColor="@color/colorWhite"
+            android:text="10"
+            android:textSize="8sp"
+            android:gravity="center"
+            android:background="@drawable/shape_circle03"
+            android:layout_alignParentEnd="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true" />
 
+        <!--show shop reviews-->
+        <ImageButton
+            android:id="@+id/reviewsBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toStartOf="@id/cartBtn"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_star"
+            android:background="@android:color/transparent"
+            android:layout_toLeftOf="@id/cartBtn" />
     </RelativeLayout>
 
     <!--Products-->
@@ -155,7 +203,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/shopRl">
-
         <!--Search-->
         <EditText
             android:id="@+id/searchProductEt"
@@ -170,7 +217,6 @@
             android:padding="10dp"
             android:layout_toLeftOf="@id/filterProductBtn"
             android:drawableLeft="@drawable/ic_search" />
-
         <!--filter products-->
         <ImageButton
             android:id="@+id/filterProductBtn"
@@ -184,7 +230,6 @@
             android:src="@drawable/ic_filter_gray"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp" />
-
         <!--show filtered products title-->
         <TextView
             android:id="@+id/filteredProductsTv"
@@ -194,10 +239,8 @@
             android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:text="Showing All"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlack"
             android:layout_marginLeft="5dp" />
-
         <!--Recyclerview: show products-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productsRv"

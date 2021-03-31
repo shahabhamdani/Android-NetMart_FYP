@@ -91,12 +91,22 @@ public class ShopDetailsActivity extends AppCompatActivity {
         openCloseTv = findViewById(R.id.openCloseTv);
         deliveryFeeTv = findViewById(R.id.deliveryFeeTv);
         addressTv = findViewById(R.id.addressTv);
+        filteredProductsTv = findViewById(R.id.filteredProductsTv);
+        callBtn = findViewById(R.id.callBtn);
+        mapBtn = findViewById(R.id.mapBtn);
         cartBtn = findViewById(R.id.cartBtn);
         backBtn = findViewById(R.id.backBtn);
-        searchProductEt = findViewById(R.id.searchProductEt);
         filterProductBtn = findViewById(R.id.filterProductBtn);
-        filteredProductsTv = findViewById(R.id.filteredProductsTv);
+        searchProductEt = findViewById(R.id.searchProductEt);
         productsRv = findViewById(R.id.productsRv);
+        cartCountTv = findViewById(R.id.cartCountTv);
+        reviewsBtn = findViewById(R.id.reviewsBtn);
+        ratingBar = findViewById(R.id.ratingBar);
+
+        //init progress dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         //get uid of the shop from intent
         shopUid = getIntent().getStringExtra("shopUid");
@@ -104,6 +114,23 @@ public class ShopDetailsActivity extends AppCompatActivity {
         loadMyInfo();
         loadShopDetails();
         loadShopProducts();
+        loadReviews();//avg rating, set on ratingbar
+
+        //declare it to class level and init in onCreate
+        easyDB = EasyDB.init(this, "ITEMS_DB")
+                .setTableName("ITEMS_TABLE")
+                .addColumn(new Column("Item_Id", new String[]{"text", "unique"}))
+                .addColumn(new Column("Item_PID", new String[]{"text", "not null"}))
+                .addColumn(new Column("Item_Name", new String[]{"text", "not null"}))
+                .addColumn(new Column("Item_Price_Each", new String[]{"text", "not null"}))
+                .addColumn(new Column("Item_Price", new String[]{"text", "not null"}))
+                .addColumn(new Column("Item_Quantity", new String[]{"text", "not null"}))
+                .doneTableColumn();
+
+        //each shop have its own products and orders so if user add items to cart and go back and open cart in different shop then cart should be different
+        //so delete cart data whenever user open this activity
+        deleteCartData();
+        cartCount();
 
         //search
         searchProductEt.addTextChangedListener(new TextWatcher() {
@@ -128,9 +155,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,20 +163,29 @@ public class ShopDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
         cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //show cart dialog
                 showCartDialog();
-
             }
         });
 
-        filterProductBtn.setOnClickListener(new View.OnClickListener(){
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialPhone();
+            }
+        });
 
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMap();
+            }
+        });
+
+        filterProductBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ShopDetailsActivity.this);
@@ -177,30 +210,39 @@ public class ShopDetailsActivity extends AppCompatActivity {
             }
         });
 
-
+        //handle reviewsBtn click, open reviews activity
+        reviewsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //pass shop uid to show its reviews
+                Intent intent = new Intent(ShopDetailsActivity.this, ShopReviewsActivity.class);
+                intent.putExtra("shopUid", shopUid);
+                startActivity(intent);
+            }
+        });
 
 
     }
 
-    private void loadMyInfo() {
+    private float ratingSum = 0;
+    private void loadReviews() {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.orderByChild("uid").equalTo(firebaseAuth.getUid())
+        ref.child(shopUid).child("Ratings")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //clear list before adding data into it
+                        ratingSum = 0;
                         for (DataSnapshot ds: dataSnapshot.getChildren()){
-                            //get user data
-                            String name = ""+ds.child("name").getValue();
-                            String email = ""+ds.child("email").getValue();
-                            String myPhone = ""+ds.child("phone").getValue();
-                            String profileImage = ""+ds.child("profileImage").getValue();
-                            String accountType = ""+ds.child("accountType").getValue();
-                            String city = ""+ds.child("city").getValue();
-                            myLatitude = ""+ds.child("latitude").getValue();
-                            myLongitude = ""+ds.child("longitude").getValue();
-
+                            float rating = Float.parseFloat(""+ds.child("ratings").getValue()); //e.g. 4.3
+                            ratingSum = ratingSum +rating; //for avg rating, add(addition of) all ratings, later will divide it by number of reviews
                         }
+
+                        long numberOfReviews = dataSnapshot.getChildrenCount();
+                        float avgRating = ratingSum/numberOfReviews;
+
+                        ratingBar.setRating(avgRating);
                     }
 
                     @Override
@@ -208,94 +250,29 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
 
-    private void loadShopDetails() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(shopUid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //get shop data
-                String name = ""+dataSnapshot.child("name").getValue();
-                shopName = ""+dataSnapshot.child("shopName").getValue();
-                shopEmail = ""+dataSnapshot.child("email").getValue();
-                shopPhone = ""+dataSnapshot.child("phone").getValue();
-                shopLatitude = ""+dataSnapshot.child("latitude").getValue();
-                shopAddress = ""+dataSnapshot.child("address").getValue();
-                shopLongitude = ""+dataSnapshot.child("longitude").getValue();
-                deliveryFee = ""+dataSnapshot.child("deliveryFee").getValue();
-                String profileImage = ""+dataSnapshot.child("profileImage").getValue();
-                String shopOpen = ""+dataSnapshot.child("shopOpen").getValue();
-
-                //set data
-                shopNameTv.setText(shopName);
-                emailTv.setText(shopEmail);
-                deliveryFeeTv.setText("Delivery Fee: $"+deliveryFee);
-                addressTv.setText(shopAddress);
-                phoneTv.setText(shopPhone);
-                if (shopOpen.equals("true")){
-                    openCloseTv.setText("Open");
-                }
-                else {
-                    openCloseTv.setText("Closed");
-                }
-                try {
-                    Picasso.get().load(profileImage).into(shopIv);
-                }
-                catch (Exception e){
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+    private void deleteCartData() {
+        easyDB.deleteAllDataFromTable();//delete all records from cart
     }
-
-
-    private void loadShopProducts() {
-        //init list
-        productsList=new ArrayList<>();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference( "Users");
-        reference.child(shopUid).child("Products")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            //clear list before adding items
-                            productsList.clear();
-                        for (DataSnapshot ds: dataSnapshot.getChildren()){
-                                ModelProduct modelProduct = ds.getValue(ModelProduct.class);
-                                productsList.add(modelProduct);
-
-                            }
-                        //setup adapter
-                        adapterProductUser = new AdapterProductUser(ShopDetailsActivity.this,productsList);
-
-                        //set adapter
-                        productsRv.setAdapter(adapterProductUser);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-
+    public void cartCount(){
+        //keep it public so we can access in adapter
+        //get cart count
+        int count = easyDB.getAllData().getCount();
+        if (count<=0){
+            //no item in cart, hide cart count textview
+            cartCountTv.setVisibility(View.GONE);
+        }
+        else {
+            //have items in cart, show cart count textview and set count
+            cartCountTv.setVisibility(View.VISIBLE);
+            cartCountTv.setText(""+count);//concatenate with string, because we cant set integer in textview
+        }
     }
-
-
 
     public  double allTotalPrice = 0.00;
     //need to access these views in adapter so making pucblic
     public TextView sTotalTv, dFeeTv, allTotalPriceTv;
-
     private void showCartDialog() {
         //init list
         cartItemList = new ArrayList<>();
@@ -422,6 +399,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         hashMap.put("orderTo", ""+shopUid);
         hashMap.put("latitude", ""+myLatitude);
         hashMap.put("longitude", ""+myLongitude);
+        hashMap.put("deliveryFee", ""+deliveryFee); //include delivery fee in each order
 
         //add to db
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("Orders");
@@ -450,11 +428,8 @@ public class ShopDetailsActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast.makeText(ShopDetailsActivity.this, "Order Placed Successfully...", Toast.LENGTH_SHORT).show();
 
-                        //after placing order open order details page
-                        Intent intent = new Intent(ShopDetailsActivity.this, OrderDetailsUsersActivity.class);
-                        intent.putExtra("orderTo", shopUid);
-                        intent.putExtra("orderId", timestamp);
-                        startActivity(intent);
+
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -465,27 +440,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
                         Toast.makeText(ShopDetailsActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-
-    //WORKING .....
-    public void cartCount(){
-        //keep it public so we can access in adapter
-        //get cart count
-        int count = 0;
-        count = easyDB.getAllData().getCount();
-        if (count<=0){
-            //no item in cart, hide cart count textview
-            cartCountTv.setVisibility(View.GONE);
-        }
-        else {
-            //have items in cart, show cart count textview and set count
-            cartCountTv.setVisibility(View.VISIBLE);
-            cartCountTv.setText(""+count);//concatenate with string, because we cant set integer in textview
-        }
-    }
-
-    private void deleteCartData() {
-        easyDB.deleteAllDataFromTable();//delete all records from cart
     }
 
     private void openMap() {
@@ -502,7 +456,104 @@ public class ShopDetailsActivity extends AppCompatActivity {
         Toast.makeText(this, ""+shopPhone, Toast.LENGTH_SHORT).show();
     }
 
+    private void loadMyInfo() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.orderByChild("uid").equalTo(firebaseAuth.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                            //get user data
+                            String name = ""+ds.child("name").getValue();
+                            String email = ""+ds.child("email").getValue();
+                            myPhone = ""+ds.child("phone").getValue();
+                            String profileImage = ""+ds.child("profileImage").getValue();
+                            String accountType = ""+ds.child("accountType").getValue();
+                            String city = ""+ds.child("city").getValue();
+                            myLatitude = ""+ds.child("latitude").getValue();
+                            myLongitude = ""+ds.child("longitude").getValue();
 
+                        }
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+    }
+
+    private void loadShopDetails() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(shopUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //get shop data
+                String name = ""+dataSnapshot.child("name").getValue();
+                shopName = ""+dataSnapshot.child("shopName").getValue();
+                shopEmail = ""+dataSnapshot.child("email").getValue();
+                shopPhone = ""+dataSnapshot.child("phone").getValue();
+                shopLatitude = ""+dataSnapshot.child("latitude").getValue();
+                shopAddress = ""+dataSnapshot.child("address").getValue();
+                shopLongitude = ""+dataSnapshot.child("longitude").getValue();
+                deliveryFee = ""+dataSnapshot.child("deliveryFee").getValue();
+                String profileImage = ""+dataSnapshot.child("profileImage").getValue();
+                String shopOpen = ""+dataSnapshot.child("shopOpen").getValue();
+
+                //set data
+                shopNameTv.setText(shopName);
+                emailTv.setText(shopEmail);
+                deliveryFeeTv.setText("Delivery Fee: $"+deliveryFee);
+                addressTv.setText(shopAddress);
+                phoneTv.setText(shopPhone);
+                if (shopOpen.equals("true")){
+                    openCloseTv.setText("Open");
+                }
+                else {
+                    openCloseTv.setText("Closed");
+                }
+                try {
+                    Picasso.get().load(profileImage).into(shopIv);
+                }
+                catch (Exception e){
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void loadShopProducts() {
+        //init list
+        productsList = new ArrayList<>();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(shopUid).child("Products")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //clear list before adding items
+                        productsList.clear();
+                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                            ModelProduct modelProduct = ds.getValue(ModelProduct.class);
+                            productsList.add(modelProduct);
+                        }
+                        //setup adapter
+                        adapterProductUser = new AdapterProductUser(ShopDetailsActivity.this, productsList);
+                        //set adapter
+                        productsRv.setAdapter(adapterProductUser);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
 
 }
