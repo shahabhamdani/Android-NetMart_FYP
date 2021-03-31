@@ -95,6 +95,7 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
 
     @Override
     public int getItemCount() {
+        
         return cartItems.size(); //return number of records
     }
 

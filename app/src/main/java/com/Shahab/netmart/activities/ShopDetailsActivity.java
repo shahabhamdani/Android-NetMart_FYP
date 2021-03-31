@@ -98,12 +98,22 @@ public class ShopDetailsActivity extends AppCompatActivity {
         filteredProductsTv = findViewById(R.id.filteredProductsTv);
         productsRv = findViewById(R.id.productsRv);
 
+        //init progress dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
+
         //get uid of the shop from intent
         shopUid = getIntent().getStringExtra("shopUid");
         firebaseAuth = FirebaseAuth.getInstance();
         loadMyInfo();
         loadShopDetails();
         loadShopProducts();
+
+        // each shop have its own products and orders so if user add items to cart and go back and open cart in different shop then cart should be different
+        // so delete cart data whenever user open this activity
+        deleteCartData();
+
 
         //search
         searchProductEt.addTextChangedListener(new TextWatcher() {
@@ -286,11 +296,21 @@ public class ShopDetailsActivity extends AppCompatActivity {
                     }
                 });
 
-
-
     }
 
+    private void deleteCartData() {
+        EasyDB easyDB = EasyDB.init(this, "ITEMS_DB")
+                .setTableName("ITEMS_TABLE")
+                .addColumn(new Column("Item_Id", new String[]{"text", "unique"}))
+                .addColumn(new Column("Item_PID", new String[]{"text", "not null"}))
+                .addColumn(new Column("Item_Name", new String[]{"text", "not null"}))
+                .addColumn(new Column("Item_Price_Each", new String[]{"text", "not null"}))
+                .addColumn(new Column("Item_Price", new String[]{"text", "not null"}))
+                .addColumn(new Column("Item_Quantity", new String[]{"text", "not null"}))
+                .doneTableColumn();
 
+        easyDB.deleteAllDataFromTable();//delete all records from cart
+    }
 
     public  double allTotalPrice = 0.00;
     //need to access these views in adapter so making pucblic
@@ -483,26 +503,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
             cartCountTv.setText(""+count);//concatenate with string, because we cant set integer in textview
         }
     }
-
-    private void deleteCartData() {
-        easyDB.deleteAllDataFromTable();//delete all records from cart
-    }
-
-    private void openMap() {
-        //saddr means soruce address
-        //daddr means destination address
-        String address = "https://maps.google.com/maps?saddr=" + myLatitude + "," + myLongitude + "&daddr=" + shopLatitude + "," + shopLongitude;
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(address));
-        startActivity(intent);
-
-    }
-
-    private void dialPhone() {
-        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+Uri.encode(shopPhone))));
-        Toast.makeText(this, ""+shopPhone, Toast.LENGTH_SHORT).show();
-    }
-
-
 
 
 }
