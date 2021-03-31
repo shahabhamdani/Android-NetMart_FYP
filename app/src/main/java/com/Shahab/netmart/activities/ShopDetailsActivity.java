@@ -374,7 +374,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 submitOrder();
             }
         });
-
     }
 
     private void submitOrder() {

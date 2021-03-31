@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.HolderOrderUser>  {
 
@@ -69,11 +70,11 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         }
 
         //convert timestamp to proper format
-        //Calendar calendar = Calendar.getInstance();
-        //calendar.setTimeInMillis(Long.parseLong(orderTime));
-        //String formatedDate = DateFormat.format("dd/MM/yyyy", calendar).toString(); //e.g. 16/06/2020
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(Long.parseLong(orderTime));
+        String formatedDate = DateFormat.format("dd/MM/yyyy", calendar).toString(); //e.g. 16/06/2020
 
-       // holder.dateTv.setText(formatedDate);
+        holder.dateTv.setText(formatedDate);
 
     }
 
