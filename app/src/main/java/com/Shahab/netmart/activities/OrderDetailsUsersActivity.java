@@ -137,7 +137,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                         String latitude = ""+dataSnapshot.child("latitude").getValue();
                         String longitude = ""+dataSnapshot.child("longitude").getValue();
 
-                        //conver timestamp to proper format
+                        //convert timestamp to proper format
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTimeInMillis(Long.parseLong(orderTime));
                         String formatedDate = DateFormat.format("dd/MM/yyyy hh:mm a", calendar).toString(); //e.g. 20/05/2020 12:01 PM

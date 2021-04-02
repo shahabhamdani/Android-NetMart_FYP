@@ -25,6 +25,7 @@
         <activity android:name=".activities.ShopReviewsActivity" />
         <activity android:name=".activities.MainUserActivity" />
         <activity android:name=".activities.MainSellerActivity" />
+        <activity android:name=".activities.OrderDetailsUsersActivity" />
         <activity android:name=".activities.ForgotPasswordActivity" />
         <activity android:name=".activities.VerificationActivity" />
         <activity android:name=".activities.RegisterMenuActivity" />

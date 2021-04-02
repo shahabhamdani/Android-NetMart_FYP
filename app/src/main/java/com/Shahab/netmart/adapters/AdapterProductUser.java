@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.Shahab.netmart.FilterProductUser;
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.activities.ShopDetailsActivity;
 import com.Shahab.netmart.models.ModelProduct;
 import com.squareup.picasso.Picasso;
 
@@ -252,6 +253,8 @@ public class AdapterProductUser extends
 
         Toast.makeText(context, "Added to cart...", Toast.LENGTH_SHORT).show();
 
+        //update cart count
+        ((ShopDetailsActivity)context).cartCount();
     }
 
 
