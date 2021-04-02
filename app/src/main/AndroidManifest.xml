@@ -30,6 +30,7 @@
         <activity android:name=".activities.VerificationActivity" />
         <activity android:name=".activities.RegisterMenuActivity" />
         <activity android:name=".activities.RegisterSellerActivity" />
+        <activity android:name=".activities.WriteReviewActivity" />
         <activity android:name=".activities.RegisterUserActivity" />
         <activity android:name=".activities.RegisterRiderActivity" />
         <activity android:name=".activities.LoginActivity" />
