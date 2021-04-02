@@ -1,6 +1,7 @@
 package com.Shahab.netmart.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.activities.OrderDetailsUsersActivity;
 import com.Shahab.netmart.models.ModelOrderUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -76,6 +78,16 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
 
         holder.dateTv.setText(formatedDate);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //open order details, we need to keys there, orderId, orderTo
+                Intent intent = new Intent(context, OrderDetailsUsersActivity.class);
+                intent.putExtra("orderTo", orderTo);
+                intent.putExtra("orderId", orderId);
+                context.startActivity(intent);
+            }
+        });
     }
 
     private void loadShopInfo(ModelOrderUser modelOrderUser, final HolderOrderUser holder) {
