@@ -112,6 +112,12 @@ public class MainUserActivity extends AppCompatActivity {
                     }
                     break;
 
+                    case R.id.navSetting: {
+                        intent = new Intent(MainUserActivity.this, SettingsActivity.class);
+                        startActivity(intent);
+                    }
+                    break;
+
                     case R.id.navSignOut: {
                         makeMeOffline();
 

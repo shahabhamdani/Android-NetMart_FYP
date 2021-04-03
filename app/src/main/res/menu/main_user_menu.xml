@@ -15,6 +15,12 @@
             android:id="@+id/navMyCart"
             android:icon="@drawable/ic_cart_black"
             android:title="My Cart" />
+
+        <item
+            android:id="@+id/navSetting"
+            android:icon="@drawable/ic_setting"
+            android:title="Setting" />
+
         <item
             android:id="@+id/navSignOut"
             android:icon="@drawable/ic_logout"

@@ -118,6 +118,12 @@ public class MainSellerActivity extends AppCompatActivity {
                     }
                     break;
 
+                    case R.id.navSetting: {
+                        intent = new Intent(MainSellerActivity.this, SettingsActivity.class);
+                        startActivity(intent);
+                    }
+                    break;
+
                     case R.id.navReviews: {
                         intent = new Intent(MainSellerActivity.this, ShopReviewsActivity.class);
                         intent.putExtra("shopUid", ""+firebaseAuth.getUid());

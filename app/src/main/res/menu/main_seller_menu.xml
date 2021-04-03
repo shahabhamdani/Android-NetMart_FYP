@@ -11,10 +11,11 @@
             android:id="@+id/navAddProducts"
             android:icon="@drawable/ic_add_products"
             android:title="Add products" />
+
         <item
-            android:id="@+id/navMyCart"
-            android:icon="@drawable/ic_cart_black"
-            android:title="Cart" />
+            android:id="@+id/navSetting"
+            android:icon="@drawable/ic_setting"
+            android:title="Setting" />
 
         <item
             android:id="@+id/navReviews"

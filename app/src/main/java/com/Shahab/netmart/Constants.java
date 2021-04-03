@@ -3,7 +3,7 @@ package com.Shahab.netmart;
 
 public class Constants {
 
-    public static final String FCM_KEY = "AAAA9xV4t7Y:APA91bFh-pZ0yrLPu1BXU8NBwECFdSSvRTA51xgiB75FdZ1hh2Cmrxt_l-ND2oLmrefa6BFSV8myIhtIxqIdI9XOJYsk-Kg--u9Ty1e4rgANfWzEna-SdVaj9sIKSNyoaqJ5SNjFNMA8";
+    public static final String FCM_KEY = "AAAATnZcaZQ:APA91bGk4gV1buHJA075qpDJ-cQi8JVd9Gz53ekdqn5seYdCvUYRkBducgEl3FqmojB9BJMBxVTBQz_WnYbfs98f6JFN_NNht_m8SM-sR6GJmvbwOXbG7MeQS2R2Nsy6KD2mf4tuEk9J";
     public static final String FCM_TOPIC = "PUSH_NOTIFICATIONS";
 
     //product categories

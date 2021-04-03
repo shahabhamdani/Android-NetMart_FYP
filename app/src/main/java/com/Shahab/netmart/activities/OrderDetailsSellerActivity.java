@@ -22,6 +22,10 @@ import com.Shahab.netmart.R;
 import com.Shahab.netmart.adapters.AdapterOrderedItem;
 import com.Shahab.netmart.models.ModelOrderedItem;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -310,6 +314,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 });
     }
 
+
     private void prepareNotificationMessage(String orderId, String message){
         //When user seller changes order status InProgress/Cancelled/Completed, send notification to buyer
 
@@ -338,7 +343,35 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
             Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-        //sendFcmNotification(notificationJo);
+        sendFcmNotification(notificationJo);
     }
 
+    private void sendFcmNotification(JSONObject notificationJo) {
+        //send volley request
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationJo, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //notification sent
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //notification failed
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() {
+
+                //put required headers
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "key=" + Constants.FCM_KEY);
+
+                return headers;
+            }
+        };
+
+        //enque the volley request
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
+    }
 }
