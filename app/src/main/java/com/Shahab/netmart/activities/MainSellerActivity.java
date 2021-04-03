@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Shahab.netmart.Constants;
+import com.Shahab.netmart.adapters.AdapterOrderShop;
+import com.Shahab.netmart.models.ModelOrderShop;
 import com.Shahab.netmart.models.ModelProduct;
 import com.Shahab.netmart.R;
 import com.Shahab.netmart.adapters.AdapterProductSeller;
@@ -48,13 +50,13 @@ public class MainSellerActivity extends AppCompatActivity {
     private ArrayList<ModelProduct> productList;
     private AdapterProductSeller adapterProductSeller;
 
-    //private ArrayList<ModelOrderShop> orderShopArrayList;
-    //private AdapterOrderShop adapterOrderShop;
+    private ArrayList<ModelOrderShop> orderShopArrayList;
+    private AdapterOrderShop adapterOrderShop;
 
     private TextView userName;
     private TextView userPhone;
-    private TextView userEmail, filteredProductsTv;
-    private ImageView profileIv, filterProductBtn;
+    private TextView userEmail, filteredProductsTv, filteredOrdersTv;
+    private ImageView profileIv, filterProductBtn, filterOrderBtn;
     private ImageView cartIv;
     private TextView  tabProductsTv;
     private TextView tabOrdersTv;
@@ -63,6 +65,7 @@ public class MainSellerActivity extends AppCompatActivity {
     private RelativeLayout ordersRl;
 
     private RecyclerView productsRv;
+    private RecyclerView ordersRv;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -83,6 +86,10 @@ public class MainSellerActivity extends AppCompatActivity {
         searchProductEt =  findViewById(R.id.searchProductEt);
         filterProductBtn =  findViewById(R.id.filterProductBtn);
         filteredProductsTv =  findViewById(R.id.filteredProductsTv);
+        filteredOrdersTv = findViewById(R.id.filteredOrdersTv);
+        filterOrderBtn =findViewById(R.id.filterOrderBtn);
+
+        ordersRv =findViewById(R.id.ordersRv);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");
@@ -91,6 +98,7 @@ public class MainSellerActivity extends AppCompatActivity {
         checkUser();
 
         loadAllProducts();
+        loadAllOrders();
 
         setUpToolbar();
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
@@ -112,6 +120,7 @@ public class MainSellerActivity extends AppCompatActivity {
 
                     case R.id.navReviews: {
                         intent = new Intent(MainSellerActivity.this, ShopReviewsActivity.class);
+                        intent.putExtra("shopUid", ""+firebaseAuth.getUid());
                         startActivity(intent);
                     }
                     break;
@@ -203,6 +212,35 @@ public class MainSellerActivity extends AppCompatActivity {
         });
 
 
+        filterOrderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //options to display in dialog
+                final String[] options = {"All", "In Progress", "Completed", "Cancelled"};
+                //dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainSellerActivity.this);
+                builder.setTitle("Filter Orders:")
+                        .setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //handle item clicks
+                                if (which==0){
+                                    //All clicked
+                                    filteredOrdersTv.setText("Showing All Orders");
+                                    adapterOrderShop.getFilter().filter(""); //show all orders
+                                }
+                                else {
+                                    String optionClicked = options[which];
+                                    filteredOrdersTv.setText("Showing "+optionClicked+" Orders"); //e.g. Showing Completed Orders
+                                    adapterOrderShop.getFilter().filter(optionClicked);
+                                }
+                            }
+                        })
+                        .show();
+            }
+        });
+
+
     }
 
     private void makeMeOffline() {
@@ -286,6 +324,37 @@ public class MainSellerActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void loadAllOrders() {
+        //init array list
+        orderShopArrayList = new ArrayList<>();
+
+        //load orders of shop
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(firebaseAuth.getUid()).child("Orders")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //clear list before adding new data in it
+                        orderShopArrayList.clear();
+                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                            ModelOrderShop modelOrderShop = ds.getValue(ModelOrderShop.class);
+                            //add to list
+                            orderShopArrayList.add(modelOrderShop);
+                        }
+                        //setup adapter
+                        adapterOrderShop = new AdapterOrderShop(MainSellerActivity.this, orderShopArrayList);
+                        //set adapter to recyclerview
+                        ordersRv.setAdapter(adapterOrderShop);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
     public void setUpToolbar() {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);

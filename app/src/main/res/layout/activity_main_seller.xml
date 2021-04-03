@@ -137,17 +137,46 @@
 
         <!---Orders-->
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/ordersRl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
-            android:background="@drawable/back"
-            >
-
-
+            android:background="@drawable/back">
+            <!--Search/Filter-->
+            <TextView
+                android:id="@+id/filteredOrdersTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_toStartOf="@id/filterOrderBtn"
+                android:background="@drawable/shape_rect02"
+                android:padding="10dp"
+                android:text="Showing All Orders"
+                android:layout_toLeftOf="@id/filterOrderBtn" />
+            <!--Filter orders-->
+            <ImageButton
+                android:id="@+id/filterOrderBtn"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_filter_gray"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp" />
+            <!--show orders-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ordersRv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/filteredOrdersTv"
+                tools:listitem="@layout/row_order_seller"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
         </RelativeLayout>
-
 
     </RelativeLayout>
 
