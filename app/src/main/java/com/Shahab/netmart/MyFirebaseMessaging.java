@@ -17,8 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import com.Shahab.netmart.activities.OrderDetailsSellerActivity;
-import com.Shahab.netmart.activities.OrderDetailsUsersActivity;
+import com.Shahab.netmart.activities.seller.OrderDetailsSellerActivity;
+import com.Shahab.netmart.activities.user.OrderDetailsUsersActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessagingService;

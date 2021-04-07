@@ -1,4 +1,4 @@
-package com.Shahab.netmart.activities;
+package com.Shahab.netmart.activities.rider;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.Shahab.netmart.R;
 
-public class RiderNotaskActivity extends AppCompatActivity {
+public class RiderDeliverystatusActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rider_notask);
+        setContentView(R.layout.activity_rider_deliverystatus);
     }
 }

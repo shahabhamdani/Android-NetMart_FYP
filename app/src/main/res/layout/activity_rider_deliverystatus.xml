@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".activities.RiderDeliverystatusActivity">
+    tools:context=".activities.rider.RiderDeliverystatusActivity">
 
     <ImageView
 
@@ -28,6 +28,7 @@
         android:layout_centerHorizontal="true"
         android:padding="10dp"
         android:textStyle="bold"
+        android:fontFamily="@font/lato"
         android:textSize="35dp"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
@@ -48,10 +49,10 @@
             android:text="You Delivered"
             android:layout_below="@+id/deliverySuccessTxt"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="65dp"
             android:padding="10dp"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"/>
@@ -67,7 +68,7 @@
             android:layout_marginRight="10dp"
             android:padding="10dp"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"/>
@@ -88,10 +89,10 @@
             android:layout_height="wrap_content"
             android:text="5.6KM (20 Min)"
             android:layout_below="@+id/yourStatus"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+
+            android:layout_marginLeft="75dp"
             android:padding="10dp"
-            android:textSize="25dp"
+            android:textSize="15dp"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"/>
@@ -102,11 +103,10 @@
             android:layout_height="wrap_content"
             android:text="Rs 200"
             android:layout_below="@+id/yourStatus"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginRight="10dp"
             android:padding="10dp"
-            android:textSize="25dp"
+            android:textSize="15dp"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"/>
@@ -121,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_marginHorizontal="10dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:background="@color/colorPrimary"
         android:text="Back To Home "
         android:textColor="@color/colorPrimaryDark" />

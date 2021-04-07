@@ -1,4 +1,4 @@
-package com.Shahab.netmart.activities;
+package com.Shahab.netmart.activities.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.activities.user.MainUserActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

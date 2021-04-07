@@ -1,9 +1,10 @@
-package com.Shahab.netmart;
+package com.Shahab.netmart.activities.rider;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.Shahab.netmart.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

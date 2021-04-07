@@ -1,4 +1,4 @@
-package com.Shahab.netmart.activities;
+package com.Shahab.netmart.activities.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.activities.seller.MainSellerActivity;
+import com.Shahab.netmart.activities.user.MainUserActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;

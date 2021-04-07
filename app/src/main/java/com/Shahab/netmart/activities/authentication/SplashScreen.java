@@ -1,4 +1,4 @@
-package com.Shahab.netmart.activities;
+package com.Shahab.netmart.activities.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.activities.seller.MainSellerActivity;
+import com.Shahab.netmart.activities.user.MainUserActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

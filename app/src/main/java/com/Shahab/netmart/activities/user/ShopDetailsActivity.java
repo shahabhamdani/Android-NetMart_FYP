@@ -1,4 +1,4 @@
-package com.Shahab.netmart.activities;
+package com.Shahab.netmart.activities.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +23,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import com.Shahab.netmart.activities.seller.ShopReviewsActivity;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -32,10 +32,8 @@ import com.Shahab.netmart.Constants;
 import com.Shahab.netmart.R;
 import com.Shahab.netmart.adapters.AdapterCartItem;
 import com.Shahab.netmart.adapters.AdapterProductUser;
-import com.Shahab.netmart.adapters.AdapterReview;
 import com.Shahab.netmart.models.ModelCartItem;
 import com.Shahab.netmart.models.ModelProduct;
-import com.Shahab.netmart.models.ModelReview;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

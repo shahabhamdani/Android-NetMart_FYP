@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Shahab.netmart.activities.EditProductActivity;
-import com.Shahab.netmart.activities.FilterProduct;
+import com.Shahab.netmart.activities.seller.EditProductActivity;
+import com.Shahab.netmart.activities.seller.FilterProduct;
 import com.Shahab.netmart.models.ModelProduct;
 import com.Shahab.netmart.R;
 import com.google.android.gms.tasks.OnFailureListener;

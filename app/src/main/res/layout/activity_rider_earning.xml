@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".activities.RiderEarningActivity">
+    tools:context=".activities.rider.RiderEarningActivity">
 
     <RelativeLayout
         android:id="@+id/toolbarRl"
@@ -41,9 +41,9 @@
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:padding="10dp"
-        android:textStyle="bold"
         android:textSize="35dp"
         android:textAllCaps="false"
+        android:fontFamily="@font/lato"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center" />
 
@@ -62,9 +62,9 @@
             android:text="Order ID:239084"
             android:layout_below="@+id/deliverySuccessTxt"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="80dp"
             android:padding="10dp"
-            android:textSize="30dp"
+            android:textSize="15dp"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"/>
@@ -79,7 +79,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:padding="10dp"
-            android:textSize="26dp"
+            android:textSize="15dp"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"/>
@@ -93,10 +93,10 @@
         android:text="Super Store"
         android:layout_below="@+id/orderDetails"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="150dp"
         android:layout_marginRight="10dp"
         android:padding="10dp"
-        android:textSize="26dp"
+        android:textSize="20dp"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center"/>
@@ -116,9 +116,9 @@
             android:text="Earning: 100"
             android:layout_below="@+id/superStoreTv"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="65dp"
             android:padding="10dp"
-            android:textSize="27dp"
+            android:textSize="20dp"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="center"/>
@@ -133,7 +133,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="10dp"
             android:padding="10dp"
-            android:textSize="26dp"
+            android:textSize="20dp"
             android:textAllCaps="false"
             android:textColor="@color/colourGreen"
             android:gravity="center"/>

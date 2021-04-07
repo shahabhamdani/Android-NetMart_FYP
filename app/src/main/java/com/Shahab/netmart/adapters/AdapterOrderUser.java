@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.Shahab.netmart.R;
-import com.Shahab.netmart.activities.OrderDetailsUsersActivity;
+import com.Shahab.netmart.activities.user.OrderDetailsUsersActivity;
 import com.Shahab.netmart.models.ModelOrderUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -6,7 +6,7 @@
     android:background="@color/colorWhite"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.WriteReviewActivity">
+    tools:context=".activities.user.WriteReviewActivity">
 
     <RelativeLayout
         android:id="@+id/toolbarRl"

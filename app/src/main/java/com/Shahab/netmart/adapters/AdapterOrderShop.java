@@ -13,11 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Shahab.netmart.FilterOrderShop;
+import com.Shahab.netmart.activities.seller.FilterOrderShop;
 import com.Shahab.netmart.R;
 import com.Shahab.netmart.models.ModelOrderShop;
-import com.Shahab.netmart.activities.OrderDetailsSellerActivity;
-import com.Shahab.netmart.models.ModelOrderShop;
+import com.Shahab.netmart.activities.seller.OrderDetailsSellerActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

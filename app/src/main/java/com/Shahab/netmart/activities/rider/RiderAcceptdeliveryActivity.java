@@ -1,4 +1,4 @@
-package com.Shahab.netmart.activities;
+package com.Shahab.netmart.activities.rider;
 
 import androidx.appcompat.app.AppCompatActivity;
 

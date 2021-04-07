@@ -1,4 +1,4 @@
-package com.Shahab.netmart.activities;
+package com.Shahab.netmart.activities.seller;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
@@ -22,6 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Shahab.netmart.Constants;
+import com.Shahab.netmart.activities.CartActivity;
+import com.Shahab.netmart.activities.authentication.LoginActivity;
+import com.Shahab.netmart.activities.user.ProfileEditUserActivity;
+import com.Shahab.netmart.activities.SettingsActivity;
 import com.Shahab.netmart.adapters.AdapterOrderShop;
 import com.Shahab.netmart.models.ModelOrderShop;
 import com.Shahab.netmart.models.ModelProduct;

@@ -1,4 +1,4 @@
-package com.Shahab.netmart.activities;
+package com.Shahab.netmart.activities.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import com.Shahab.netmart.CutomPackageActivity;
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.activities.CartActivity;
+import com.Shahab.netmart.activities.authentication.LoginActivity;
+import com.Shahab.netmart.activities.SettingsActivity;
 import com.Shahab.netmart.adapters.AdapterOrderUser;
 import com.Shahab.netmart.adapters.AdapterShop;
 import com.Shahab.netmart.models.ModelOrderUser;

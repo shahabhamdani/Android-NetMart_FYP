@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.Shahab.netmart.R;
-import com.Shahab.netmart.activities.ShopDetailsActivity;
+import com.Shahab.netmart.activities.user.ShopDetailsActivity;
 import com.Shahab.netmart.models.ModelShop;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

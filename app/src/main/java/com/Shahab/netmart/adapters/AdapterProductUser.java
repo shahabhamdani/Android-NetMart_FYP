@@ -17,9 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Shahab.netmart.FilterProductUser;
+import com.Shahab.netmart.activities.user.FilterProductUser;
 import com.Shahab.netmart.R;
-import com.Shahab.netmart.activities.ShopDetailsActivity;
+import com.Shahab.netmart.activities.user.ShopDetailsActivity;
 import com.Shahab.netmart.models.ModelProduct;
 import com.squareup.picasso.Picasso;
 
