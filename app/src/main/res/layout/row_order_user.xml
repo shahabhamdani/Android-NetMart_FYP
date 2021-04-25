@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="3dp"
+    app:cardElevation="10dp"
     app:contentPadding="5dp"
     app:cardCornerRadius="5dp"
     app:cardUseCompatPadding="true"
@@ -52,7 +52,6 @@
             android:text="In Progress"
             android:textColor="@color/colorGreen"
             android:layout_toLeftOf="@id/nextIv" />
-
         <ImageView
             android:id="@+id/nextIv"
             android:layout_width="wrap_content"

@@ -66,7 +66,6 @@ public class AdapterOrderedItem extends RecyclerView.Adapter<AdapterOrderedItem.
 
         public HolderOrderedItem(@NonNull View itemView) {
             super(itemView);
-
             //init views
             itemTitleTv = itemView.findViewById(R.id.itemTitleTv);
             itemPriceTv = itemView.findViewById(R.id.itemPriceTv);

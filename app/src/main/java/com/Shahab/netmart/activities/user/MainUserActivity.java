@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.Shahab.netmart.CutomPackageActivity;
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.RiderMainActivity;
 import com.Shahab.netmart.activities.CartActivity;
 import com.Shahab.netmart.activities.authentication.LoginActivity;
 import com.Shahab.netmart.activities.SettingsActivity;
@@ -76,22 +77,24 @@ public class MainUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_user);
 
 
+
         tabShopsTv = (TextView) findViewById(R.id.tabShopsTv);
         tabOrdersTv = (TextView) findViewById(R.id.tabOrdersTv);
         shopsRl =  findViewById(R.id.shopsRl);
         ordersRl =  findViewById(R.id.ordersRl);
         shopsRv =  findViewById(R.id.shopsRv);
         ordersRv =  findViewById(R.id.ordersRv);
-        profileIv =  (ImageView) findViewById(R.id.hProfileIv);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");
         progressDialog.setCanceledOnTouchOutside(false);
         firebaseAuth = FirebaseAuth.getInstance();
+
+
+
         checkUser();
-
-
         setUpToolbar();
+
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -231,10 +234,13 @@ public class MainUserActivity extends AppCompatActivity {
                             userEmail = (TextView) findViewById(R.id.emailTv);
                             userEmail.setText(email);
 
+                            profileIv =  (ImageView) findViewById(R.id.hProfileIv);
+
                             try {
                                 Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_black).into(profileIv);
                             }
                             catch (Exception e){
+                                Toast.makeText(MainUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
 

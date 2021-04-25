@@ -114,6 +114,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                 onBackPressed();
             }
         });
+
         gpsBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {

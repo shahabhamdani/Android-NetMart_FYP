@@ -392,8 +392,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
         String cost = allTotalPriceTv.getText().toString().trim().replace("$", ""); //remove $ if contains
 
-        //add latitude, longitude of user to each order | delete previous orders from firebase or add manually to them
-
         //setup oder data
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("orderId", ""+timestamp);
@@ -405,6 +403,8 @@ public class ShopDetailsActivity extends AppCompatActivity {
         hashMap.put("latitude", ""+myLatitude);
         hashMap.put("longitude", ""+myLongitude);
         hashMap.put("deliveryFee", ""+deliveryFee); //include delivery fee in each order
+        hashMap.put("riderStatus", ""+"NotAssigned");
+
 
         //add to db
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("Orders");

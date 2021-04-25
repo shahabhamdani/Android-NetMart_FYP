@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.RiderMainActivity;
 import com.Shahab.netmart.activities.seller.MainSellerActivity;
 import com.Shahab.netmart.activities.user.MainUserActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,11 @@ public class SplashScreen extends AppCompatActivity {
         //calling splash screen
         splashScreen();
 
+        /*
+        Intent intent = new Intent(SplashScreen.this, RiderMainActivity.class);
+        startActivity(intent);
+
+        */
         firebaseAuth = firebaseAuth.getInstance();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -52,11 +58,7 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
         },1500);
-
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    //Splash Screen
-
+               }
 
     private void checkUserType(){
         //if user is seller, start seller main screen
@@ -76,9 +78,13 @@ public class SplashScreen extends AppCompatActivity {
                                 startActivity(new Intent(SplashScreen.this, MainSellerActivity.class));
                                 finish();
                             }
-                            else{
+                            else if (accountType.equals("User")){
                                 //user is buyer
                                 startActivity(new Intent(SplashScreen.this, MainUserActivity.class));
+                                finish();
+                            } else {
+                                //user is buyer
+                                startActivity(new Intent(SplashScreen.this, RiderMainActivity.class));
                                 finish();
                             }
                         }

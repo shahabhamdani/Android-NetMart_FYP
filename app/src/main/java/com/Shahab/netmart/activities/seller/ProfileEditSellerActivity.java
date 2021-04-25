@@ -45,6 +45,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +79,8 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
 
     //progress dialog
     private ProgressDialog progressDialog;
+
+
     //firebase auth
     private FirebaseAuth firebaseAuth;
 
@@ -87,7 +90,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_edit_user);
+        setContentView(R.layout.activity_profile_edit_seller);
 
         backBtn = findViewById(R.id.backBtn);
         gpsBtn = findViewById(R.id.gpsBtn);
@@ -135,6 +138,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         gpsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //detect location
                 if (checkLocationPermission()){
                     //already allowed
@@ -144,6 +148,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                     //not allowed, request
                     requestLocationPermission();
                 }
+
             }
         });
 
@@ -176,6 +181,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
     }
 
     private void updateProfile() {
+
         progressDialog.setMessage("Updating Profile...");
         progressDialog.show();
 
@@ -219,11 +225,14 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         else {
             //update with image
 
+
+
             /*------Upload image first-----*/
-            String filePathAndName = "profile_images/" + ""+ firebaseAuth.getUid();
+            String filePathAndName = "profile_images/" + "" + firebaseAuth.getUid();
             //get storage reference
             StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
             storageReference.putFile(image_uri)
+
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -231,6 +240,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                             Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!uriTask.isSuccessful());
                             Uri downloadImageUri = uriTask.getResult();
+
 
                             if (uriTask.isSuccessful()){
                                 //image url received, now update db
@@ -333,6 +343,13 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                             }
                             else {
                                 shopOpenSwitch.setChecked(false);
+                            }
+
+                            try {
+                                Picasso.get().load(profileImage).placeholder(R.drawable.ic_store_gray).into(profileIv);
+                            }
+                            catch (Exception e){
+                                profileIv.setImageResource(R.drawable.ic_store_gray);
                             }
                         }
                     }
@@ -467,6 +484,8 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
             stateEt.setText(state);
             cityEt.setText(city);
             addressEt.setText(address);
+
+
         }
         catch (Exception e){
             Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();

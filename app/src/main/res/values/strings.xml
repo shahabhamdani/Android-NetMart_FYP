@@ -13,6 +13,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_navigation2">NavigationActivity</string>
     <string name="title_activity_rider_location">Map</string>
-
+    <string name="map_key" translatable="false">AIzaSyB_qsP8AOP_P0MdlPz-48TDaJYjTP3vbjo</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.Shahab.netmart.Constants;
+import com.Shahab.netmart.FindRiderActivity;
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.RiderMainActivity;
+import com.Shahab.netmart.activities.Global;
 import com.Shahab.netmart.adapters.AdapterOrderedItem;
 import com.Shahab.netmart.models.ModelOrderedItem;
 
@@ -48,7 +52,8 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
     //ui views
     private ImageButton backBtn, editBtn, mapBtn;
-    private TextView orderIdTv, dateTv, orderStatusTv, emailTv, phoneTv, totalItemsTv, amountTv, addressTv;
+    private Button findRiderBtn;
+    private TextView orderIdTv, dateTv, orderStatusTv, emailTv, phoneTv, totalItemsTv, amountTv, addressTv, riderStatusTv;
     private RecyclerView itemsRv;
 
     String orderId, orderBy;
@@ -78,6 +83,10 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         amountTv = findViewById(R.id.amountTv);
         addressTv = findViewById(R.id.addressTv);
         itemsRv = findViewById(R.id.itemsRv);
+        findRiderBtn = findViewById(R.id.findRiderBtn);
+        riderStatusTv = findViewById(R.id.riderStatus);
+
+
 
         //get data from intent
         orderId = getIntent().getStringExtra("orderId");
@@ -89,6 +98,8 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         loadOrderDetails();
         loadOrderedItems();
 
+        Global.myId = firebaseAuth.getUid();
+        Global.orderId = orderId;
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +123,42 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 editOrderStatusDialog();
             }
         });
+
+        findRiderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                findRider();
+
+            }
+        });
+
+    }
+
+    private void findRider() {
+
+        new AlertDialog.Builder(OrderDetailsSellerActivity.this)
+                .setTitle("Book Rider")
+                .setMessage("Do you want to book rider for this order?")
+
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(OrderDetailsSellerActivity.this, FindRiderActivity.class);
+                        intent.putExtra("orderId", orderId);
+                        intent.putExtra("orderBy", orderBy);
+                        intent.putExtra("sourceLat", sourceLatitude);
+                        intent.putExtra("sourceLng", sourceLongitude);
+
+                        startActivity(intent);
+
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
 
     }
 
@@ -143,13 +190,13 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        String message = "Order is now "+selectedOption;
-                        //status updated
-                        Toast.makeText(OrderDetailsSellerActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                        prepareNotificationMessage(orderId, message);
-                    }
-                })
+                            String message = "Order is now " + selectedOption;
+                            Toast.makeText(OrderDetailsSellerActivity.this, message, Toast.LENGTH_SHORT).show();
+                            prepareNotificationMessage(orderId, message);
+
+                        }
+                    })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
@@ -198,6 +245,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         String email = ""+dataSnapshot.child("email").getValue();
                         String phone = ""+dataSnapshot.child("phone").getValue();
 
+
+                        //here...................
+
                         //set info
                         emailTv.setText(email);
                         phoneTv.setText(phone);
@@ -228,6 +278,8 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         String deliveryFee = ""+dataSnapshot.child("deliveryFee").getValue();
                         String latitude = ""+dataSnapshot.child("latitude").getValue();
                         String longitude = ""+dataSnapshot.child("longitude").getValue();
+                        String riderSatus = ""+dataSnapshot.child("riderStatus").getValue();
+
 
                         //convert timestamp
                         Calendar calendar = Calendar.getInstance();
@@ -250,6 +302,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         orderStatusTv.setText(orderStatus);
                         amountTv.setText("$"+orderCost + "[Including delivery fee $"+deliveryFee+"]");
                         dateTv.setText(dateFormated);
+                        riderStatusTv.setText(riderSatus);
 
                         findAddress(latitude, longitude); //to find delivery address
                     }
@@ -316,8 +369,8 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
 
     private void prepareNotificationMessage(String orderId, String message){
-        //When user seller changes order status InProgress/Cancelled/Completed, send notification to buyer
 
+        //When user seller changes order status InProgress/Cancelled/Completed, send notification to buyer
         //prepare data for notification
         String NOTIFICATION_TOPIC = "/topics/" + Constants.FCM_TOPIC; //must be same as subscribed by user
         String NOTIFICATION_TITLE = "Your Order "+ orderId;

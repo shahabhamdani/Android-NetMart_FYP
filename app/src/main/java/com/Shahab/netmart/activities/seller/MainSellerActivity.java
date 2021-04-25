@@ -22,8 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Shahab.netmart.Constants;
+import com.Shahab.netmart.FindRiderActivity;
 import com.Shahab.netmart.activities.CartActivity;
+import com.Shahab.netmart.activities.Global;
 import com.Shahab.netmart.activities.authentication.LoginActivity;
+import com.Shahab.netmart.activities.user.MainUserActivity;
 import com.Shahab.netmart.activities.user.ProfileEditUserActivity;
 import com.Shahab.netmart.activities.SettingsActivity;
 import com.Shahab.netmart.adapters.AdapterOrderShop;
@@ -41,6 +44,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,7 +83,6 @@ public class MainSellerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_seller);
-        profileIv = (ImageView) findViewById(R.id.hProfileIv);
 
         tabProductsTv = (TextView) findViewById(R.id.tabProductsTv);
         tabOrdersTv = (TextView) findViewById(R.id.tabOrdersTv);
@@ -99,12 +102,12 @@ public class MainSellerActivity extends AppCompatActivity {
         progressDialog.setTitle("Please Wait");
         progressDialog.setCanceledOnTouchOutside(false);
         firebaseAuth = FirebaseAuth.getInstance();
-        checkUser();
 
+        setUpToolbar();
+        checkUser();
         loadAllProducts();
         loadAllOrders();
 
-        setUpToolbar();
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -112,7 +115,7 @@ public class MainSellerActivity extends AppCompatActivity {
                 Intent intent = null;
                 switch (menuItem.getItemId()) {
                     case R.id.navProfile:
-                        intent = new Intent(MainSellerActivity.this, ProfileEditUserActivity.class);
+                        intent = new Intent(MainSellerActivity.this, ProfileEditSellerActivity.class);
                         startActivity(intent);
                         break;
 
@@ -150,7 +153,7 @@ public class MainSellerActivity extends AppCompatActivity {
         cartIv = findViewById(R.id.cartIv);
         cartIv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainSellerActivity.this, CartActivity.class);
+                Intent intent = new Intent(MainSellerActivity.this, FindRiderActivity.class);
                 startActivity(intent);
             }
         });
@@ -301,6 +304,8 @@ public class MainSellerActivity extends AppCompatActivity {
 
     private void loadMyInfo() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+
+        Global.myId = firebaseAuth.getUid();
         ref.orderByChild("uid").equalTo(firebaseAuth.getUid())
 
                 .addValueEventListener(new ValueEventListener() {
@@ -314,14 +319,28 @@ public class MainSellerActivity extends AppCompatActivity {
                             String email = ""+ds.child("email").getValue();
 
                             userName = (TextView) findViewById(R.id.userNameTv);
-                            userName.setText(name +" ("+accountType+")");
-
                             userPhone = (TextView) findViewById(R.id.phoneTv);
-                            userPhone.setText(phone);
-
                             userEmail = (TextView) findViewById(R.id.emailTv);
-                            userEmail.setText(email);
 
+                            if(  userName.getText().equals("Name")){
+                                userEmail.setText(email);
+                                userName.setText(name +" ("+accountType+")");
+                                userPhone.setText(phone);
+                            }
+
+
+
+
+
+
+                            profileIv = (ImageView) findViewById(R.id.hProfileIv);
+                            try {
+                                Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_black).into(profileIv);
+                            }
+                            catch (Exception e){
+                                Toast.makeText(MainSellerActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
 
 
                         }

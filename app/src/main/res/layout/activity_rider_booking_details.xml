@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    tools:context=".RiderBookingDetailsActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:subtitleTextColor="#0A0A0A"
+        android:background="@color/colorWhite"
+        app:title=" "
+        app:titleTextColor="#111111">
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:text="New Booking" />
+
+        <ImageView
+            android:id="@+id/onlineIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:clickable="true"
+            android:padding="20dp"
+            android:src="@drawable/ic_online"
+            app:tint="@color/colorPrimaryDark" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <fragment
+        android:id="@+id/gMapBooking"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        android:layout_below="@id/toolbar"/>
+
+        <TextView
+            android:id="@+id/catTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Booking"
+            android:gravity="center"
+            android:layout_below="@+id/gMapBooking"
+            android:textColor="@color/colorBlack"
+            android:fontFamily="@font/lato"
+            android:textStyle="bold"
+            android:background="@drawable/shape_rect02"
+            android:textSize="35dp"/>
+
+
+<RelativeLayout
+    android:id="@+id/rL1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/catTv"
+    android:gravity="center"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/distanceTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.4 KM"
+        android:gravity="center"
+        android:fontFamily="@font/lato"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:textSize="17dp"/>
+
+        <TextView
+            android:id="@+id/timeTv"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/distanceTv"
+            android:layout_height="wrap_content"
+            android:text="(20 min)"
+            android:fontFamily="@font/lato"
+            android:textColor="@color/colorBlack"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:textSize="17dp"/>
+</RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/namesRl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:nestedScrollingEnabled="true"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        android:layout_below="@+id/rL1">
+
+        <ImageView
+            android:id="@+id/markerIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location_marker">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/storeNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Store Nmae"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/markerIv">
+        </TextView>
+
+        <TextView
+            android:id="@+id/storeAddressTv"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:textSize="12dp"
+            android:inputType="textMultiLine"
+            android:textStyle="bold"
+            android:layout_below="@+id/storeNameTv"
+            android:layout_marginLeft="24dp">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/storeAddressTv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_arrow">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/markerIv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/arrow"
+            android:src="@drawable/ic_location_marker">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/custNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Store Nmae"
+            android:layout_below="@id/arrow"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/markerIv">
+        </TextView>
+
+        <TextView
+            android:id="@+id/custAddressTv"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:inputType="textMultiLine"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/custNameTv"
+            android:layout_marginLeft="24dp">
+        </TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/namesRl">
+
+
+
+    <Button
+        android:id="@+id/acceptBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:text="ACCEPT"
+        android:textColor="@color/colorWhite">
+    </Button>
+
+    <Button
+        android:id="@+id/rejectBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_rect09"
+        android:backgroundTint="@color/colorRed"
+        android:text="Reject"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/acceptBtn"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorWhite">
+    </Button>
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

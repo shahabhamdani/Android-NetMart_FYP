@@ -2,7 +2,7 @@ package com.Shahab.netmart.models;
 
 public class ModelOrderUser {
 
-    String orderId, orderTime, orderStatus, orderCost, orderBy, orderTo;
+    String orderId, orderTime, orderStatus, orderCost, orderBy, orderTo, riderStatus;
 
     public ModelOrderUser() {
 
@@ -23,6 +23,14 @@ public class ModelOrderUser {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public String getRiderStatus() {
+        return riderStatus;
+    }
+
+    public void setRiderStatus(String riderStatus) {
+        this.riderStatus = riderStatus;
     }
 
     public String getOrderTime() {

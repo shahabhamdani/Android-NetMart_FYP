@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Shahab.netmart.R;
+import com.Shahab.netmart.RiderMainActivity;
 import com.Shahab.netmart.activities.seller.MainSellerActivity;
 import com.Shahab.netmart.activities.user.MainUserActivity;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -152,11 +153,18 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, MainSellerActivity.class));
                                 finish();
                             }
-                            else{
+                            else if(accountType.equals("User")){
                                 progressDialog.dismiss();
                                 //user is buyer
                                 startActivity(new Intent(LoginActivity.this, MainUserActivity.class));
                                 finish();
+                            }else{
+
+                                progressDialog.dismiss();
+                                //user is rider
+                                startActivity(new Intent(LoginActivity.this, RiderMainActivity.class));
+                                finish();
+
                             }
                         }
                     }

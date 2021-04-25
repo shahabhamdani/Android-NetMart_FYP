@@ -67,6 +67,19 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
                 showNotification(orderId, sellerUid, buyerUid, notificationTitle, notificationDescription, notificationType);
             }
         }
+
+        if (notificationType.equals("NewBooking")){
+            String sellerUid = remoteMessage.getData().get("sellerUid");
+            String riderUid = remoteMessage.getData().get("riderUid");
+            String bookingId = remoteMessage.getData().get("bookingId");
+            String notificationTitle = remoteMessage.getData().get("notificationTitle");
+            String notificationDescription = remoteMessage.getData().get("notificationMessage");
+
+            if (firebaseUser !=null && firebaseAuth.getUid().equals(riderUid)){
+                //user is signed in and is same user to which notification is sent
+                showNotification(bookingId, riderUid, sellerUid, notificationTitle, notificationDescription, notificationType);
+            }
+        }
     }
 
     private void showNotification(String orderId, String sellerUid, String buyerUid, String notificationTitle, String notificationDescription, String notificationType){
@@ -98,8 +111,15 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
             intent.putExtra("orderTo", sellerUid);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        }
 
+        } else if(notificationType.equals("NewBooking")) {
+            //open OpenRiderBookingDetails
+            intent = new Intent(this, RiderBookingDetailsActivity.class);
+            intent.putExtra("bookingId", orderId);
+            intent.putExtra("sellerId", buyerUid);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        }
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         //Large icon

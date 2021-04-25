@@ -53,10 +53,8 @@
             android:fontFamily="@font/lato"
             android:layout_marginBottom="20dp"
             >
+
         </TextView>
-
-
-        />
 
 
 
