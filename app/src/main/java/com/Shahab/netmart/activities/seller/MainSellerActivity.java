@@ -338,7 +338,7 @@ public class MainSellerActivity extends AppCompatActivity {
                                 Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_black).into(profileIv);
                             }
                             catch (Exception e){
-                                Toast.makeText(MainSellerActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainSellerActivity.this, "Add Profile Picture", Toast.LENGTH_SHORT).show();
 
                             }
 

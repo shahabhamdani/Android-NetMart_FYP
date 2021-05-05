@@ -233,6 +233,7 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
                                 hashMap.put("address",""+address);
                                 hashMap.put("latitude",""+latitude);
                                 hashMap.put("longitude",""+longitude);
+                                hashMap.put("profileImage", ""+downloadImageUri);
 
                                 //update to db
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -242,7 +243,7 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
                                             public void onSuccess(Void aVoid) {
                                                 //updated
                                                 progressDialog.dismiss();
-                                                Toast.makeText(ProfileEditUserActivity.this, "Profile updated...", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(ProfileEditUserActivity.this, "Profile updated with image...", Toast.LENGTH_SHORT).show();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {

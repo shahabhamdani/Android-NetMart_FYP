@@ -240,7 +240,7 @@ public class MainUserActivity extends AppCompatActivity {
                                 Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_black).into(profileIv);
                             }
                             catch (Exception e){
-                                Toast.makeText(MainUserActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainUserActivity.this, "Add Profile Picture", Toast.LENGTH_SHORT).show();
 
                             }
 
