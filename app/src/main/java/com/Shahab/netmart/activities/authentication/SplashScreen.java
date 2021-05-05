@@ -37,12 +37,18 @@ public class SplashScreen extends AppCompatActivity {
         //calling splash screen
         splashScreen();
 
+        startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+        finish();
+
         /*
         Intent intent = new Intent(SplashScreen.this, RiderMainActivity.class);
         startActivity(intent);
 
         */
+
+        /*
         firebaseAuth = firebaseAuth.getInstance();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -58,9 +64,12 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
         },1500);
-               }
 
-    private void checkUserType(){
+         */
+
+    }
+
+    private void checkUserType() {
         //if user is seller, start seller main screen
         //if user is buyer, start user main screen
 
@@ -71,14 +80,13 @@ public class SplashScreen extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot ds: dataSnapshot.getChildren()){
-                            String accountType = ""+ds.child("accountType").getValue();
-                            if(accountType.equals("Seller")){
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            String accountType = "" + ds.child("accountType").getValue();
+                            if (accountType.equals("Seller")) {
                                 //user is seller
                                 startActivity(new Intent(SplashScreen.this, MainSellerActivity.class));
                                 finish();
-                            }
-                            else if (accountType.equals("User")){
+                            } else if (accountType.equals("User")) {
                                 //user is buyer
                                 startActivity(new Intent(SplashScreen.this, MainUserActivity.class));
                                 finish();
@@ -98,7 +106,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
 
-    public void splashScreen(){
+    public void splashScreen() {
 
         //variables
         Animation topAnim, bottomAnim;
@@ -107,7 +115,7 @@ public class SplashScreen extends AppCompatActivity {
 
         //animations
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
-        bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         //hooks
         image = findViewById(R.id.SplashLogo);
