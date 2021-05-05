@@ -20,8 +20,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/shape_rect09"
+        android:layout_height="90dp"
+        android:background="@drawable/shape_rect01"
         app:subtitleTextColor="#0A0A0A"
         app:title=" "
         app:titleTextColor="#111111">
@@ -33,25 +33,47 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
                 android:text="Home" />
-
-            <ImageView
-                android:id="@+id/onlineIv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|top"
-                android:clickable="true"
-                android:padding="20dp"
-                android:src="@drawable/ic_online"
-                app:tint="@color/colorPrimaryDark" />
+        
         </androidx.appcompat.widget.Toolbar>
-        <!--Tabs: Products, Orders-->
+
+    <LinearLayout
+        android:id="@+id/selectionBtnLl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/shape_rect03"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <!--Dashboard-->
+        <TextView
+            android:id="@+id/mapTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_rect04"
+            android:gravity="center"
+            android:text="Dashboard"
+            android:textColor="@color/colorWhite" />
+
+        <!--Bookings-->
+        <TextView
+            android:id="@+id/bookingsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Bookings"
+            android:textColor="@color/colourBlack" />
+    </LinearLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/gMapRl"
+
+    <RelativeLayout
+            android:id="@+id/mapRl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar">
+            android:layout_below="@+id/selectionBtnLl">
 
 
             <fragment
@@ -62,7 +84,24 @@
 
         </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/bookingsRl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_below="@id/toolbar">
+
+        <ListView
+            android:id="@+id/bookingsLv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
     </RelativeLayout>
+
+    </RelativeLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_menu"

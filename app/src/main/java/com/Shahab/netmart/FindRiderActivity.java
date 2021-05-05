@@ -62,7 +62,7 @@ public class FindRiderActivity extends AppCompatActivity {
                             String riderCity = ""+ds.child("city").getValue();
                             String riderLat = ""+ds.child("latitude").getValue();
                             String riderLng = ""+ds.child("longitude").getValue();
-                            String status = ""+ds.child("onLine").getValue();
+                            String status = ""+ds.child("online").getValue();
 
 
 

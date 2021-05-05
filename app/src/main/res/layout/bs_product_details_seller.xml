@@ -122,7 +122,7 @@
                 android:id="@+id/discountedPriceTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$10"
+                android:text="Rs10"
                 android:layout_marginEnd="10dp"
                 android:textColor="@color/colorGrey"
                 android:layout_marginRight="10dp" />
@@ -131,7 +131,7 @@
                 android:id="@+id/originalPriceTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$15"
+                android:text="Rs15"
                 android:layout_toEndOf="@id/discountedPriceTv"
                 android:textColor="@color/colorGrey"
                 android:layout_toRightOf="@id/discountedPriceTv" />

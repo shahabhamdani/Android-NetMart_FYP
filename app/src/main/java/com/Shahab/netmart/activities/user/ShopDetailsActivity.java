@@ -338,9 +338,9 @@ public class ShopDetailsActivity extends AppCompatActivity {
         //set to recyclerview
         cartItemsRv.setAdapter(adapterCartItem);
 
-        dFeeTv.setText("$"+deliveryFee);
-        sTotalTv.setText("$"+String.format("%.2f", allTotalPrice));
-        allTotalPriceTv.setText("$"+(allTotalPrice + Double.parseDouble(deliveryFee.replace("$",""))));
+        dFeeTv.setText("Rs"+deliveryFee);
+        sTotalTv.setText("Rs"+String.format("%.2f", allTotalPrice));
+        allTotalPriceTv.setText("Rs"+(allTotalPrice + Double.parseDouble(deliveryFee.replace("Rs",""))));
 
         //show dialog
         AlertDialog dialog = builder.create();
@@ -390,7 +390,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         //for order id and order time
         final String timestamp = ""+System.currentTimeMillis();
 
-        String cost = allTotalPriceTv.getText().toString().trim().replace("$", ""); //remove $ if contains
+        String cost = allTotalPriceTv.getText().toString().trim().replace("Rs", ""); //remove Rs if contains
 
         //setup oder data
         HashMap<String, String> hashMap = new HashMap<>();
@@ -510,7 +510,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 //set data
                 shopNameTv.setText(shopName);
                 emailTv.setText(shopEmail);
-                deliveryFeeTv.setText("Delivery Fee: $"+deliveryFee);
+                deliveryFeeTv.setText("Delivery Fee: Rs"+deliveryFee);
                 addressTv.setText(shopAddress);
                 phoneTv.setText(shopPhone);
                 if (shopOpen.equals("true")){

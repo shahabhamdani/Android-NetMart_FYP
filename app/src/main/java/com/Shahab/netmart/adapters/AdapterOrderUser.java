@@ -57,7 +57,7 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         loadShopInfo(modelOrderUser, holder);
 
         //set data
-        holder.amountTv.setText("Amount: $" +orderCost);
+        holder.amountTv.setText("Amount: Rs" +orderCost);
         holder.statusTv.setText(orderStatus);
         holder.orderIdTv.setText("OrderID: "+ orderId);
         //change order status text color

@@ -1,4 +1,4 @@
-package com.Shahab.netmart.adapters;
+package com.Shahab.netmart;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,12 +19,12 @@ import java.util.ArrayList;
 import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
 
-public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.HolderCartItem> {
+public class AdapterCartItemProductsListings extends RecyclerView.Adapter<AdapterCartItemProductsListings.HolderCartItem> {
 
     private Context context;
     private ArrayList<ModelCartItem> cartItems;
 
-    public AdapterCartItem(Context context, ArrayList<ModelCartItem> cartItems) {
+    public AdapterCartItemProductsListings(Context context, ArrayList<ModelCartItem> cartItems) {
         this.context = context;
         this.cartItems = cartItems;
     }
@@ -77,16 +77,16 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
                 notifyItemChanged(position);
                 notifyDataSetChanged();
 
-                double tx = Double.parseDouble((((ShopDetailsActivity)context).allTotalPriceTv.getText().toString().trim().replace("Rs","")));
+                double tx = Double.parseDouble((((CustomPackageActivity)context).allTotalPriceTv.getText().toString().trim().replace("Rs","")));
                 double totalPrice = tx - Double.parseDouble(cost.replace("Rs",""));
-                double deliveryFee = Double.parseDouble((((ShopDetailsActivity)context).deliveryFee.replace("Rs","")));
+                double deliveryFee = Double.parseDouble((((CustomPackageActivity)context).deliveryFee.replace("Rs","")));
                 double sTotalPrice = Double.parseDouble(String.format("%.2f", totalPrice)) - Double.parseDouble(String.format("%.2f", deliveryFee));
-                ((ShopDetailsActivity)context).allTotalPrice=0.00;
-                ((ShopDetailsActivity)context).sTotalTv.setText("Rs"+String.format("%.2f", sTotalPrice));
-                ((ShopDetailsActivity)context).allTotalPriceTv.setText("Rs"+String.format("%.2f", Double.parseDouble(String.format("%.2f", totalPrice))));
+                ((CustomPackageActivity)context).allTotalPrice=0.00;
+                ((CustomPackageActivity)context).sTotalTv.setText("Rs"+String.format("%.2f", sTotalPrice));
+                ((CustomPackageActivity)context).allTotalPriceTv.setText("Rs"+String.format("%.2f", Double.parseDouble(String.format("%.2f", totalPrice))));
 
                 //after removing item from cart, update cart count
-                ((ShopDetailsActivity)context).cartCount();
+                ((CustomPackageActivity)context).cartCount();
 
             }
         });
@@ -95,7 +95,7 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
 
     @Override
     public int getItemCount() {
-        
+
         return cartItems.size(); //return number of records
     }
 

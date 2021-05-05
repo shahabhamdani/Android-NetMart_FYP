@@ -47,8 +47,8 @@ public class AdapterOrderedItem extends RecyclerView.Adapter<AdapterOrderedItem.
 
         //set data
         holder.itemTitleTv.setText(name);
-        holder.itemPriceEachTv.setText("$"+price);
-        holder.itemPriceTv.setText("$"+cost);
+        holder.itemPriceEachTv.setText("Rs"+price);
+        holder.itemPriceTv.setText("Rs"+cost);
         holder.itemQuantityTv.setText("[" + quantity + "]");
 
     }

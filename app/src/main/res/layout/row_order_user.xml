@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/shopNameTv"
-            android:text="Total Amount: $32.44"/>
+            android:text="Total Amount: Rs32.44"/>
 
         <TextView
             android:id="@+id/statusTv"

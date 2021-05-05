@@ -41,7 +41,7 @@
             android:id="@+id/amountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Amount: $32.33"
+            android:text="Total Amount: Rs32.33"
             android:layout_below="@+id/emailTv"
             android:textColor="@color/colorGrey"/>
         <!--Order status: In Progress, Completed, Cancelled-->

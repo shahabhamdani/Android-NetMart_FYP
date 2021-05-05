@@ -241,7 +241,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             hashMap.put("longitude", ""+longitude);
             hashMap.put("timeStamp", ""+timestamp);
             hashMap.put("accountType", "User");
-            hashMap.put("onLine", "true");
+            hashMap.put("online", "true");
             hashMap.put("profileImage", "");
 
             //Save to DB
@@ -302,7 +302,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                 hashMap.put("longitude", ""+longitude);
                                 hashMap.put("timeStamp", ""+timestamp);
                                 hashMap.put("accountType", "User");
-                                hashMap.put("onLine", "true");
+                                hashMap.put("online", "true");
                                 hashMap.put("profileImage", ""+downloadImageUri); //url OF UPLOADED IMAGE
 
                                 //Save to DB

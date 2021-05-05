@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="$10"
+                    android:text="Rs10"
                     android:textColor="@color/colorGrey"
                     android:layout_marginRight="10dp" />
                 <TextView
@@ -70,7 +70,7 @@
                     android:id="@+id/originalPriceTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$20"
+                    android:text="Rs20"
                     android:textColor="@color/colorGrey"
                     android:layout_toRightOf="@id/discountedPriceTv" />
             </RelativeLayout>

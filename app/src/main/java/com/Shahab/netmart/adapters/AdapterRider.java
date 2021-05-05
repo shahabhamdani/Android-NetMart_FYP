@@ -114,6 +114,7 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
 
                                 Global.riderId = uid;
                                 loadBookings(uid);
+
                             }
                         })
 
@@ -128,9 +129,12 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
 
     private void loadBookings(String uid) {
 
+        updateRiderStatus("Waiting");
+
         //load detailed info of this order, based on order id
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(Global.myId).child("Orders").child(Global.orderId)
+
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -143,15 +147,16 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
                          deliveryFee = ""+dataSnapshot.child("deliveryFee").getValue();
                          latitude = ""+dataSnapshot.child("latitude").getValue();
                          longitude = ""+dataSnapshot.child("longitude").getValue();
+                        String riderStatus = ""+dataSnapshot.child("riderStatus").getValue();
 
                         //convert timestamp
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTimeInMillis(Long.parseLong(orderTime));
                         String dateFormated = DateFormat.format("dd/MM/yyyy", calendar).toString();
 
-
-                        saveOrderToRider();
-
+                        if(!(riderStatus.equals("rejected"))){
+                            saveOrderToRider();
+                        }
                     }
 
                     @Override
@@ -169,23 +174,23 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
 
         //setup oder data
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("bookingId", ""+timestamp);
-        hashMap.put("orderId", ""+orderId);
+        hashMap.put("bookingId", ""+orderId);
         hashMap.put("bookingTime", ""+timestamp);
         hashMap.put("orderCost", ""+orderCost);
         hashMap.put("orderBy", ""+orderBy);
         hashMap.put("orderTo", ""+orderTo);
         hashMap.put("deliveryFee", ""+deliveryFee);
+        hashMap.put("status", ""+"Waiting");
+
 
         //add to db
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(Global.riderId).child("Bookings");
-        ref.child(timestamp).setValue(hashMap)
+        ref.child(orderId).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
 
-                        updateRiderStatus("Booked");
-                        prepareNotificationMessage(timestamp);
+                        prepareNotificationMessage(orderId);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -211,7 +216,7 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            String message = "Rider is now " + selectedOption;
+                            String message = "Rider Status : " + selectedOption;
                             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 
                         }
@@ -223,7 +228,6 @@ public class AdapterRider extends RecyclerView.Adapter<AdapterRider.HolderRider>
                             Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-
 
     }
 

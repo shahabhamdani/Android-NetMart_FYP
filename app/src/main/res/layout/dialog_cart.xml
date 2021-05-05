@@ -27,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colourBlack"
-            android:text="Order To"
+            android:text="Custom
+"
             android:textAllCaps="true"
             android:textAlignment="center"
             android:textStyle="bold"

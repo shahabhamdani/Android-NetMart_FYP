@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Shahab.netmart.CutomPackageActivity;
+import com.Shahab.netmart.CustomPackageActivity;
 import com.Shahab.netmart.R;
-import com.Shahab.netmart.RiderMainActivity;
 import com.Shahab.netmart.activities.CartActivity;
 import com.Shahab.netmart.activities.authentication.LoginActivity;
 import com.Shahab.netmart.activities.SettingsActivity;
@@ -113,7 +113,7 @@ public class MainUserActivity extends AppCompatActivity {
                     break;
 
                     case R.id.navCustomPackage: {
-                        intent = new Intent(MainUserActivity.this, CutomPackageActivity.class);
+                        intent = new Intent(MainUserActivity.this, CustomPackageActivity.class);
                         startActivity(intent);
                     }
                     break;
@@ -315,7 +315,6 @@ public class MainUserActivity extends AppCompatActivity {
                                 shopsList.add(modelShop);
                             }
 
-                            //if you want to display all shops, skip the if statement and add this
                             //shopsList.add(modelShop);
                         }
                         //setup adapter
@@ -358,7 +357,11 @@ public class MainUserActivity extends AppCompatActivity {
                                             ordersList.add(modelOrderUser);
                                         }
                                         //setup adapter
-                                        adapterOrderUser = new AdapterOrderUser(MainUserActivity.this, ordersList);
+
+                                        ArrayList<ModelOrderUser> sortedOrderList = new ArrayList<ModelOrderUser>();
+
+                                        sortedOrderList = sortOrderArrayListByDate(ordersList);
+                                        adapterOrderUser = new AdapterOrderUser(MainUserActivity.this, sortedOrderList);
                                         //set to recyclerview
                                         ordersRv.setAdapter(adapterOrderUser);
                                     }
@@ -379,4 +382,22 @@ public class MainUserActivity extends AppCompatActivity {
         });
     }
 
+    private ArrayList<ModelOrderUser> sortOrderArrayListByDate(ArrayList<ModelOrderUser> ordersList) {
+
+        //bubble sort
+        for (int i=ordersList.size()-1; i >= 0; i--){
+
+            for (int j=1; j <= i; j++){
+
+                if ( Double.parseDouble(ordersList.get(j-1).getOrderTime()) > Double.parseDouble(ordersList.get(j).getOrderTime())){
+
+                    ModelOrderUser temp = new ModelOrderUser();
+                    temp = ordersList.get(j-1);
+                    ordersList.set((j-1),ordersList.get(j));
+                    ordersList.set(j,temp);
+                }
+            }
+        }
+        return ordersList;
+    }
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorWhite"
+    android:layout_height="match_parent"
+    tools:context=".RiderDeliverySuccess">
+
+
+    <ImageView
+        android:id="@+id/icDone"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_done"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        app:tint="@color/colorPrimary" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/icDone"
+        android:text="Delivered Successfully"
+        android:gravity="center"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/lato"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"/>
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/icDone"
+        android:text="200 KM"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginTop="80dp"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/distance"
+        android:text="20 Minutes"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/fee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/time"
+        android:text="Collect: Rs: 500"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="OK"
+        android:onClick="onOkClicked"
+        android:textColor="@color/colorBlack"/>
+    
+    
+
+</RelativeLayout>

@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="1dp"
-    app:cardElevation="3dp"
-    app:contentPadding="5dp">
+    app:cardElevation="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,8 +12,8 @@
 
         <ImageView
             android:id="@+id/productIconIv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="140dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="5dp"
             android:adjustViewBounds="true"
@@ -40,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_rect01"
                 android:textStyle="bold"
-                android:padding="5dp"
+                android:padding="8dp"
                 android:text="5% OFF"
                 android:textColor="@color/colourBlack"
                 android:layout_alignParentRight="true" />
@@ -52,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textStyle="bold"
+                android:textSize="17dp"
                 android:textColor="@color/colorPrimaryDark"/>
 
             <TextView
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="$10"
+                    android:text="Rs10"
                     android:textColor="@color/colorGrey"
                     android:layout_marginRight="10dp" />
                 <TextView
@@ -100,7 +100,7 @@
                     android:id="@+id/originalPriceTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$20"
+                    android:text="Rs20"
                     android:textColor="@color/colorGrey"
                     android:layout_toRightOf="@id/discountedPriceTv" />
             </RelativeLayout>

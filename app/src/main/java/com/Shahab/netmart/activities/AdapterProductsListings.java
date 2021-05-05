@@ -1,4 +1,4 @@
-package com.Shahab.netmart.adapters;
+package com.Shahab.netmart.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,9 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.Shahab.netmart.activities.user.FilterProductUser;
+import com.Shahab.netmart.CustomPackageActivity;
 import com.Shahab.netmart.R;
-import com.Shahab.netmart.activities.user.ShopDetailsActivity;
 import com.Shahab.netmart.models.ModelProduct;
 import com.squareup.picasso.Picasso;
 
@@ -28,15 +27,15 @@ import java.util.ArrayList;
 import p32929.androideasysql_library.Column;
 import p32929.androideasysql_library.EasyDB;
 
-public class AdapterProductUser extends
-        RecyclerView.Adapter<AdapterProductUser.HolderProductUser> implements Filterable {
+public class AdapterProductsListings extends
+        RecyclerView.Adapter<AdapterProductsListings.HolderProductUser> implements Filterable {
 
     private Context context;
 
     public ArrayList<ModelProduct> productsList, filterList;
-    private FilterProductUser filter;
+    private FilterProductsListings filter;
 
-    public AdapterProductUser(Context context, ArrayList<ModelProduct> productsList) {
+    public AdapterProductsListings(Context context, ArrayList<ModelProduct> productsList) {
         this.context = context;
         this.productsList = productsList;
         this.filterList = productsList;
@@ -152,81 +151,81 @@ public class AdapterProductUser extends
             originalPriceTv.setPaintFlags(originalPriceTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG); //add strike through on original price
         }
 
-            else{
-                //product don't have discount
-                discountedNoteTv.setVisibility(View.GONE);
-                priceDiscountedTv.setVisibility(View.GONE);
-                price = modelProduct.getOriginalPrice();
+        else{
+            //product don't have discount
+            discountedNoteTv.setVisibility(View.GONE);
+            priceDiscountedTv.setVisibility(View.GONE);
+            price = modelProduct.getOriginalPrice();
+        }
+
+        cost = Double.parseDouble(price.replaceAll("Rs", ""));
+        finalCost = Double.parseDouble(price.replaceAll("Rs", ""));
+        quantity = 1;
+
+        //dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setView(view);
+
+        //set data
+        try {
+            Picasso.get().load(image).placeholder(R.drawable.ic_add_shopping_primary).into(productIv);
+        } catch (Exception e) {
+            productIv.setImageResource(R.drawable.ic_add_shopping_primary);
+        }
+        titleTv.setText("" + title);
+        pQuantityTv.setText("" + productQuantity);
+        descriptionTv.setText("" + description);
+        discountedNoteTv.setText("" + discountNote);
+        quantityTv.setText("" + quantity);
+        originalPriceTv.setText("Rs" + modelProduct.getOriginalPrice());
+        priceDiscountedTv.setText("Rs" + modelProduct.getDiscountPrice());
+        finalPriceTv.setText("Rs" + finalCost);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        //increase quantity of the product
+        incrementBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finalCost = finalCost + cost;
+                quantity++;
+
+                finalPriceTv.setText("Rs" + finalCost);
+                quantityTv.setText("" + quantity);
             }
+        });
 
-            cost = Double.parseDouble(price.replaceAll("Rs", ""));
-            finalCost = Double.parseDouble(price.replaceAll("Rs", ""));
-            quantity = 1;
 
-            //dialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setView(view);
-
-            //set data
-            try {
-                Picasso.get().load(image).placeholder(R.drawable.ic_add_shopping_primary).into(productIv);
-            } catch (Exception e) {
-                productIv.setImageResource(R.drawable.ic_add_shopping_primary);
-            }
-            titleTv.setText("" + title);
-            pQuantityTv.setText("" + productQuantity);
-            descriptionTv.setText("" + description);
-            discountedNoteTv.setText("" + discountNote);
-            quantityTv.setText("" + quantity);
-            originalPriceTv.setText("Rs" + modelProduct.getOriginalPrice());
-            priceDiscountedTv.setText("Rs" + modelProduct.getDiscountPrice());
-            finalPriceTv.setText("Rs" + finalCost);
-
-            final AlertDialog dialog = builder.create();
-            dialog.show();
-
-            //increase quantity of the product
-            incrementBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finalCost = finalCost + cost;
-                    quantity++;
+        //decrement quantity of product, only if quantity is > 1
+        decrementBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (quantity > 1) {
+                    finalCost = finalCost - cost;
+                    quantity--;
 
                     finalPriceTv.setText("Rs" + finalCost);
                     quantityTv.setText("" + quantity);
                 }
-            });
+            }
+        });
+        continueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = titleTv.getText().toString().trim();
+                String priceEach = price;
+                String totalPrice = finalPriceTv.getText().toString().trim().replace("Rs", "");
+                String quantity = quantityTv.getText().toString().trim();
 
+                //add to db(SQLite)
+                addToCart(productId, title, priceEach, totalPrice, price, quantity);
+                dialog.dismiss();
 
-            //decrement quantity of product, only if quantity is > 1
-            decrementBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (quantity > 1) {
-                        finalCost = finalCost - cost;
-                        quantity--;
+            }
+        });
 
-                        finalPriceTv.setText("Rs" + finalCost);
-                        quantityTv.setText("" + quantity);
-                    }
-                }
-            });
-            continueBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String title = titleTv.getText().toString().trim();
-                    String priceEach = price;
-                    String totalPrice = finalPriceTv.getText().toString().trim().replace("Rs", "");
-                    String quantity = quantityTv.getText().toString().trim();
-
-                    //add to db(SQLite)
-                    addToCart(productId, title, priceEach, totalPrice, price, quantity);
-                    dialog.dismiss();
-
-                }
-            });
-
-        }
+    }
 
     private int itemId = 1;
 
@@ -254,49 +253,49 @@ public class AdapterProductUser extends
         Toast.makeText(context, "Added to cart...", Toast.LENGTH_SHORT).show();
 
         //update cart count
-        ((ShopDetailsActivity)context).cartCount();
+        ((CustomPackageActivity)context).cartCount();
     }
 
 
-        @Override
-        public int getItemCount () {
+    @Override
+    public int getItemCount () {
 
         return productsList.size();
+    }
+
+    @Override
+    public Filter getFilter () {
+        if (filter == null) {
+            filter = new FilterProductsListings(this, filterList);
         }
-
-        @Override
-        public Filter getFilter () {
-            if (filter == null) {
-                filter = new FilterProductUser(this, filterList);
-            }
-            return filter;
-
-        }
-
-
-        class HolderProductUser extends RecyclerView.ViewHolder {
-
-            //ui views
-            private ImageView productIconIv;
-            private TextView discountedNoteTv, titleTv, descriptionTv, addToCartTv, discountedPriceTv, originalPriceTv;
-
-
-            public HolderProductUser(@NonNull View itemView) {
-                super(itemView);
-
-                //init ui views
-                productIconIv = itemView.findViewById(R.id.productIconIv);
-                discountedNoteTv = itemView.findViewById(R.id.discountedNoteTv);
-                titleTv = itemView.findViewById(R.id.titleTv);
-                descriptionTv = itemView.findViewById(R.id.descriptionTv);
-                addToCartTv = itemView.findViewById(R.id.addToCartTv);
-                discountedPriceTv = itemView.findViewById(R.id.discountedPriceTv);
-                originalPriceTv = itemView.findViewById(R.id.originalPriceTv);
-
-
-            }
-        }
+        return filter;
 
     }
+
+
+    class HolderProductUser extends RecyclerView.ViewHolder {
+
+        //ui views
+        private ImageView productIconIv;
+        private TextView discountedNoteTv, titleTv, descriptionTv, addToCartTv, discountedPriceTv, originalPriceTv;
+
+
+        public HolderProductUser(@NonNull View itemView) {
+            super(itemView);
+
+            //init ui views
+            productIconIv = itemView.findViewById(R.id.productIconIv);
+            discountedNoteTv = itemView.findViewById(R.id.discountedNoteTv);
+            titleTv = itemView.findViewById(R.id.titleTv);
+            descriptionTv = itemView.findViewById(R.id.descriptionTv);
+            addToCartTv = itemView.findViewById(R.id.addToCartTv);
+            discountedPriceTv = itemView.findViewById(R.id.discountedPriceTv);
+            originalPriceTv = itemView.findViewById(R.id.originalPriceTv);
+
+
+        }
+    }
+
+}
 
 

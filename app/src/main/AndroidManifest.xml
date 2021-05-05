@@ -16,7 +16,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RiderBookingDetailsActivity"></activity>
+        <activity android:name=".RiderEditProfileActivity"></activity>
+        <activity android:name=".RiderDeliverySuccess" />
+        <activity android:name=".RiderEarningActivity" />
+        <activity android:name=".RiderBookingDetailsActivity" />
         <activity android:name=".FindRiderActivity" />
         <activity android:name=".RiderMainActivity" />
 
@@ -27,7 +30,7 @@
         <activity
             android:name=".activities.user.ShopDetailsActivity"
             android:windowSoftInputMode="stateHidden" /> <!-- hide keyboard by default -->
-        <activity android:name=".CutomPackageActivity" />
+        <activity android:name=".CustomPackageActivity" />
         <activity android:name=".activities.seller.AddProductActivity" />
         <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.CartSellerActivity" />

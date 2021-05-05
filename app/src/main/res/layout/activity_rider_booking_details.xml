@@ -44,10 +44,10 @@
         android:layout_below="@id/toolbar"/>
 
         <TextView
-            android:id="@+id/catTv"
+            android:id="@+id/totalPriceTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New Booking"
+            android:text="Rs:500"
             android:gravity="center"
             android:layout_below="@+id/gMapBooking"
             android:textColor="@color/colorBlack"
@@ -61,10 +61,24 @@
     android:id="@+id/rL1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@id/catTv"
+    android:layout_below="@id/totalPriceTv"
     android:gravity="center"
     android:padding="10dp"
     >
+
+    <TextView
+        android:id="@+id/deliveryFeesTv"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delivery : Rs100"
+        android:gravity="center"
+        android:fontFamily="@font/lato"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/distanceTv"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:textSize="17dp"/>
 
     <TextView
         android:id="@+id/distanceTv"
@@ -178,22 +192,65 @@
 
 
 
-    <Button
-        android:id="@+id/acceptBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimaryDark"
-        android:text="ACCEPT"
-        android:textColor="@color/colorWhite">
-    </Button>
+        <Button
+            android:id="@+id/acceptBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorGreen"
+            android:text="Accept"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorWhite">
+        </Button>
 
-    <Button
+        <Button
+            android:id="@+id/startBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorGreen"
+            android:text="Accept"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorWhite">
+        </Button>
+
+
+        <Button
+            android:id="@+id/pickedBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorGreen"
+            android:text="Picked"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/acceptBtn"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorWhite">
+        </Button>
+
+        <Button
+            android:id="@+id/deliveredBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorRed"
+            android:text="Complete"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/pickedBtn"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorWhite">
+        </Button>
+
+        <Button
         android:id="@+id/rejectBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/shape_rect09"
         android:backgroundTint="@color/colorRed"
         android:text="Reject"
         android:layout_centerHorizontal="true"

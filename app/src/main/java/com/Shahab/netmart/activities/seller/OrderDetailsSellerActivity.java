@@ -300,7 +300,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         //set data
                         orderIdTv.setText(orderId);
                         orderStatusTv.setText(orderStatus);
-                        amountTv.setText("$"+orderCost + "[Including delivery fee $"+deliveryFee+"]");
+                        amountTv.setText("Rs"+orderCost + "[Including delivery fee Rs"+deliveryFee+"]");
                         dateTv.setText(dateFormated);
                         riderStatusTv.setText(riderSatus);
 
