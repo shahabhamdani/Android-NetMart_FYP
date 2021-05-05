@@ -105,15 +105,7 @@
                 android:layout_marginTop="2dp"
                 android:inputType="number"
                 android:background="@drawable/shape_rect02"/>
-            <EditText
-                android:id="@+id/fieldET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/profileIv"
-                android:padding="35dp"
-                android:inputType="text|textImeMultiLine" >
 
-            </EditText>
 
             <LinearLayout
                 android:id="@+id/addressCustomer"
