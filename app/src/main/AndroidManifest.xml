@@ -23,6 +23,7 @@
         <activity android:name=".FindRiderActivity" />
         <activity android:name=".RiderMainActivity" />
 
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
@@ -33,6 +34,7 @@
         <activity android:name=".CustomPackageActivity" />
         <activity android:name=".activities.seller.AddProductActivity" />
         <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.seller.EditProductActivity" />
         <activity android:name=".activities.CartSellerActivity" />
         <activity android:name=".activities.seller.ProfileEditSellerActivity" />
         <activity android:name=".activities.CartActivity" />

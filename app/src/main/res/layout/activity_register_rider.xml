@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@drawable/back"
     tools:context=".activities.authentication.RegisterRiderActivity">
 
 
@@ -206,12 +206,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/cPasswordEt"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorPrimaryDark"
                 android:text="Register"
+                android:layout_below="@id/cPasswordEt"
                 android:textColor="@color/colorWhite"
-                android:textSize="20dp"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimaryDark" />
+                android:textSize="15dp" />
 
 
 

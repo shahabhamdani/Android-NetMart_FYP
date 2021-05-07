@@ -36,13 +36,7 @@ public class SplashScreen extends AppCompatActivity {
 
         //calling splash screen
         splashScreen();
-
-        /*
-        Intent intent = new Intent(SplashScreen.this, RiderMainActivity.class);
-        startActivity(intent);
-
-        */
-
+        
 
         firebaseAuth = firebaseAuth.getInstance();
 
@@ -61,6 +55,7 @@ public class SplashScreen extends AppCompatActivity {
                 }
             }
         },1500);
+
                }
 
     private void checkUserType(){

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back"
     tools:context=".activities.seller.ProfileEditSellerActivity">
 
     <!--Toolbar-->
@@ -41,12 +42,20 @@
 
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarRl">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarRl">
 
     <com.blogspot.atifsoftwares.circularimageview.CircularImageView
         android:id="@+id/profileIv"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@id/toolbarRl"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
@@ -169,11 +178,16 @@
         android:layout_margin="5dp"
         android:text="Shop Open" />
 
+    </RelativeLayout>
+
+    </ScrollView>
+
     <Button
         android:id="@+id/updateBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/shopOpenSwitch"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="5dp"
         android:textColor="@color/colorWhite"

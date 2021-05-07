@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Order Details"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
@@ -39,6 +39,7 @@
             android:background="@null"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_edit"
+            android:backgroundTint="@color/colorBlack"
             android:layout_alignParentRight="true" />
 
         <ImageButton
@@ -48,6 +49,7 @@
             android:background="@null"
             android:layout_toStartOf="@id/editBtn"
             android:src="@drawable/ic_map"
+            android:backgroundTint="@color/colorBlack"
             android:layout_toLeftOf="@id/editBtn" />
     </RelativeLayout>
 
@@ -294,7 +296,7 @@
         android:background="@color/colorPrimary"
         android:text="Ordered Items"
         android:textAlignment="center"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorBlack"
         android:textStyle="bold"
         android:padding="5dp"
         android:gravity="center_horizontal" />

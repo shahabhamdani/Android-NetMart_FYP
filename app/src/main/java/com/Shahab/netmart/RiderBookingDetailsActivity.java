@@ -257,6 +257,7 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
     }
 
     public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
+
     public int calculateDistanceInKilometer(double userLat, double userLng,
                                             double venueLat, double venueLng) {
 

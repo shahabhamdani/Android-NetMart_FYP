@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/back"
     tools:context=".activities.seller.EditProductActivity">
 
     <!--Toolbar-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:padding="10dp"
         android:background="@drawable/shape_rect01">
         <ImageButton

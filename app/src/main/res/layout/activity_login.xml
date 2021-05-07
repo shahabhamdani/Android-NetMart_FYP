@@ -4,32 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@drawable/back"
     tools:context=".activities.authentication.LoginActivity"
     >
 
 
    <ImageView
        android:id="@+id/netmartLogo"
-       android:layout_width="120dp"
-       android:layout_height="100dp"
+       android:layout_width="80dp"
+       android:layout_height="70dp"
        android:background="@drawable/logo"
        android:layout_marginTop="40dp"
-
        android:layout_marginLeft="20dp"/>
 
-    <TextView
-        android:id="@+id/loginSlogan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/netmartLogo"
-        android:gravity="left"
-        android:fontFamily="@font/bungee"
-        android:padding="10dp"
-        android:text="Hello There,\nWelcome Back"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="45dp" />
+ <TextView
+     android:id="@+id/loginSlogan"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginHorizontal="10dp"
+     android:fontFamily="@font/bungee"
+     android:gravity="left"
+     android:layout_below="@id/netmartLogo"
+     android:text="Hello There,\nWelcome Back"
+     android:textAllCaps="false"
+     android:textColor="@color/colorPrimaryDark"
+     android:textSize="30dp" />
 
     <TextView
         android:id="@+id/bSline"
@@ -38,7 +37,6 @@
         android:layout_height="wrap_content"
         android:text="Sign in to continue"
         android:paddingLeft="10dp"
-        android:layout_marginTop="20dp"
         android:textColor="@color/colorGrey"
         android:textSize="19dp"
         android:layout_marginBottom="10dp" />
