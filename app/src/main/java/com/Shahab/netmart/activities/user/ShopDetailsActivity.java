@@ -2,6 +2,7 @@ package com.Shahab.netmart.activities.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
@@ -23,6 +24,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Shahab.netmart.activities.seller.MainSellerActivity;
 import com.Shahab.netmart.activities.seller.ShopReviewsActivity;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -551,6 +553,9 @@ public class ShopDetailsActivity extends AppCompatActivity {
                         }
                         //setup adapter
                         adapterProductUser = new AdapterProductUser(ShopDetailsActivity.this, productsList);
+
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(ShopDetailsActivity.this,1, GridLayoutManager.VERTICAL, false);
+                        productsRv.setLayoutManager(gridLayoutManager);
                         //set adapter
                         productsRv.setAdapter(adapterProductUser);
                     }

@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
@@ -23,6 +24,7 @@ import com.Shahab.netmart.R;
 import com.Shahab.netmart.activities.CartActivity;
 import com.Shahab.netmart.activities.authentication.LoginActivity;
 import com.Shahab.netmart.activities.SettingsActivity;
+import com.Shahab.netmart.activities.seller.MainSellerActivity;
 import com.Shahab.netmart.adapters.AdapterOrderUser;
 import com.Shahab.netmart.adapters.AdapterShop;
 import com.Shahab.netmart.models.ModelOrderUser;
@@ -319,6 +321,9 @@ public class MainUserActivity extends AppCompatActivity {
                         }
                         //setup adapter
                         adapterShop = new AdapterShop(MainUserActivity.this, shopsList);
+
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainUserActivity.this,1, GridLayoutManager.VERTICAL, false);
+                        shopsRv.setLayoutManager(gridLayoutManager);
                         //set adapter to recyclerview
                         shopsRv.setAdapter(adapterShop);
                     }

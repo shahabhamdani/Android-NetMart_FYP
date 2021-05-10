@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
@@ -16,6 +17,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -82,6 +84,7 @@ public class MainSellerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main_seller);
 
         tabProductsTv = (TextView) findViewById(R.id.tabProductsTv);
@@ -437,6 +440,10 @@ public class MainSellerActivity extends AppCompatActivity {
                         }
                         //setup adapter
                         adapterProductSeller = new AdapterProductSeller(MainSellerActivity.this, productList);
+
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainSellerActivity.this,1, GridLayoutManager.VERTICAL, false);
+                        productsRv.setLayoutManager(gridLayoutManager);
+
                         //set adapter
                         productsRv.setAdapter(adapterProductSeller);
                     }
