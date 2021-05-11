@@ -24,6 +24,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Shahab.netmart.CustomPackageActivity;
+import com.Shahab.netmart.OrderPlacedActivity;
 import com.Shahab.netmart.activities.seller.MainSellerActivity;
 import com.Shahab.netmart.activities.seller.ShopReviewsActivity;
 import com.android.volley.Response;
@@ -36,6 +38,7 @@ import com.Shahab.netmart.adapters.AdapterCartItem;
 import com.Shahab.netmart.adapters.AdapterProductUser;
 import com.Shahab.netmart.models.ModelCartItem;
 import com.Shahab.netmart.models.ModelProduct;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -505,9 +508,12 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 shopLatitude = ""+dataSnapshot.child("latitude").getValue();
                 shopAddress = ""+dataSnapshot.child("address").getValue();
                 shopLongitude = ""+dataSnapshot.child("longitude").getValue();
-                deliveryFee = ""+dataSnapshot.child("deliveryFee").getValue();
+                //deliveryFee = ""+dataSnapshot.child("deliveryFee").getValue();
                 String profileImage = ""+dataSnapshot.child("profileImage").getValue();
                 String shopOpen = ""+dataSnapshot.child("shopOpen").getValue();
+
+                LatLng latLng = new LatLng(Double.parseDouble(shopLatitude),Double.parseDouble(shopLongitude));
+                estimateDeliveryFee(latLng);
 
                 //set data
                 shopNameTv.setText(shopName);
@@ -604,19 +610,21 @@ public class ShopDetailsActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 //after sending fcm start order details activity
-                Intent intent = new Intent(ShopDetailsActivity.this, OrderDetailsUsersActivity.class);
+                Intent intent = new Intent(ShopDetailsActivity.this, OrderPlacedActivity.class);
                 intent.putExtra("orderTo", shopUid);
                 intent.putExtra("orderId", orderId);
                 startActivity(intent);
+                finish();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //if failed sending fcm, still start order details activity
-                Intent intent = new Intent(ShopDetailsActivity.this, OrderDetailsUsersActivity.class);
+                Intent intent = new Intent(ShopDetailsActivity.this, OrderPlacedActivity.class);
                 intent.putExtra("orderTo", shopUid);
                 intent.putExtra("orderId", orderId);
                 startActivity(intent);
+                finish();
             }
         }){
             @Override
@@ -635,5 +643,53 @@ public class ShopDetailsActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
 
+    public void  estimateDeliveryFee(LatLng latLngs) {
+
+        if (myLatitude.equals("") || myLatitude.equals("null") || myLongitude.equals("") || myLongitude.equals("null")) {
+            //user didn't enter address in profile
+            Toast.makeText(ShopDetailsActivity.this, "Please enter your address in you profile...", Toast.LENGTH_SHORT).show();
+            return; //don't proceed further
+        }
+
+
+        //double maxDist = 0;
+        double dist = 0;
+        //calculating cost per Kilometer
+        double cpk = 10;
+        double totalFee=0;
+
+            //getting distance in kilometers
+            dist = calculateDistanceInKilometer(Double.parseDouble(myLatitude),Double.parseDouble(myLongitude),latLngs.latitude, latLngs.longitude);
+
+
+            //minimum fee is 30
+            if (dist*cpk < 30){
+
+                totalFee += 30;
+            }
+            else {
+                totalFee += dist*cpk;
+            }
+
+        deliveryFee = ""+totalFee;
+
+    }
+
+    public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
+
+    public double calculateDistanceInKilometer(double userLat, double userLng,
+                                               double venueLat, double venueLng) {
+
+        double latDistance = Math.toRadians(userLat - venueLat);
+        double lngDistance = Math.toRadians(userLng - venueLng);
+
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(userLat)) * Math.cos(Math.toRadians(venueLat))
+                * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
+
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return (Math.floor((AVERAGE_RADIUS_OF_EARTH_KM * c)*100)/100);
+    }
 
 }

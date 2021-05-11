@@ -327,7 +327,7 @@ public class RiderMainActivity extends AppCompatActivity implements OnMapReadyCa
                             try {
                                 Picasso.get().load(profileImage).placeholder(R.drawable.ic_person_black).into(profileIv);
                             } catch (Exception e) {
-                                Toast.makeText(RiderMainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(RiderMainActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
                         }

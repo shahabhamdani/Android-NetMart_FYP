@@ -29,6 +29,13 @@ import com.Shahab.netmart.adapters.AdapterOrderUser;
 import com.Shahab.netmart.adapters.AdapterShop;
 import com.Shahab.netmart.models.ModelOrderUser;
 import com.Shahab.netmart.models.ModelShop;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -40,6 +47,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +78,7 @@ public class MainUserActivity extends AppCompatActivity {
 
     private ArrayList<ModelOrderUser> ordersList;
     private AdapterOrderUser adapterOrderUser;
+    LatLng myLatLng;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -77,7 +88,6 @@ public class MainUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
-
 
 
         tabShopsTv = (TextView) findViewById(R.id.tabShopsTv);
@@ -227,6 +237,12 @@ public class MainUserActivity extends AppCompatActivity {
                             String email = ""+ds.child("email").getValue();
                             String city = ""+ds.child("city").getValue();
 
+
+                            String lat = ""+ds.child("latitude").getValue();
+                            String lng = ""+ds.child("longitude").getValue();
+                            myLatLng = new LatLng(Double.parseDouble(lat),Double.parseDouble(lng));
+
+
                             userName = (TextView) findViewById(R.id.userNameTv);
                             userName.setText(name +" ("+accountType+")");
 
@@ -319,8 +335,14 @@ public class MainUserActivity extends AppCompatActivity {
 
                             //shopsList.add(modelShop);
                         }
+
+
                         //setup adapter
-                        adapterShop = new AdapterShop(MainUserActivity.this, shopsList);
+
+                        ArrayList<ModelShop> sortedShopList = new ArrayList<>();
+                        sortedShopList =findNearestShop(shopsList);
+
+                        adapterShop = new AdapterShop(MainUserActivity.this, sortedShopList);
 
                         GridLayoutManager gridLayoutManager = new GridLayoutManager(MainUserActivity.this,1, GridLayoutManager.VERTICAL, false);
                         shopsRv.setLayoutManager(gridLayoutManager);
@@ -405,4 +427,60 @@ public class MainUserActivity extends AppCompatActivity {
         }
         return ordersList;
     }
+
+
+    private ArrayList<ModelShop> findNearestShop(ArrayList<ModelShop> shopsList) {
+
+        try {
+
+            //bubble sort
+            for (int i = (shopsList.size() - 1); i >= 0; i--) {
+
+                for (int j = 1; j <= i; j++) {
+
+                    if (calculateDistanceInKilometer(myLatLng.latitude, myLatLng.longitude, Double.parseDouble(shopsList.get(j - 1).getLatitude())
+                            , Double.parseDouble(shopsList.get(j - 1).getLongitude())) >
+                            calculateDistanceInKilometer(myLatLng.latitude, myLatLng.longitude, Double.parseDouble(shopsList.get(j).getLatitude())
+                                    , Double.parseDouble(shopsList.get(j).getLongitude()))) {
+
+                        ModelShop temp = new ModelShop();
+                        temp = shopsList.get(j - 1);
+                        shopsList.set((j - 1), shopsList.get(j));
+                        shopsList.set(j, temp);
+
+
+                    }
+                }
+            }
+
+        }catch (Exception e){
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+
+        return shopsList;
+    }
+
+    public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
+
+    public double calculateDistanceInKilometer(double userLat, double userLng,
+                                               double venueLat, double venueLng) {
+
+        double latDistance = Math.toRadians(userLat - venueLat);
+        double lngDistance = Math.toRadians(userLng - venueLng);
+
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(userLat)) * Math.cos(Math.toRadians(venueLat))
+                * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
+
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return (double) Math.floor ( (AVERAGE_RADIUS_OF_EARTH_KM * c) * 100 ) / 100;
+
+    }
+
+
+
+
+
 }

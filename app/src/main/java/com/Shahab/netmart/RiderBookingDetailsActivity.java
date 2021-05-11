@@ -49,7 +49,7 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
     private FirebaseAuth firebaseAuth;
     private LatLng shopLatLng, customerLatLng;
     private ProgressDialog progressDialog;
-    private int dist, time;
+    private double dist, time;
     private ArrayList<ModelOrderShop> orderShopArrayList;
 
     private String bookingId, sellerId;
@@ -94,7 +94,7 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
                 getSupportFragmentManager().findFragmentById(R.id.gMapBooking);
         supportMapFragment.getMapAsync(this);
 
-        loadBooking();
+        checkTimeOut();//checks booking timeout then load bookings
 
 
         acceptBtn.setOnClickListener(new View.OnClickListener() {
@@ -241,7 +241,7 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
 
        time = calculateTime(dist);
 
-        distanceTv.setText(""+dist+"KM");
+       distanceTv.setText(""+dist+"KM");
         storeNameTv.setText(modelBooking.getShopeName());
         storeAddressTv.setText(modelBooking.getShopAddress());
         custNameTv.setText(modelBooking.getCustomerName());
@@ -250,15 +250,15 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
 
     }
 
-    private int calculateTime(int dist) {
+    private double calculateTime(double dist) {
 
-        int time = dist/25 * 60;
-        return time;
+        double time = dist/25 * 60;
+        return Math.floor(( time * 100 ) / 100);
     }
 
     public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
 
-    public int calculateDistanceInKilometer(double userLat, double userLng,
+    public double calculateDistanceInKilometer(double userLat, double userLng,
                                             double venueLat, double venueLng) {
 
         double latDistance = Math.toRadians(userLat - venueLat);
@@ -270,7 +270,8 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
 
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        return (int) (Math.round(AVERAGE_RADIUS_OF_EARTH_KM * c));
+        return (double) Math.floor ( (AVERAGE_RADIUS_OF_EARTH_KM * c) * 100 ) / 100;
+
     }
 
     private void loadBooking() {
@@ -318,6 +319,7 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
                         String longitude = "" + dataSnapshot.child("longitude").getValue();
                         String address = "" + dataSnapshot.child("address").getValue();
                         String phone = "" + dataSnapshot.child("phone").getValue();
+
 
                         String name;
                         if(accountType.equals("Seller")){
@@ -380,6 +382,44 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
 
             }
         });
+    }
+
+
+    public void checkTimeOut(){
+
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.orderByChild("uid").equalTo(sellerId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ds: dataSnapshot.getChildren()){
+
+                            String riderStatus = ""+ds.child("Orders").child(bookingId).child("riderStatus").getValue();
+
+                            if (riderStatus.equals("accepted") || riderStatus.equals("completed")){
+
+                                Toast.makeText(RiderBookingDetailsActivity.this, "Booking TimeOut", Toast.LENGTH_SHORT).show();
+                                setBookingStatus("rejected");
+
+                            }else{
+                                loadBooking();
+                            }
+                        }
+
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+
+                });
+
+
+
+
     }
 
 }

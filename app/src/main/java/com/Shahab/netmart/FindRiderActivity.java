@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.DateFormat;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Shahab.netmart.activities.Global;
@@ -41,11 +45,15 @@ import java.util.Map;
 
 public class FindRiderActivity extends AppCompatActivity {
 
+    ProgressBar progressBar;
+    TextView statusTv;
+
     private ArrayList<ModelRider> riderList;
    // private AdapterRider adapterRider;
     private RecyclerView riderRv;
     String sourceLat, sourceLng;
 
+    Boolean found;
     private String riderStatus,orderBy, orderCost, orderId, orderTo, deliveryFee, latitude, longitude, orderTime;
 
 
@@ -61,8 +69,12 @@ public class FindRiderActivity extends AppCompatActivity {
         Global.buyerId = getIntent().getStringExtra("orderBy");
         sourceLat = getIntent().getStringExtra("sourceLat");
         sourceLng = getIntent().getStringExtra("sourceLng");
+        progressBar = findViewById(R.id.progressPb);
+        statusTv = findViewById(R.id.statusTv);
 
         riderList = new ArrayList<>();
+
+        progressBar.setVisibility(View.VISIBLE);
 
         loadRiders();
 
@@ -100,6 +112,7 @@ public class FindRiderActivity extends AppCompatActivity {
                             }
 
                             ref.removeEventListener(this);
+
 
 
                     }
@@ -246,8 +259,13 @@ public class FindRiderActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 //after sending fcm start booking activity
-                Intent intent = new Intent(FindRiderActivity.this, MainSellerActivity.class);
-                startActivity(intent);
+
+                progressBar.setVisibility(View.GONE);
+                statusTv.setText("Rider Found");
+                updateRiderStatus("waiting");
+                onBackPressed();
+                finish();
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -274,5 +292,35 @@ public class FindRiderActivity extends AppCompatActivity {
         //enque the volley request
         Volley.newRequestQueue(FindRiderActivity.this).add(jsonObjectRequest);
     }
+
+    private void updateRiderStatus(final String selectedOption) {
+
+        //setup data to put in firebase db
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("riderStatus", ""+selectedOption);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(Global.myId).child("Orders").child(Global.orderId)
+                .updateChildren(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        String message = "Rider Status : " + selectedOption;
+                        Toast.makeText(FindRiderActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //failed updating status, show reason
+                        Toast.makeText(FindRiderActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+
 
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".FindRiderActivity">
+    tools:context=".OrderPlacedActivity">
 
 
     <!---shops UI-->
@@ -26,13 +26,13 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="63dp"
-            android:layout_marginLeft="63dp"
-            android:layout_marginTop="83dp"
-            android:layout_marginEnd="59dp"
-            android:layout_marginRight="59dp"
-            android:layout_marginBottom="453dp"
-            android:src="@drawable/ic_searchingrider" />
+            android:layout_marginStart="61dp"
+            android:layout_marginLeft="61dp"
+            android:layout_marginTop="136dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="400dp"
+            android:src="@drawable/ic_confirmorder" />
 
         <TextView
             android:id="@+id/statusTv"
@@ -41,7 +41,7 @@
             android:fontFamily="@font/roboto_medium"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="Finding Rider"
+            android:text="Congratulations!"
             android:textStyle="bold"
             android:textColor="@color/colorBlack"
             android:textSize="20dp" />
@@ -52,26 +52,21 @@
             android:layout_centerVertical="true"
             android:layout_below="@+id/statusTv"
             android:gravity="center"
-            android:text="Searcing for available riders in your area."
+            android:text="Your order has been placed successfully."
             android:textColor="@color/colorBlack"
             android:textSize="16dp" />
 
-
-        <ProgressBar
-            android:id="@+id/progressPb"
-            android:layout_width="wrap_content"
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/statusTv"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="6dp"
-            android:progressBackgroundTint="@color/colorPrimary"
             android:backgroundTint="@color/colorPrimary"
-            android:layout_weight="2"></ProgressBar>
-
-
-
-
-
+            android:textColor="@color/colorBlack"
+            android:text="Order Detail"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_alignParentBottom="true"
+            android:onClick="onOrderDetailsClick"
+            android:padding="25dp"/>
 
     </RelativeLayout>
 

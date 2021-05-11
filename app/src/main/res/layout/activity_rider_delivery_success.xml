@@ -10,21 +10,21 @@
 
     <ImageView
         android:id="@+id/icDone"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ic_done"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_deliverydone"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        app:tint="@color/colorPrimary" />
+        android:layout_marginTop="170dp" />
 
     <TextView
+        android:id="@+id/deliveredTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/icDone"
         android:text="Delivered Successfully"
         android:gravity="center"
         android:textColor="@color/colorBlack"
-        android:fontFamily="@font/lato"
+        android:fontFamily="@font/roboto_medium"
         android:layout_marginTop="10dp"
         android:textSize="25dp"/>
 
@@ -32,11 +32,11 @@
         android:id="@+id/distance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/icDone"
+        android:layout_below="@id/deliveredTv"
         android:text="200 KM"
         android:gravity="center"
         android:textSize="20dp"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/time"
@@ -55,18 +55,21 @@
         android:layout_below="@id/time"
         android:text="Collect: Rs: 500"
         android:gravity="center"
-        android:textSize="25dp"
+        android:textSize="20dp"
+        android:fontFamily="@font/roboto_medium"
         android:textColor="@color/colorBlack"
         android:layout_marginTop="10dp"/>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/colorBlack"
+        android:backgroundTint="@color/colorPrimary"
         android:text="OK"
+        android:fontFamily="@font/roboto_medium"
         android:onClick="onOkClicked"
-        android:textColor="@color/colorWhite"/>
+        android:padding="25dp"
+        android:textColor="@color/colorBlack"/>
     
     
 

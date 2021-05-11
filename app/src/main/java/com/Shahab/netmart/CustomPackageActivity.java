@@ -638,7 +638,7 @@ public class CustomPackageActivity extends AppCompatActivity {
 
         //double maxDist = 0;
         double dist = 0;
-        //calculating cost per minute
+        //calculating cost per Kilometer
         double cpk = 10;
         double totalFee=0;
 
