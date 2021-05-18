@@ -147,7 +147,7 @@ public class FindRiderActivity extends AppCompatActivity {
 
 
         //load detailed info of this order, based on order id
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(Global.myId).child("Orders").child(Global.orderId)
 
                 .addValueEventListener(new ValueEventListener() {
@@ -172,7 +172,9 @@ public class FindRiderActivity extends AppCompatActivity {
 
                        saveOrderToRider(riderId);
 
+                       ref.removeEventListener(this);
                     }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -263,7 +265,6 @@ public class FindRiderActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 statusTv.setText("Rider Found");
                 updateRiderStatus("waiting");
-                onBackPressed();
                 finish();
 
             }

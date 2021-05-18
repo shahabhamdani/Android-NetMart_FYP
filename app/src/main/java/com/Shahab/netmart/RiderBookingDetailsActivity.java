@@ -252,7 +252,7 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
 
     private double calculateTime(double dist) {
 
-        double time = dist/25 * 60;
+        double time = dist/10 * 60;
         return Math.floor(( time * 100 ) / 100);
     }
 
@@ -271,6 +271,7 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return (double) Math.floor ( (AVERAGE_RADIUS_OF_EARTH_KM * c) * 100 ) / 100;
+
 
     }
 
@@ -388,7 +389,7 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
     public void checkTimeOut(){
 
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.orderByChild("uid").equalTo(sellerId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -406,6 +407,8 @@ public class RiderBookingDetailsActivity extends AppCompatActivity implements On
                                 loadBooking();
                             }
                         }
+
+                        ref.removeEventListener(this);
 
                     }
 
